@@ -1,7 +1,7 @@
 baseurl = "/"
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
-title = "Data Struggles"
+title = "DataStruggle"
 theme = "beautifulhugo"
 metaDataFormat = "yaml"
 pygmentsStyle = "trac"
@@ -41,7 +41,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 #  desc = "Hexagon"
 
 [Author]
-  name = "Data Struggle"
+  name = "DataStruggle"
   website = "datastruggle.life"
   linkedin = "username"
 
