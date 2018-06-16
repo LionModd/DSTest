@@ -1,12 +1,13 @@
 ---
-title: "First post testing"
-author: "Me"
+title: "Why use Rmarkdown?"
+author: "Dom"
 date: "16 June 2018"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+library(rmarkdown)
 ```
 
 ## R Markdown
