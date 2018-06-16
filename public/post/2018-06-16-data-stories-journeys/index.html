@@ -5,25 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Using R Markdown</title>
-  <meta property="og:title" content="Using R Markdown" />
-  <meta name="twitter:title" content="Using R Markdown" />
-  <meta name="description" content="R MarkdownThis is some clever stuff. I was first introduced to it by a co-worker who mentioned Jupyter Notebooks (another nifty tool) and I didn’t see the huge appeal and the applications of it until recently. The same co-worker wanted a R script documented and put into words how it was done.
-I thought why not use the comments amongst the code and go from there but not everyone will want to read through code and possibly have to scroll back through the console looking for outputs amongst the processes performed on the data.">
-  <meta property="og:description" content="R MarkdownThis is some clever stuff. I was first introduced to it by a co-worker who mentioned Jupyter Notebooks (another nifty tool) and I didn’t see the huge appeal and the applications of it until recently. The same co-worker wanted a R script documented and put into words how it was done.
-I thought why not use the comments amongst the code and go from there but not everyone will want to read through code and possibly have to scroll back through the console looking for outputs amongst the processes performed on the data.">
-  <meta name="twitter:description" content="R MarkdownThis is some clever stuff. I was first introduced to it by a co-worker who mentioned Jupyter Notebooks (another nifty tool) and I didn’t see the huge appeal and the applications of it until …">
+  <title>Understanding data stories/journeys</title>
+  <meta property="og:title" content="Understanding data stories/journeys" />
+  <meta name="twitter:title" content="Understanding data stories/journeys" />
+  <meta name="description" content="Are they the same?My take on the definitions
+StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh &#43; low levelnot too technicalcan get technicalhighly narrativenarrativeKnow your audienceLet’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room.">
+  <meta property="og:description" content="Are they the same?My take on the definitions
+StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh &#43; low levelnot too technicalcan get technicalhighly narrativenarrativeKnow your audienceLet’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room.">
+  <meta name="twitter:description" content="Are they the same?My take on the definitions
+StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh &#43; low levelnot too technicalcan get technicalhighly narrativenarrative …">
   <meta name="author" content="Data Struggle"/>
   <link href='/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/avatar-icon2.png" />
   <meta name="twitter:image" content="/img/avatar-icon2.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="/post/2018-06-16-using-r-markdown/" />
+  <meta property="og:url" content="/post/2018-06-16-data-stories-journeys/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Data Struggles" />
 
   <meta name="generator" content="Hugo 0.42.1" />
-  <link rel="canonical" href="/post/2018-06-16-using-r-markdown/" />
+  <link rel="canonical" href="/post/2018-06-16-data-stories-journeys/" />
   <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Data Struggles">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -161,7 +162,7 @@ I thought why not use the comments amongst the code and go from there but not ev
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>Using R Markdown</h1>
+              <h1>Understanding data stories/journeys</h1>
                 
                 
                   <span class="post-meta">
@@ -171,7 +172,7 @@ I thought why not use the comments amongst the code and go from there but not ev
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (310 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (302 words)
   
   
 </span>
@@ -191,33 +192,55 @@ I thought why not use the comments amongst the code and go from there but not ev
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is some clever stuff. I was first introduced to it by a co-worker who mentioned <strong>Jupyter Notebooks</strong> (another nifty tool) and I didn’t see the huge appeal and the applications of it until recently. The same co-worker wanted a R script documented and put into words how it was done.</p>
-<p>I thought why not use the comments amongst the code and go from there but not everyone will want to read through code and possibly have to scroll back through the console looking for outputs amongst the processes performed on the data. That’s where <strong>R Markdown</strong> comes in. Time to make this code look somewhat professional and more importantly tell the <strong>story/journey</strong> of the data.</p>
-<div id="data-storiesjournies" class="section level3">
-<h3>Data stories/journies</h3>
-<p>I keep hearing about telling a story/journey of the data but couldn’t figure out when someone would want to hear about it/look through it. Understanding the data story/journey doesn’t just apply to executives and higher ups but also other data wranglers but on different levels.</p>
-<ul>
-<li><strong>Executives/higher ups = less technical story/journey, higher level</strong></li>
-<li><strong>Data wranglers = medium-higher techincal story/journey, higher and lower level</strong></li>
-</ul>
-<p>I think that some people can get carried away when discussing the results to higher ups and get tempted into going into too much detail. Yes some smart data prepartion, modelling and predicting may be occuring to get these results but the higher ups want to be able to <strong>make decisions</strong> from the data.</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+        <div id="are-they-the-same" class="section level2">
+<h2>Are they the same?</h2>
+My take on the definitions<br />
+<br />
+
+<center>
+<table>
+<thead>
+<tr class="header">
+<th>Story</th>
+<th>Journey</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>for <strong>execs/higher ups</strong></td>
+<td>for <strong>data wranglers</strong></td>
+</tr>
+<tr class="even">
+<td>high level</td>
+<td>high + low level</td>
+</tr>
+<tr class="odd">
+<td>not too technical</td>
+<td>can get technical</td>
+</tr>
+<tr class="even">
+<td>highly narrative</td>
+<td>narrative</td>
+</tr>
+</tbody>
+</table>
+</center>
 </div>
+<div id="know-your-audience" class="section level2">
+<h2>Know your audience</h2>
+<p>Let’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room. This is going to determine the tac for the discussion during the meeting.<br />
+<br />
+If it’s an executive they won’t want to go too granular with detail especially the technical side, they want a progress update. This is progress report. You could class this as presenting a <strong>high level partially complete journey</strong>.</p>
+<p>On the flip side let’s take someone in your team, a data analyst. If it’s a collaborative effort then you might get technical in some areas e.g. data preparation steps, bringing out the data speak we all know and love and the next steps for project progression. Here you’re <strong>building the journey</strong>.</p>
+<p>Upon presenting the completed piece of work THAT is the <strong>story</strong>.</p>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="/post/2018-06-16-Using-R-Markdown_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="dont-fall-into-the-trap" class="section level2">
+<h2>Don’t fall into the trap</h2>
+<p>Some people can get carried away when discussing the process of obtaining the results (regardless of stage of project development) to higher ups and get tempted into going into too much detail. Yes they will want to know some outcomes of metrics generated from the data and some smart data prepartion, modelling and predicting may be occuring to get these results but the higher ups want to be able to <strong>make decisions</strong> from the data and not to go into detail of every metric you’ve calculated.</p>
+</div>
+<div id="closing-thoughts" class="section level2">
+<h2>Closing thoughts</h2>
+<p>Always have in the back of your mind who you’re talking to and use your soft skills to adapt to them and know what they are wanting out of the conversation.</p>
 </div>
 
 
@@ -231,7 +254,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//twitter.com/share?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;text=Using%20R%20Markdown&amp;via="
+    <a href="//twitter.com/share?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;text=Understanding%20data%20stories%2fjourneys&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -242,7 +265,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//plus.google.com/share?url=%2fpost%2f2018-06-16-using-r-markdown%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=%2fpost%2f2018-06-16-data-stories-journeys%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -252,7 +275,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-06-16-using-r-markdown%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-06-16-data-stories-journeys%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -262,7 +285,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//reddit.com/submit?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;title=Using%20R%20Markdown" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;title=Understanding%20data%20stories%2fjourneys" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -272,7 +295,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;title=Using%20R%20Markdown" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;title=Understanding%20data%20stories%2fjourneys" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -283,7 +306,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;title=Using%20R%20Markdown" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;title=Understanding%20data%20stories%2fjourneys" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -294,7 +317,7 @@ I thought why not use the comments amongst the code and go from there but not ev
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;description=Using%20R%20Markdown" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;description=Understanding%20data%20stories%2fjourneys" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -311,10 +334,10 @@ I thought why not use the comments amongst the code and go from there but not ev
       
         <ul class="pager blog-pager">
           
-          
-            <li class="next">
-              <a href="/post/2018-06-16-data-stories-journeys/" data-toggle="tooltip" data-placement="top" title="Understanding data stories/journeys">Next Post &rarr;</a>
+            <li class="previous">
+              <a href="/post/2018-06-16-using-r-markdown/" data-toggle="tooltip" data-placement="top" title="Using R Markdown">&larr; Previous Post</a>
             </li>
+          
           
         </ul>
       
