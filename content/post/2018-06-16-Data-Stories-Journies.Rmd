@@ -1,0 +1,43 @@
+---
+title: "Understanding data stories/journeys"
+author: "Dom"
+date: 2018-06-16
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rmarkdown)
+```
+
+## Are they the same?
+My take on the definitions
+\
+\
+<center>
+Story                     | Journey
+-------------             | -------------
+for **execs/higher ups**  | for **data wranglers**
+high level                | high + low level
+not too technical         | can get technical
+highly narrative          | narrative
+</center>
+
+
+## Know your audience
+Let's say you're touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room. This is going to determine the tac for the discussion during the meeting.   
+\
+If it's an executive they won't want to go too granular with detail especially the technical side, they want a progress update. This is progress report. You could class this as presenting a **high level partially complete journey**.
+
+On the flip side let's take someone in your team, a data analyst. If it's a collaborative effort then you might get technical in some areas e.g. data preparation steps, bringing out the data speak we all know and love and the next steps for project progression. Here you're **building the journey**.
+
+Upon presenting the completed piece of work THAT is the **story**.
+
+## Don't fall into the trap  
+
+Some people can get carried away when discussing the process of obtaining the results (regardless of stage of project development) to higher ups and get tempted into going into too much detail. Yes they will want to know some outcomes of metrics generated from the data and some smart data prepartion, modelling and predicting may be occuring to get these results but the higher ups want to be able to **make decisions** from the data and not to go into detail of every metric you've calculated.
+
+## Closing thoughts
+
+Always have in the back of your mind who you're talking to and use your soft skills to adapt to them and know what they are wanting out of the conversation.
+

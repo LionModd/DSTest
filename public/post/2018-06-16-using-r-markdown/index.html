@@ -5,23 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>To be</title>
-  <meta property="og:title" content="To be" />
-  <meta name="twitter:title" content="To be" />
-  <meta name="description" content="... or not to be?">
-  <meta property="og:description" content="... or not to be?">
-  <meta name="twitter:description" content="... or not to be?">
+  <title>Using R Markdown</title>
+  <meta property="og:title" content="Using R Markdown" />
+  <meta name="twitter:title" content="Using R Markdown" />
+  <meta name="description" content="R MarkdownThis is some clever stuff. I was first introduced to it by a co-worker who mentioned Jupyter Notebooks (another nifty tool) and I didn’t see the huge appeal and the applications of it until recently. The same co-worker wanted a R script documented and put into words how it was done.
+I thought why not use the comments amongst the code and go from there but not everyone will want to read through code and possibly have to scroll back through the console looking for outputs amongst the processes performed on the data.">
+  <meta property="og:description" content="R MarkdownThis is some clever stuff. I was first introduced to it by a co-worker who mentioned Jupyter Notebooks (another nifty tool) and I didn’t see the huge appeal and the applications of it until recently. The same co-worker wanted a R script documented and put into words how it was done.
+I thought why not use the comments amongst the code and go from there but not everyone will want to read through code and possibly have to scroll back through the console looking for outputs amongst the processes performed on the data.">
+  <meta name="twitter:description" content="R MarkdownThis is some clever stuff. I was first introduced to it by a co-worker who mentioned Jupyter Notebooks (another nifty tool) and I didn’t see the huge appeal and the applications of it until …">
   <meta name="author" content="Dom"/>
   <link href='/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/avatar-icon.png" />
   <meta name="twitter:image" content="/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="/post/2015-02-13-hamlet-monologue/" />
+  <meta property="og:url" content="/post/2018-06-16-using-r-markdown/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Data Struggles" />
 
   <meta name="generator" content="Hugo 0.42.1" />
-  <link rel="canonical" href="/post/2015-02-13-hamlet-monologue/" />
+  <link rel="canonical" href="/post/2018-06-16-using-r-markdown/" />
   <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Data Struggles">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -159,21 +161,17 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>To be</h1>
-                
-                  
-                    <h2 class="post-subheading">... or not to be?</h2>
-                  
+              <h1>Using R Markdown</h1>
                 
                 
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 13, 2015
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 16, 2018
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (275 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (310 words)
   
   
 </span>
@@ -193,41 +191,34 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>To be, or not to be&ndash;that is the question:
-Whether &lsquo;tis nobler in the mind to suffer
-The slings and arrows of outrageous fortune
-Or to take arms against a sea of troubles
-And by opposing end them. To die, to sleep&ndash;
-No more&ndash;and by a sleep to say we end
-The heartache, and the thousand natural shocks
-That flesh is heir to. &lsquo;Tis a consummation
-Devoutly to be wished. To die, to sleep&ndash;
-To sleep&ndash;perchance to dream: ay, there&rsquo;s the rub,
-For in that sleep of death what dreams may come
-When we have shuffled off this mortal coil,
-Must give us pause. There&rsquo;s the respect
-That makes calamity of so long life.
-For who would bear the whips and scorns of time,
-Th&rsquo; oppressor&rsquo;s wrong, the proud man&rsquo;s contumely
-The pangs of despised love, the law&rsquo;s delay,
-The insolence of office, and the spurns
-That patient merit of th&rsquo; unworthy takes,
-When he himself might his quietus make
-With a bare bodkin? Who would fardels bear,
-To grunt and sweat under a weary life,
-But that the dread of something after death,
-The undiscovered country, from whose bourn
-No traveller returns, puzzles the will,
-And makes us rather bear those ills we have
-Than fly to others that we know not of?
-Thus conscience does make cowards of us all,
-And thus the native hue of resolution
-Is sicklied o&rsquo;er with the pale cast of thought,
-And enterprise of great pitch and moment
-With this regard their currents turn awry
-And lose the name of action. &ndash; Soft you now,
-The fair Ophelia! &ndash; Nymph, in thy orisons
-Be all my sins remembered.</p>
+        <div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is some clever stuff. I was first introduced to it by a co-worker who mentioned <strong>Jupyter Notebooks</strong> (another nifty tool) and I didn’t see the huge appeal and the applications of it until recently. The same co-worker wanted a R script documented and put into words how it was done.</p>
+<p>I thought why not use the comments amongst the code and go from there but not everyone will want to read through code and possibly have to scroll back through the console looking for outputs amongst the processes performed on the data. That’s where <strong>R Markdown</strong> comes in. Time to make this code look somewhat professional and more importantly tell the <strong>story/journey</strong> of the data.</p>
+<div id="data-storiesjournies" class="section level3">
+<h3>Data stories/journies</h3>
+<p>I keep hearing about telling a story/journey of the data but couldn’t figure out when someone would want to hear about it/look through it. Understanding the data story/journey doesn’t just apply to executives and higher ups but also other data wranglers but on different levels.</p>
+<ul>
+<li><strong>Executives/higher ups = less technical story/journey, higher level</strong></li>
+<li><strong>Data wranglers = medium-higher techincal story/journey, higher and lower level</strong></li>
+</ul>
+<p>I think that some people can get carried away when discussing the results to higher ups and get tempted into going into too much detail. Yes some smart data prepartion, modelling and predicting may be occuring to get these results but the higher ups want to be able to <strong>make decisions</strong> from the data.</p>
+<pre class="r"><code>summary(cars)</code></pre>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+</div>
+</div>
+<div id="including-plots" class="section level2">
+<h2>Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="/post/2018-06-16-Using-R-Markdown_files/figure-html/pressure-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+</div>
 
 
         
@@ -240,7 +231,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//twitter.com/share?url=%2fpost%2f2015-02-13-hamlet-monologue%2f&amp;text=To%20be&amp;via="
+    <a href="//twitter.com/share?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;text=Using%20R%20Markdown&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -251,7 +242,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//plus.google.com/share?url=%2fpost%2f2015-02-13-hamlet-monologue%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=%2fpost%2f2018-06-16-using-r-markdown%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -261,7 +252,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2015-02-13-hamlet-monologue%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-06-16-using-r-markdown%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -271,7 +262,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//reddit.com/submit?url=%2fpost%2f2015-02-13-hamlet-monologue%2f&amp;title=To%20be" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;title=Using%20R%20Markdown" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -281,7 +272,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2015-02-13-hamlet-monologue%2f&amp;title=To%20be" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;title=Using%20R%20Markdown" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -292,7 +283,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2015-02-13-hamlet-monologue%2f&amp;title=To%20be" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;title=Using%20R%20Markdown" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -303,7 +294,7 @@ Be all my sins remembered.</p>
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2015-02-13-hamlet-monologue%2f&amp;description=To%20be" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-06-16-using-r-markdown%2f&amp;description=Using%20R%20Markdown" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -320,13 +311,9 @@ Be all my sins remembered.</p>
       
         <ul class="pager blog-pager">
           
-            <li class="previous">
-              <a href="/post/2015-01-27-dear-diary/" data-toggle="tooltip" data-placement="top" title="Dear diary">&larr; Previous Post</a>
-            </li>
-          
           
             <li class="next">
-              <a href="/post/2015-02-20-test-markdown/" data-toggle="tooltip" data-placement="top" title="Test markdown">Next Post &rarr;</a>
+              <a href="/post/2018-06-16-data-stories-journies/" data-toggle="tooltip" data-placement="top" title="Understanding data stories/journeys">Next Post &rarr;</a>
             </li>
           
         </ul>
