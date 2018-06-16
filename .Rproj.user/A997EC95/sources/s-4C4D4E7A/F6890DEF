@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529137782223.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1052497578",
+    "id" : "F6890DEF",
+    "lastKnownWriteTime" : 1529140744,
+    "last_content_update" : 1529140744079,
+    "path" : "C:/Users/dlelion/Desktop/Struggle/testing/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "14,24",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}

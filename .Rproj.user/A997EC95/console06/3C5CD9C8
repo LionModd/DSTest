@@ -1,0 +1,535 @@
+[0m[0KMicrosoft Windows [Version 10.0.15063][0K[?25l
+(c) 2017 Microsoft Corporation. All rights reserved.[0K
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>g[0K[?25hi[0K[?25lC:\Users\dlelion\Desktop\Struggle\testing>g[0K[?25h[?25lC:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git f[0K[?25he[0Kt[0Kc[0Kh[0K[53G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git fetch o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K]0;[?25l
+[0K[?25hremote: Counting objects: 3, done.[0K[?25l
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0[0K
+[0K[?25h[?25lUnpacking objects:  33% (1/3)[0K[1G[?25hUnpacking objects: 100% (3/3), done.[0K[?25l
+[0K[?25hFrom https://github.com/LionModd/DataStruggleTest[0K[?25l
+ * [new branch]      master     -> origin/master[0K
+[0K[?25h]0; [?25l
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K]0;  - git  status[?25l
+[0K[?25hwarning: could not open directory 'Application Data/': Permission denied[0K[?25l
+warning: could not open directory 'Cookies/': Permission denied[0K
+warning: could not open directory 'Local Settings/': Permission denied[0K
+warning: could not open directory 'My Documents/': Permission denied[0K
+warning: could not open directory 'NetHood/': Permission denied[0K
+warning: could not open directory 'PrintHood/': Permission denied[0K
+warning: could not open directory 'Recent/': Permission denied[0K
+warning: could not open directory 'SendTo/': Permission denied[0K
+warning: could not open directory 'Start Menu/': Permission denied[0K
+warning: could not open directory 'Templates/': Permission denied[0K
+On branch master[0K
+[0K
+No commits yet[0K
+[0K
+Untracked files:[0K
+  (use "git add <file>..." to include in what will be committed)[0K
+[0K
+        [0;31m../../../.RapidMiner/[0m[0K
+        [0;31m../../../.anaconda/[0m[0K
+        [0;31m../../../.bash_history[0m[0K
+        [0;31m../../../.cisco/[0m[0K
+        [0;31m../../../.conda/[0m[0K
+        [0;31m../../../.condarc[0m[0K
+        [0;31m../../../.config/[0m[0K
+        [0;31m../../../.gitconfig[0m[0K
+        [0;31m../../../.gitignore[0m[0K[9G[?25h]0; [?25l
+        [0;31m../../../.idlerc/[0m[0K
+        [0;31m../../../.ipynb_checkpoints/[0m[0K
+        [0;31m../../../.ipython/[0m[0K
+        [0;31m../../../.java.policy[0m[0K
+        [0;31m../../../.java.policy.backup.00[0m[0K
+        [0;31m../../../.java.policy.backup.01[0m[0K
+        [0;31m../../../.jupyter/[0m[0K
+        [0;31m../../../.matplotlib/[0m[0K
+        [0;31m../../../.octave_hist[0m[0K
+        [0;31m../../../.spyder-py3/[0m[0K
+        [0;31m../../../.spyder/[0m[0K
+        [0;31m../../../.ssh/[0m[0K
+        [0;31m../../../AppData/[0m[0K
+        [0;31m../../../Box Sync/[0m[0K
+        [0;31m../../../Contacts/[0m[0K
+        [0;31m../../[0m[0K
+        [0;31m../../../Documents/[0m[0K
+        [0;31m../../../Downloads/[0m[0K
+        [0;31m../../../Favorites/[0m[0K
+        [0;31m../../../IntelGraphicsProfiles/[0m[0K
+        [0;31m../../../Links/[0m[0K
+        [0;31m../../../Music/[0m[0K
+        [0;31m../../../NTUSER.DAT[0m[0K
+        [0;31m../../../NTUSER.DAT{4a275db2-75ea-11e7-bced-e1125c327ae9}.TM.blf[0m[0K
+        [0;31m../../../NTUSER.DAT{4a275db2-75ea-11e7-bced-e1125c327ae9}.TMContaine[0Kr
+00000000000000000001.regtrans-ms[0m[0K
+        [0;31m../../../NTUSER.DAT{4a275db2-75ea-11e7-bced-e1125c327ae9}.TMContaine[0Kr
+00000000000000000002.regtrans-ms[0m[0K
+        [0;31m../../../OneDrive/[0m[0K
+        [0;31m../../../Pictures/[0m[0K
+        [0;31m../../../Saved Games/[0m[0K
+        [0;31m../../../Searches/[0m[0K
+        [0;31m../../../Untitled.ipynb[0m[0K
+        [0;31m../../../Videos/[0m[0K
+        [0;31m../../../ntuser.dat.LOG1[0m[0K
+        [0;31m../../../ntuser.dat.LOG2[0m[0K
+        [0;31m../../../ntuser.ini[0m[0K
+        [0;31m../../../ntuser.pol[0m[0K
+[0K
+nothing added to commit but untracked files present (use "git add" to track)[0K
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K]0;  - git  status[?25l
+[0K[?25h]0; fatal: not a git repository (or any of the parent directories): .git[0K[?25l
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hc[0Kd[0K[46G[?25lC:\Users\dlelion\Desktop\Struggle\testing>cd t[0K[?25he[0Ks[0Kt[0Ki[0Kn[0Kg[0K[?25l
+[0K[?25hThe system cannot find the path specified.[0K[?25l
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git a[0K[?25hd[0Kd[0K[51G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git add t[0K[?25he[0Ks[0Kt[0Ki[0Kn[0Kg[0K.[0KR[0Kp[0Kr[0Ko[0Kj[0K]0;  - git  add testing.Rproj[?25l
+[0K[?25h]0; [?25l
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25h]0;git remote add origin https://gith[0Ku[?25l
+b.com/LionModd/DSTest.git[0K
+[0K[?25h]0; [?25l
+C:\Users\dlelion\Desktop\Struggle\testing>git push -u origin master[0K[?25h]0;  - git  push -u origin master[?25l
+[0K[?25herror: src refspec master does not match any.[0K[?25l
+[0;31merror: failed to push some refs to 'https://github.com/LionModd/DSTest.git'[0m[0K
+[0K[?25h]0; [?25l
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K]0;  - git  status[?25l
+[0K[?25h]0; On branch master[0K[?25l
+[0K
+No commits yet[0K
+[0K
+Changes to be committed:[0K
+  (use "git rm --cached <file>..." to unstage)[0K
+[0K
+        [0;32mnew file:   testing.Rproj[0m[0K
+[0K
+Untracked files:[0K
+  (use "git add <file>..." to include in what will be committed)[0K
+[0K
+        [0;31m.Rproj.user/[0m[0K
+        [0;31mconfig.toml[0m[0K
+        [0;31mcontent/[0m[0K
+        [0;31mindex.Rmd[0m[0K
+        [0;31mlayouts/[0m[0K
+        [0;31mstatic/[0m[0K
+        [0;31mthemes/[0m[0K
+[0K
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git a[0K[?25hd[0Kd[0K[51G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git add *[0K[?25h]0;  - git  add *[?25l
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/A997EC95/sources/prop/42[0K3[?25l
+9A231.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in .Rproj.user/A997EC95/sources/prop/9C[0K8
+265F2.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in .Rproj.user/A997EC95/sources/prop/IN[0KD
+EX.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in .Rproj.user/A997EC95/sources/s-4C4D4[0KE
+7A/F6890DEF.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/A997EC95/sources/s-4C4D4[0KE[?25l
+7A/F6890DEF-contents.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/_index.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/page/about.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2015-01-04-first-post.m[0Kd
+.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2015-01-15-pirates.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2015-01-19-soccer.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2015-01-27-dear-diary.m[0Kd
+.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2015-02-13-hamlet-monol[0Ko
+gue.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2015-02-20-test-markdow[0Kn
+.md.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in content/post/2015-02-26-flake-it-til[0Kl[?25l
+-you-make-it.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2016-03-08-code-sample.[0Km
+d.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2017-03-05-math-sample.[0Km
+d.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2017-03-07-bigimg-sampl[0Ke
+.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in content/post/2017-03-20-photoswipe-g[0Ka
+llery-sample.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in layouts/partials/footer_custom.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in layouts/partials/head_custom.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/.gitattributes.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/.gitignore.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/LICENSE.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/README.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/archetypes/defa[0Ku
+lt.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/data/beautifulh[0Ku
+go/social.toml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kf
+ig.toml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/_index.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/page/about.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-01-04-first-post.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-01-15-pirates.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-01-19-soccer.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-01-27-dear-diary.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-02-13-hamlet-monologue.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-02-20-test-markdown.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2015-02-26-flake-it-till-you-make-it.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2016-03-08-code-sample.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2017-03-05-math-sample.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2017-03-07-bigimg-sample.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/con[0Kt
+ent/post/2017-03-20-photoswipe-gallery-sample.md.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/lay[0Ko
+uts/partials/footer_custom.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/exampleSite/lay[0Ko
+uts/partials/head_custom.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/br.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/de.yaml.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/en.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/eo.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/es.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/fr.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/it.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/ja.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/nb.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/nl.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/pl.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/ru.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/i18n/zh.yaml.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/404.htm[0Kl[?25l
+.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/_defaul[0Kt
+/baseof.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/_defaul[0Kt
+/list.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/_defaul[0Kt
+/single.html.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/_defaul[0Kt[?25l
+/terms.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/index.h[0Kt
+ml.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/disqus.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/footer.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/footer_custom.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/head.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/head_custom.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/header.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/load-photoswipe-theme.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/nav.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/post_meta.html.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks[?25l
+/share-links.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/staticman-comments.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/partial[0Ks
+/translation_link.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/shortco[0Kd
+es/figure.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/layouts/shortco[0Kd
+es/gallery.html.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/boot[0Ks
+trap.min.css.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/code[0Kb
+lock.css.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/font[0K-
+awesome.min.css.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/hugo[0K-[?25l
+easy-gallery.css.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/main[0K-
+minimal.css.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/main[0K.
+css.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/stat[0Ki
+cman.css.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/css/synt[0Ka
+x.css.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/auto-[0Kr[?25l
+ender.min.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/boots[0Kt
+rap.min.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/highl[0Ki
+ght.min.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/jquer[0Ky
+.min.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/katex[0K.
+min.js.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/load-[0Kp[?25l
+hotoswipe.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/main.[0Kj
+s.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/photo[0Ks
+wipe-ui-default.min.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/photo[0Ks
+wipe.min.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/static/js/stati[0Kc
+man.js.[0K
+The file will have its original line endings in your working directory.[0K
+warning: LF will be replaced by CRLF in themes/beautifulhugo/theme.toml.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25h]0; [?25l
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K]0;  - git  status[?25l
+[0K[?25hOn branch master[0K[?25l
+[0K
+No commits yet[0K
+[0K
+Changes to be committed:[0K
+  (use "git rm --cached <file>..." to unstage)[0K
+[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/console06/3C5CD9C8[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/console06/INDEX001[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/sources/prop/4239A231[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/sources/prop/9C8265F2[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/sources/prop/INDEX[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/sources/s-4C4D4E7A/F6890DEF[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/sources/s-4C4D4E7A/F6890DEF-content[0Ks
+[0m[0K
+        [0;32mnew file:   .Rproj.user/A997EC95/sources/s-4C4D4E7A/lock_file[0m[0K
+        [0;32mnew file:   .Rproj.user/shared/notebooks/patch-chunk-names[0m[0K
+        [0;32mnew file:   config.toml[0m[0K
+        [0;32mnew file:   content/_index.md[0m[0K
+        [0;32mnew file:   content/page/about.md[0m[0K
+        [0;32mnew file:   content/post/2015-01-04-first-post.md[0m[0K
+        [0;32mnew file:   content/post/2015-01-15-pirates.md[0m[0K
+        [0;32mnew file:   content/post/2015-01-19-soccer.md[0m[0K
+        [0;32mnew file:   content/post/2015-01-27-dear-diary.md[0m[0K
+        [0;32mnew file:   content/post/2015-02-13-hamlet-monologue.md[0m[0K
+        [0;32mnew file:   content/post/2015-02-20-test-markdown.md[0m[0K
+        [0;32mnew file:   content/post/2015-02-26-flake-it-till-you-make-it.md[0m[0K
+        [0;32mnew file:   content/post/2016-03-08-code-sample.md[0m[0K
+        [0;32mnew file:   content/post/2017-03-05-math-sample.md[0m[0K
+        [0;32mnew file:   content/post/2017-03-07-bigimg-sample.md[0m[0K
+        [0;32mnew file:   content/post/2017-03-20-photoswipe-gallery-sample.md[0m[0K
+        [0;32mnew file:   index.Rmd[0m[0K
+        [0;32mnew file:   layouts/partials/footer_custom.html[0m[0K
+        [0;32mnew file:   layouts/partials/head_custom.html[0m[0K
+        [0;32mnew file:   static/.gitkeep[0m[0K
+        [0;32mnew file:   testing.Rproj[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/.gitattributes[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/.gitignore[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/LICENSE[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/README.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/archetypes/default.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/data/beautifulhugo/social.toml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/config.toml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/_index.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/page/about.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-01-04[0K-
+first-post.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-01-15[0K-
+pirates.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-01-19[0K-
+soccer.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-01-27[0K-
+dear-diary.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-02-13[0K-
+hamlet-monologue.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-02-20[0K-
+test-markdown.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2015-02-26[0K-
+flake-it-till-you-make-it.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2016-03-08[0K-
+code-sample.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2017-03-05[0K-
+math-sample.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2017-03-07[0K-
+bigimg-sample.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/content/post/2017-03-20[0K-
+photoswipe-gallery-sample.md[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/layouts/partials/footer[0K_
+custom.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/layouts/partials/head_c[0Ku
+stom.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/exampleSite/static/.gitkeep[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/br.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/de.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/en.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/eo.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/es.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/fr.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/it.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/ja.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/nb.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/nl.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/pl.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/ru.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/i18n/zh.yaml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/images/screenshot.png[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/images/tn.png[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/404.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/_default/baseof.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/_default/list.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/_default/single.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/_default/terms.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/index.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/disqus.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/footer.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/footer_custom.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/head.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/head_custom.html[0m[0K[9G[?25h]0; [?25l
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/header.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/load-photoswipe-th[0Ke
+me.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/nav.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/post_meta.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/share-links.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/staticman-comments[0K.
+html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/partials/translation_link.h[0Kt
+ml[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/shortcodes/figure.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/layouts/shortcodes/gallery.html[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/bootstrap.min.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/codeblock.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/font-awesome.min.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/highlight.min.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/hugo-easy-gallery.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/katex.min.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/main-minimal.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/main.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/staticman.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/css/syntax.css[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/404-southpark.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/avatar-favicon.png[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/avatar-icon.png[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/favicon.ico[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/favicon.ico.zip[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/hexagon-thumb.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/hexagon.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/path.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/sphere-thumb.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/sphere.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/triangle-thumb.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/img/triangle.jpg[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/auto-render.min.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/bootstrap.min.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/highlight.min.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/jquery.min.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/katex.min.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/load-photoswipe.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/main.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/photoswipe-ui-default.min[0K.
+js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/photoswipe.min.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/recaptcha.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/static/js/staticman.js[0m[0K
+        [0;32mnew file:   themes/beautifulhugo/theme.toml[0m[0K
+[0K
+Changes not staged for commit:[0K
+  (use "git add <file>..." to update what will be committed)[0K
+  (use "git checkout -- <file>..." to discard changes in working directory)[0K
+[0K
+        [0;31mmodified:   .Rproj.user/A997EC95/console06/3C5CD9C8[0m[0K
+[0K
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git a[0K[?25hd[0Kd[0K]0;  - git  add[?25l
+[0K[?25h]0; Nothing specified, nothing added.[0K[?25l
+Maybe you wanted to say 'git add .'?[0K
+[0K
+C:\Users\dlelion\Desktop\Struggle\testing>[0K[?25hg[0Ki[0Kt[0K[47G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git a[0K[?25hd[0Kd[0K[51G[?25lC:\Users\dlelion\Desktop\Struggle\testing>git add .[0K[?25h]0;  - git  add .[?25l
+[0K[?25h
