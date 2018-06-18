@@ -10,14 +10,13 @@
     
     
     <item>
-      <title>About Data Struggles</title>
+      <title>About DataStruggle</title>
       <link>/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/page/about/</guid>
-      <description> I am NOT a data scientist, mordeller or analyst. I&amp;rsquo;m not anything involving data. I merely struggle with basic tasks, concepts and ideas involving data and like to have a crack at solving/understanding them. The solutions/concepts may not work for your problem.
-
-&amp;ldquo;If there is no struggle, there is no progress.&amp;rdquo; - Frederick Douglas </description>
+      <description>I am by no means a data scientist, modeller or analyst. I have no association with any data or technology firms. I merely struggle with basic tasks, concepts and ideas involving data and like to have a crack at solving/understanding them. The solutions/concepts if you decide to adopt them may not work for your particular problem and no responsibility attributed to datastruggle.life. 
+&amp;ldquo;If there is no struggle, there is no progress.</description>
     </item>
     
   </channel>

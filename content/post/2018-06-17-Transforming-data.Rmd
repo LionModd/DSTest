@@ -1,0 +1,113 @@
+---
+title: "Transforming data"
+author: "Dom"
+date: 2018-06-17
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(rmarkdown)
+library(kableExtra)
+knitr::opts_chunk$set(echo = TRUE)
+```
+Time to tackle some basic data transformations. Without this no clever analysis can happen.
+\  
+
+## Packages used
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+```
+
+I'll use the ``diamonds`` dataset in Rstudio to experiment with techniques. Excel's Power Query uses steps for each transformation which seems very similar to the idea of "piping" the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.
+
+```{r, echo = TRUE}
+kable(head(diamonds), caption = "Diamonds") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+5 transformations to test out
+
+* ``filter()``
+* ``arrange()``
+* ``select()``
+* ``mutate()``
+* ``summarise()``
+* ``group_by()``
+
+### filter()
+
+Filter seems to be working, well, like a filter following logic such as **AND** and **OR**. Let's say we want to extract the diamonds that are an **Ideal** cut but are above **0.4 carats**. We can do that...
+
+```{r, echo = TRUE}
+diamonds %>%
+  filter(cut == "Ideal" & carat > 0.4) %>% #Filtering
+  head() %>%
+  kable(caption = "A few ideal diamonds above 0.4 carats") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+### arrange()
+
+Arrange is like a sort, whether it be by one column or by multiple and if you want to go ascending or descending. Let's do the above and arrange them by the **price** in a **descending** order.
+
+```{r, echo = TRUE}
+diamonds %>%
+  filter(cut == "Ideal" & carat > 0.4) %>%
+  arrange(desc(price)) %>% #Arranging
+  head() %>%
+  kable(caption = "A few ideal diamonds above 0.4 carats (descending order)") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+### select()
+
+Select can help subset the data. It seems that you can choose columns by spelling them out but also use other functions e.g. ``contains()``, to obtain the columns you desire another way. Let's take the above and only pull out the columns **carat, color, clarity, depth, price**.
+
+```{r, echo = TRUE}
+diamonds %>%
+  filter(cut == "Ideal" & carat > 0.4) %>%
+  arrange(desc(price)) %>%
+  select(c("carat","color","clarity","depth","price")) %>% #Selecting
+  head() %>%
+  kable(caption = "A few ideal diamonds above 0.4 carats (descending order)") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+### mutate()
+
+By far my favourite function. Adding columns doing calculations, adding new ones that are based off of function outputs even bulk type changes (``mutate_if`` is a handy function), they're a lot of possibilites with this. Let's say our depth gauge wasn't calibrated and was off by 5 then we can rectify this.
+
+```{r, echo = TRUE}
+diamonds %>%
+  filter(cut == "Ideal" & carat > 0.4) %>%
+  arrange(desc(price)) %>%
+  select(c("carat","color","clarity","depth","price")) %>%
+  mutate(correct_depth = depth + 5) %>% #Mutating
+  head() %>%
+  kable(caption = "A few ideal diamonds above 0.4 carats (descending order), correct depth") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+### summarise() + group_by()
+
+Summarise has it's uses but I wouldn't use it unless it is used in tandem with group_by(). A great use of it here would be to see the **total price** of each color and seeing if there is a large difference amongst the **average depth** of each color.
+
+```{r, echo = TRUE}
+diamonds %>%
+  filter(cut == "Ideal" & carat > 0.4) %>%
+  arrange(desc(price)) %>%
+  group_by(color) %>% #Group by 
+  summarise("total_price (million)" = round(sum(price)/1e6,2), 
+            avg_depth = round(mean(depth),2)) %>% #Summarising
+  kable(caption = "Ideal diamonds - total price (million) and average depth by color ") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+So not a huge variation of average depths amongst the colors but a large amount of money from certain colors (I'm sure there are a lot of other factors amongst the data, we're just looking at color here).
+
+##Power Query vs R for data transformation
+
+The key thing I've noticed going from Power Query to R is processing time. R can transform large datasets in a matter of seconds and has far more functionality than Power Query. I'm not saying Power Query is useless, it does have its uses and is user friendly with a clean user interface, simple adding of steps and easy creation of separate tables but its runtime can be a huge issue.  
+\
+
+I love R's automated behind the scenes script running (through the great easy to use package ``taskscheduleR``) and have yet to find a way to set up automatic Power Queries to run without opening Excel so it's a no brainer to use R.
+
