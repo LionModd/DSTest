@@ -1,7 +1,7 @@
 ---
-title: "Looking at missing data"
+title: "Exploring/looking at missing data"
 author: "Dom"
-date: 2018-06-18
+date: 2018-06-19
 output: html_document
 ---
 
@@ -20,11 +20,11 @@ library(UpSetR)
 library(kableExtra)
 ```
 
-Missing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of matching data e.g. if column A is missing then so is column B.
+Missing data can skew results and cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of missing data e.g. if column A is missing then so is column B.
 
 ## Visualising missing data
 
-The ``UpSetR`` package is fantastic. No one likes to look at walls of data with NA's nested amongst it, so let's visualise it and explore and discover which variables have a high volume of missing values but also if there are cases with **multiple** missing values together.
+The ``UpSetR`` package is fantastic. No one likes to look at walls of data with NA's nested amongst it, so let's visualise, explore and discover which variables have a high volume of missing values but also if there are cases with **multiple** missing values together.
 
 ```{r echo=TRUE}
 flights <- nycflights13::flights
@@ -36,7 +36,7 @@ flights %>%
 
 We can see that there is a lot of missing values and we can see that **arr_delay** and **air_time** are missing together 717 times, **arr_delay**, **arr_time** and **air_time** are missing together 456 times and alarmingly all 5 variables missing 8255 times.
 
-We can zoom into a specific carrier in the ``flights`` dataset (in this case ``"UA"``) and see which variables have the most missing values, highest percentage missing values and then a cumulative sum of the missing values over all the variables. For this I'll use the ``naniar`` package.
+We can zoom into a specific carrier in the ``flights`` dataset (in this case ``"UA"``) and see which variables have the most missing values, highest percentage of missing values and then a cumulative sum of the missing values over all the variables. For this I'll use the ``naniar`` package.
 
 ```{r, echo = TRUE}
 flights %>%
@@ -57,5 +57,18 @@ n_complete(flights$arr_delay)
 miss_case_pct(flights) #Looking at the percentage of the entire dataset
 ```
 
+There's more functions in the ``naniar`` and ``UpSetR`` package with some neat features. UpSetR's plot is a fantastic tool for exploring possible trends amongst missing data rather than having to extract all the data separately then piecing it all back together, a great time saver. Plus it's a visualisation, got to love a visualisation. Naniar is great for the numbers. 
+\
+\
+Naniar has a great function ``replace_with_na()`` to change values **into** missing values! This would be great for datasets that use other forms of NA's e.g. "N/A", "Error", "Blank".
 
-There's more functions in the ``naniar`` and ``UpSetR`` package with some neat features. UpSetR's plot is a fantastic tool for identifying possible trends amongst missing data rather than having to extract all the data separately then piecing it all back together, a great time saver. Plus it's a visualisation, got to love a visualisation.
+```{r, echo = TRUE}
+numbers <- data.frame(x = c(1,2,3,4,5,6),
+                 y = c("A","B","C","D","E","F"))
+numbers
+
+numbers %>%
+  replace_with_na(replace = list(x = 3)) #Replace 3's in the column x with NA
+```
+
+Some great tools.
