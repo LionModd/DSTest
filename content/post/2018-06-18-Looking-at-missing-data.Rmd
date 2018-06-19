@@ -1,0 +1,61 @@
+---
+title: "Looking at missing data"
+author: "Dom"
+date: 2018-06-18
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+## Packages used
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(naniar)
+library(nycflights13)
+library(tidyverse)
+library(UpSetR)
+library(kableExtra)
+```
+
+Missing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of matching data e.g. if column A is missing then so is column B.
+
+## Visualising missing data
+
+The ``UpSetR`` package is fantastic. No one likes to look at walls of data with NA's nested amongst it, so let's visualise it and explore and discover which variables have a high volume of missing values but also if there are cases with **multiple** missing values together.
+
+```{r echo=TRUE}
+flights <- nycflights13::flights
+
+flights %>%
+  as_shadow_upset() %>%
+  upset(sets.bar.color = "#DF6E21")
+```
+
+We can see that there is a lot of missing values and we can see that **arr_delay** and **air_time** are missing together 717 times, **arr_delay**, **arr_time** and **air_time** are missing together 456 times and alarmingly all 5 variables missing 8255 times.
+
+We can zoom into a specific carrier in the ``flights`` dataset (in this case ``"UA"``) and see which variables have the most missing values, highest percentage missing values and then a cumulative sum of the missing values over all the variables. For this I'll use the ``naniar`` package.
+
+```{r, echo = TRUE}
+flights %>%
+  group_by(carrier) %>%
+  miss_var_summary() %>%
+  filter(carrier == "UA") %>%
+  arrange(n_miss_cumsum) %>%
+  kable(caption = "UA missing values") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+If you don't want summary tables or plots you can get the values quickly. Here we're looking at missing/complete values in the column **arr_delay**.
+
+```{r, echo = TRUE}
+n_miss(flights$arr_delay)
+n_complete(flights$arr_delay)
+
+miss_case_pct(flights) #Looking at the percentage of the entire dataset
+```
+
+
+There's more functions in the ``naniar`` and ``UpSetR`` package with some neat features. UpSetR's plot is a fantastic tool for identifying possible trends amongst missing data rather than having to extract all the data separately then piecing it all back together, a great time saver. Plus it's a visualisation, got to love a visualisation.

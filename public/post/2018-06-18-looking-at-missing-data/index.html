@@ -5,26 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Understanding data stories/journeys</title>
-  <meta property="og:title" content="Understanding data stories/journeys" />
-  <meta name="twitter:title" content="Understanding data stories/journeys" />
-  <meta name="description" content="Are they the same?My take on the definitions
-StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh &#43; low levelnot too technicalcan get technicalhighly narrativenarrativeKnow your audienceLet’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room.">
-  <meta property="og:description" content="Are they the same?My take on the definitions
-StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh &#43; low levelnot too technicalcan get technicalhighly narrativenarrativeKnow your audienceLet’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room.">
-  <meta name="twitter:description" content="Are they the same?My take on the definitions
-StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh &#43; low levelnot too technicalcan get technicalhighly narrativenarrative …">
+  <title>Looking at missing data</title>
+  <meta property="og:title" content="Looking at missing data" />
+  <meta name="twitter:title" content="Looking at missing data" />
+  <meta name="description" content="Packages usedMissing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of matching data e.g. if column A is missing then so is column B.
+Visualising missing dataThe UpSetR package is fantastic.">
+  <meta property="og:description" content="Packages usedMissing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of matching data e.g. if column A is missing then so is column B.
+Visualising missing dataThe UpSetR package is fantastic.">
+  <meta name="twitter:description" content="Packages usedMissing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get …">
   <meta name="author" content="DataStruggle"/>
   <link href='/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/avatar-icon2.png" />
   <meta name="twitter:image" content="/img/avatar-icon2.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="/post/2018-06-16-data-stories-journeys/" />
+  <meta property="og:url" content="/post/2018-06-18-looking-at-missing-data/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="DataStruggle" />
 
   <meta name="generator" content="Hugo 0.42.1" />
-  <link rel="canonical" href="/post/2018-06-16-data-stories-journeys/" />
+  <link rel="canonical" href="/post/2018-06-18-looking-at-missing-data/" />
   <link rel="alternate" href="/index.xml" type="application/rss+xml" title="DataStruggle">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -162,13 +161,13 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>Understanding data stories/journeys</h1>
+              <h1>Looking at missing data</h1>
                 
                 
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 16, 2018
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 18, 2018
   
   
   
@@ -189,55 +188,371 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <div id="are-they-the-same" class="section level2">
-<h2>Are they the same?</h2>
-My take on the definitions<br />
-<br />
+        <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
-<center>
-<table>
+
+<div id="packages-used" class="section level2">
+<h2>Packages used</h2>
+<p>Missing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of matching data e.g. if column A is missing then so is column B.</p>
+</div>
+<div id="visualising-missing-data" class="section level2">
+<h2>Visualising missing data</h2>
+<p>The <code>UpSetR</code> package is fantastic. No one likes to look at walls of data with NA’s nested amongst it, so let’s visualise it and explore and discover which variables have a high volume of missing values but also if there are cases with <strong>multiple</strong> missing values together.</p>
+<pre class="r"><code>flights &lt;- nycflights13::flights
+
+flights %&gt;%
+  as_shadow_upset() %&gt;%
+  upset(sets.bar.color = &quot;#DF6E21&quot;)</code></pre>
+<p><img src="/post/2018-06-18-Looking-at-missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We can see that there is a lot of missing values and we can see that <strong>arr_delay</strong> and <strong>air_time</strong> are missing together 717 times, <strong>arr_delay</strong>, <strong>arr_time</strong> and <strong>air_time</strong> are missing together 456 times and alarmingly all 5 variables missing 8255 times.</p>
+<p>We can zoom into a specific carrier in the <code>flights</code> dataset (in this case <code>&quot;UA&quot;</code>) and see which variables have the most missing values, highest percentage missing values and then a cumulative sum of the missing values over all the variables. For this I’ll use the <code>naniar</code> package.</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(carrier) %&gt;%
+  miss_var_summary() %&gt;%
+  filter(carrier == &quot;UA&quot;) %&gt;%
+  arrange(n_miss_cumsum) %&gt;%
+  kable(caption = &quot;UA missing values&quot;) %&gt;%
+  kable_styling(bootstrap_options = &quot;condensed&quot;)</code></pre>
+<table class="table table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 1: </span>UA missing values
+</caption>
 <thead>
-<tr class="header">
-<th>Story</th>
-<th>Journey</th>
+<tr>
+<th style="text-align:left;">
+carrier
+</th>
+<th style="text-align:left;">
+variable
+</th>
+<th style="text-align:right;">
+n_miss
+</th>
+<th style="text-align:right;">
+pct_miss
+</th>
+<th style="text-align:right;">
+n_miss_cumsum
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>for <strong>execs/higher ups</strong></td>
-<td>for <strong>data wranglers</strong></td>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+year
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td>high level</td>
-<td>high + low level</td>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+month
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td>not too technical</td>
-<td>can get technical</td>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td>highly narrative</td>
-<td>narrative</td>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+dep_time
+</td>
+<td style="text-align:right;">
+686
+</td>
+<td style="text-align:right;">
+1.169351
+</td>
+<td style="text-align:right;">
+686
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+sched_dep_time
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+686
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+dep_delay
+</td>
+<td style="text-align:right;">
+686
+</td>
+<td style="text-align:right;">
+1.169351
+</td>
+<td style="text-align:right;">
+1372
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+arr_time
+</td>
+<td style="text-align:right;">
+749
+</td>
+<td style="text-align:right;">
+1.276741
+</td>
+<td style="text-align:right;">
+2121
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+sched_arr_time
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+2121
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+arr_delay
+</td>
+<td style="text-align:right;">
+883
+</td>
+<td style="text-align:right;">
+1.505156
+</td>
+<td style="text-align:right;">
+3004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+flight
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+3004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+tailnum
+</td>
+<td style="text-align:right;">
+686
+</td>
+<td style="text-align:right;">
+1.169351
+</td>
+<td style="text-align:right;">
+3690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+origin
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+3690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+dest
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+3690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+air_time
+</td>
+<td style="text-align:right;">
+883
+</td>
+<td style="text-align:right;">
+1.505156
+</td>
+<td style="text-align:right;">
+4573
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+distance
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+4573
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+hour
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+4573
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+minute
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+4573
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UA
+</td>
+<td style="text-align:left;">
+time_hour
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.000000
+</td>
+<td style="text-align:right;">
+4573
+</td>
 </tr>
 </tbody>
 </table>
-</center>
-</div>
-<div id="know-your-audience" class="section level2">
-<h2>Know your audience</h2>
-<p>Let’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room. This is going to determine the tact for the discussion during the meeting.<br />
-<br />
-If it’s an executive they won’t want to go too granular with detail especially the technical side, they will most likely want a progress update. This is progress report. You could class this as presenting a <strong>high level partially complete journey</strong>.</p>
-<p>On the flip side let’s take someone in your team, a data analyst. If it’s a collaborative effort then you might get technical in some areas e.g. data preparation steps, bringing out the data speak we all know and love and the next steps for project progression. Here you’re <strong>building the journey</strong>.</p>
-<p>Upon presenting the completed piece of work THAT is the <strong>story</strong>.</p>
-</div>
-<div id="dont-fall-into-the-trap" class="section level2">
-<h2>Don’t fall into the trap</h2>
-<p>Some people can get carried away when discussing the process of obtaining the results (regardless of stage of project development) to higher ups and get tempted into going into too much detail. Yes they will want to know some outcomes of metrics generated from the data and some smart data prepartion, modelling and predicting may be occuring to get these results but the higher ups want to be able to <strong>make decisions</strong> from the data and not to go into detail of every metric you’ve calculated.</p>
-</div>
-<div id="closing-thoughts" class="section level2">
-<h2>Closing thoughts</h2>
-<p>Always have in the back of your mind who you’re talking to and use your soft skills to adapt to them and know what they are wanting out of the conversation.</p>
+<p>If you don’t want summary tables or plots you can get the values quickly. Here we’re looking at missing/complete values in the column <strong>arr_delay</strong>.</p>
+<pre class="r"><code>n_miss(flights$arr_delay)</code></pre>
+<pre><code>## [1] 9430</code></pre>
+<pre class="r"><code>n_complete(flights$arr_delay)</code></pre>
+<pre><code>## [1] 327346</code></pre>
+<pre class="r"><code>miss_case_pct(flights) #Looking at the percentage of the entire dataset</code></pre>
+<pre><code>## [1] 2.800081</code></pre>
+<p>There’s more functions in the <code>naniar</code> and <code>UpSetR</code> package with some neat features. UpSetR’s plot is a fantastic tool for identifying possible trends amongst missing data rather than having to extract all the data separately then piecing it all back together, a great time saver. Plus it’s a visualisation, got to love a visualisation.</p>
 </div>
 
 
@@ -251,7 +566,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//twitter.com/share?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;text=Understanding%20data%20stories%2fjourneys&amp;via="
+    <a href="//twitter.com/share?url=%2fpost%2f2018-06-18-looking-at-missing-data%2f&amp;text=Looking%20at%20missing%20data&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -262,7 +577,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//plus.google.com/share?url=%2fpost%2f2018-06-16-data-stories-journeys%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=%2fpost%2f2018-06-18-looking-at-missing-data%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -272,7 +587,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-06-16-data-stories-journeys%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-06-18-looking-at-missing-data%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -282,7 +597,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//reddit.com/submit?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;title=Understanding%20data%20stories%2fjourneys" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=%2fpost%2f2018-06-18-looking-at-missing-data%2f&amp;title=Looking%20at%20missing%20data" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -292,7 +607,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;title=Understanding%20data%20stories%2fjourneys" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-06-18-looking-at-missing-data%2f&amp;title=Looking%20at%20missing%20data" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -303,7 +618,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;title=Understanding%20data%20stories%2fjourneys" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-06-18-looking-at-missing-data%2f&amp;title=Looking%20at%20missing%20data" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -314,7 +629,7 @@ If it’s an executive they won’t want to go too granular with detail especial
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-06-16-data-stories-journeys%2f&amp;description=Understanding%20data%20stories%2fjourneys" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-06-18-looking-at-missing-data%2f&amp;description=Looking%20at%20missing%20data" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -332,13 +647,9 @@ If it’s an executive they won’t want to go too granular with detail especial
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="/post/2018-06-16-using-r-markdown/" data-toggle="tooltip" data-placement="top" title="Using R Markdown">&larr; Previous Post</a>
+              <a href="/post/2018-06-17-transforming-data/" data-toggle="tooltip" data-placement="top" title="Transforming data">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="/post/2018-06-17-transforming-data/" data-toggle="tooltip" data-placement="top" title="Transforming data">Next Post &rarr;</a>
-            </li>
           
         </ul>
       

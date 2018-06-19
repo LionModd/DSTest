@@ -25,9 +25,9 @@ highly narrative          | narrative
 
 
 ## Know your audience
-Let's say you're touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room. This is going to determine the tac for the discussion during the meeting.   
+Let's say you're touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room. This is going to determine the tact for the discussion during the meeting.   
 \
-If it's an executive they won't want to go too granular with detail especially the technical side, they want a progress update. This is progress report. You could class this as presenting a **high level partially complete journey**.
+If it's an executive they won't want to go too granular with detail especially the technical side, they will most likely want a progress update. This is progress report. You could class this as presenting a **high level partially complete journey**.
 
 On the flip side let's take someone in your team, a data analyst. If it's a collaborative effort then you might get technical in some areas e.g. data preparation steps, bringing out the data speak we all know and love and the next steps for project progression. Here you're **building the journey**.
 

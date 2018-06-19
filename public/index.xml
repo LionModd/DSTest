@@ -5,10 +5,20 @@
     <link>/</link>
     <description>Recent content on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 17 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Looking at missing data</title>
+      <link>/post/2018-06-18-looking-at-missing-data/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-06-18-looking-at-missing-data/</guid>
+      <description>Packages usedMissing data can skew results and can cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of matching data e.g. if column A is missing then so is column B.
+Visualising missing dataThe UpSetR package is fantastic.</description>
+    </item>
     
     <item>
       <title>Transforming data</title>
