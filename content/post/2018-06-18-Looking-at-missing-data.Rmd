@@ -3,6 +3,7 @@ title: "Exploring/looking at missing data"
 author: "Dom"
 date: 2018-06-19
 output: html_document
+tags: [naniar,UpSetR,nulls]
 ---
 
 ```{r setup, include=FALSE}

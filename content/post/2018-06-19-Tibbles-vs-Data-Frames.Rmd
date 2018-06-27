@@ -1,0 +1,62 @@
+---
+title: "Tibbles"
+author: "Dom"
+date: 2018-06-20
+output: html_document
+tags: [tibble,data frames,tidyverse]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rmarkdown)
+library(kableExtra)
+```
+
+## Packages used
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(nycflights13)
+```
+
+I've never used tibbles that much and I don't know why, only data frames. Data frames to me are rows of data. I'm going to see what the difference is between tibbles and data frames and hopefully add to the **Rsenal**. Tibbles are under the ``tidyverse`` package. Now onto the tibbles.
+
+```{r, echo = TRUE}
+a <- tibble(x = 1:3,
+            y = c("A","B","C"),
+            z = x ^ 2)
+a
+```
+Compared to a data frame I can see that the types are being displayed. 
+\
+\
+Apparently tibbles can have non-valid R variable names. Let's try that.
+```{r, echo = TRUE}
+b <- tibble("///" = 1:3,
+            "4m/" = "la",
+            "***" = "M")
+b
+```
+Ok that works but I currently can't find a use for this. Who knows when it will come in handy. 
+\
+\
+There's a thing called ``tribbles`` which can be used to create columns.
+```{r, echo = TRUE}
+c <- tribble(~a, ~b, ~c,
+             "a",1, 1+2^2,
+             "b",2, 2+3^2)
+c
+```
+This may be handy in a pinch but I don't see a need to use tribbles.
+
+A great benefit of tibbles is printing the data. I can't count the amount of times I accidentally try to print a **100000+ row** data frame and forget that it will cause my laptop to crash due to it trying to print every row of data. Thankfully tibbles help remedy this mistake.
+
+```{r, echo = TRUE}
+nycflights13::flights %>% #over 300000 rows of data
+  as.tibble()
+```
+Much nicer.
+\
+\
+##Summary
+
+Tibbles seem great. This is a light going over of their functionality but I think I've covered some of the key differences. The printing is fantastic, a true console saver. Tribbles don't seem to be useful atleast for the current applications I'm using R for, a nice functionality. Tibbles are a welcomed addition to the **Rsenal**.

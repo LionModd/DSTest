@@ -1,0 +1,73 @@
+---
+title: "Tibbles"
+author: "Dom"
+date: 2018-06-20
+output: html_document
+tags: [tibble,data frames,tidyverse]
+---
+
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages used</h2>
+<p>I’ve never used tibbles that much and I don’t know why, only data frames. Data frames to me are rows of data. I’m going to see what the difference is between tibbles and data frames and hopefully add to the <strong>Rsenal</strong>. Tibbles are under the <code>tidyverse</code> package. Now onto the tibbles.</p>
+<pre class="r"><code>a &lt;- tibble(x = 1:3,
+            y = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),
+            z = x ^ 2)
+a</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##       x y         z
+##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+## 1     1 A      1.00
+## 2     2 B      4.00
+## 3     3 C      9.00</code></pre>
+<p>Compared to a data frame I can see that the types are being displayed.<br />
+<br />
+Apparently tibbles can have non-valid R variable names. Let’s try that.</p>
+<pre class="r"><code>b &lt;- tibble(&quot;///&quot; = 1:3,
+            &quot;4m/&quot; = &quot;la&quot;,
+            &quot;***&quot; = &quot;M&quot;)
+b</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   `///` `4m/` `***`
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 la    M    
+## 2     2 la    M    
+## 3     3 la    M</code></pre>
+<p>Ok that works but I currently can’t find a use for this. Who knows when it will come in handy.<br />
+<br />
+There’s a thing called <code>tribbles</code> which can be used to create columns.</p>
+<pre class="r"><code>c &lt;- tribble(~a, ~b, ~c,
+             &quot;a&quot;,1, 1+2^2,
+             &quot;b&quot;,2, 2+3^2)
+c</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   a         b     c
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a      1.00  5.00
+## 2 b      2.00 11.0</code></pre>
+<p>This may be handy in a pinch but I don’t see a need to use tribbles.</p>
+<p>A great benefit of tibbles is printing the data. I can’t count the amount of times I accidentally try to print a <strong>100000+ row</strong> data frame and forget that it will cause my laptop to crash due to it trying to print every row of data. Thankfully tibbles help remedy this mistake.</p>
+<pre class="r"><code>nycflights13::flights %&gt;% #over 300000 rows of data
+  as.tibble()</code></pre>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_t~ sched_~ dep_d~ arr_~ sched~ arr_d~ carr~ flig~
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;
+##  1  2013     1     1    517     515   2.00   830    819  11.0  UA     1545
+##  2  2013     1     1    533     529   4.00   850    830  20.0  UA     1714
+##  3  2013     1     1    542     540   2.00   923    850  33.0  AA     1141
+##  4  2013     1     1    544     545  -1.00  1004   1022 -18.0  B6      725
+##  5  2013     1     1    554     600  -6.00   812    837 -25.0  DL      461
+##  6  2013     1     1    554     558  -4.00   740    728  12.0  UA     1696
+##  7  2013     1     1    555     600  -5.00   913    854  19.0  B6      507
+##  8  2013     1     1    557     600  -3.00   709    723 -14.0  EV     5708
+##  9  2013     1     1    557     600  -3.00   838    846 - 8.00 B6       79
+## 10  2013     1     1    558     600  -2.00   753    745   8.00 AA      301
+## # ... with 336,766 more rows, and 8 more variables: tailnum &lt;chr&gt;, origin
+## #   &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute
+## #   &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Much nicer.<br />
+<br />
+##Summary</p>
+<p>Tibbles seem great. This is a light going over of their functionality but I think I’ve covered some of the key differences. The printing is fantastic, a true console saver. Tribbles don’t seem to be useful atleast for the current applications I’m using R for, a nice functionality. Tibbles are a welcomed addition to the <strong>Rsenal</strong>.</p>
+</div>

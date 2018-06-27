@@ -5,9 +5,91 @@
     <link>/tags/</link>
     <description>Recent content in Tags on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Data Frames</title>
+      <link>/tags/data-frames/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-frames/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Journey</title>
+      <link>/tags/data-journey/</link>
+      <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-journey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Story</title>
+      <link>/tags/data-story/</link>
+      <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-story/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Naniar</title>
+      <link>/tags/naniar/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/naniar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nulls</title>
+      <link>/tags/nulls/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/nulls/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Taskscheduler</title>
+      <link>/tags/taskscheduler/</link>
+      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/taskscheduler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tibble</title>
+      <link>/tags/tibble/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tibble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Upsetr</title>
+      <link>/tags/upsetr/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/upsetr/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

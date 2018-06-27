@@ -17,8 +17,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [Params]
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
   subtitle = "Discover some of the simplest struggles in the world of data"
-  logo = "img/avatar-icon2.png"
-  favicon = "img/favicon.ico"
+  logo = "img/Design Idea.png"
+  favicon = "img/icon.png"
   dateFormat = "January 2, 2006"
   commit = false
   rss = true
