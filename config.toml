@@ -21,7 +21,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   favicon = "img/icon.png"
   dateFormat = "January 2, 2006"
   commit = false
-  rss = true
+  rss = false
   comments = true
   readingTime = false
   useHLJS = true
@@ -43,7 +43,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [Author]
   name = "DataStruggle"
   website = "datastruggle.life"
-  linkedin = "username"
+  linkedin = "dom-le-lion-746a2a130/"
 
 [[menu.main]]
     name = "About"
