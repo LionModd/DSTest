@@ -55,8 +55,7 @@ nycflights13::flights %>% #over 300000 rows of data
   as.tibble()
 ```
 Much nicer.
-\
-\
+
 ## Summary
 
 Tibbles seem great. This is a light going over of their functionality but I think I've covered some of the key differences. The printing is fantastic, a true console saver. Tribbles don't seem to be useful atleast for the current applications I'm using R for, a nice functionality. Tibbles are a welcomed addition to the **Rsenal**.
