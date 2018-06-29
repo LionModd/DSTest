@@ -14,23 +14,23 @@
 IndexRent per arable acre ($)Milk cows per square mileDifference between pasture and arable landRental price per grassy acrewith rental price per grassy acre being the dependent variable.Aim: find one variable that can be used to predict the dependent variableFirst we’ll do some preparation of the data, renaming of columns.">
   <meta name="twitter:description" content="Packages usedlibrary(tidyverse)library(caTools)I’ve found a dataset online to practice the method of linear regression on involving data regarding pasture rent in areas of Minnesota. The columns …">
   <meta name="author" content="DataStruggle"/>
-  <link href='/img/icon.png' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="/img/Design%20Idea.png" />
-  <meta name="twitter:image" content="/img/Design%20Idea.png" />
+  <link href='/datastruggle.life/img/icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/datastruggle.life/img/Design%20Idea.png" />
+  <meta name="twitter:image" content="/datastruggle.life/img/Design%20Idea.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="/post/2018-06-28-implementing-linear-regression/" />
+  <meta property="og:url" content="/datastruggle.life/post/2018-06-28-implementing-linear-regression/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="DataStruggle" />
 
   <meta name="generator" content="Hugo 0.42.1" />
-  <link rel="canonical" href="/post/2018-06-28-implementing-linear-regression/" />
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="DataStruggle">
+  <link rel="canonical" href="/datastruggle.life/post/2018-06-28-implementing-linear-regression/" />
+  <link rel="alternate" href="/datastruggle.life/index.xml" type="application/rss+xml" title="DataStruggle">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="/datastruggle.life/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="/css/highlight.min.css" /><link rel="stylesheet" href="/css/codeblock.css" />
+  <link rel="stylesheet" href="/datastruggle.life/css/highlight.min.css" /><link rel="stylesheet" href="/datastruggle.life/css/codeblock.css" />
 
 
 
@@ -96,7 +96,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">DataStruggle</a>
+      <a class="navbar-brand" href="/datastruggle.life">DataStruggle</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -104,19 +104,19 @@
         
           
             <li>
-              <a title="About" href="/page/about/">About</a>
+              <a title="About" href="/datastruggle.life/page/about/">About</a>
             </li>
           
         
           
             <li>
-              <a title="Posts" href="/">Posts</a>
+              <a title="Posts" href="/datastruggle.life">Posts</a>
             </li>
           
         
           
             <li>
-              <a title="Tags" href="/tags">Tags</a>
+              <a title="Tags" href="/datastruggle.life/tags">Tags</a>
             </li>
           
         
@@ -130,8 +130,8 @@
     <div class="avatar-container">
       <div class="avatar-img-border">
         
-          <a title="DataStruggle" href="/">
-            <img class="avatar-img" src="/img/Design%20Idea.png" alt="DataStruggle" />
+          <a title="DataStruggle" href="/datastruggle.life">
+            <img class="avatar-img" src="/datastruggle.life/img/Design%20Idea.png" alt="DataStruggle" />
           </a>
         
       </div>
@@ -237,11 +237,11 @@ b &lt;- plot + geom_point(aes(x = cows, y = rent.grassy)) + ggtitle (&quot;Cows 
 c &lt;- plot + geom_point(aes(x = difference, y = rent.grassy)) + ggtitle(&quot;Difference between pasture and arable land&quot;)
 
 a</code></pre>
-<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>b</code></pre>
-<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 <pre class="r"><code>c</code></pre>
-<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
 <p>With this in mind we’ll take this data off to one side to make things neater (using the trusty <code>tidyverse</code>).</p>
 <pre class="r"><code>pastures %&gt;%
   select(&quot;rent.arable&quot;,&quot;rent.grassy&quot;) -&gt; pastures.rent
@@ -308,7 +308,7 @@ ggplot()+
   xlab(&quot;rent.arable&quot;) +
   ggtitle(&quot;Red = predicted values&quot;) +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>This looks like the test data falls nicely amongst the data but the <strong>rent.grassy</strong> price is most likely not influenced by only <strong>rent.arable</strong> thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is more or less a line of best fit currently.</p>
 </div>
 
@@ -316,9 +316,9 @@ ggplot()+
         
           <div class="blog-tags">
             
-              <a href="//tags/linear-regression/">linear regression</a>&nbsp;
+              <a href="/datastruggle.life/tags/linear-regression/">linear regression</a>&nbsp;
             
-              <a href="//tags/tidyverse/">tidyverse</a>&nbsp;
+              <a href="/datastruggle.life/tags/tidyverse/">tidyverse</a>&nbsp;
             
           </div>
         
@@ -331,7 +331,7 @@ ggplot()+
 
 
 <li>
-    <a href="//twitter.com/share?url=%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;text=Implementing%20Linear%20Regression&amp;via="
+    <a href="//twitter.com/share?url=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;text=Implementing%20Linear%20Regression&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -342,7 +342,7 @@ ggplot()+
 
 
 <li>
-    <a href="//plus.google.com/share?url=%2fpost%2f2018-06-28-implementing-linear-regression%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -352,7 +352,7 @@ ggplot()+
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-06-28-implementing-linear-regression%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -362,7 +362,7 @@ ggplot()+
 
 
 <li>
-    <a href="//reddit.com/submit?url=%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;title=Implementing%20Linear%20Regression" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;title=Implementing%20Linear%20Regression" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -372,7 +372,7 @@ ggplot()+
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;title=Implementing%20Linear%20Regression" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;title=Implementing%20Linear%20Regression" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -383,7 +383,7 @@ ggplot()+
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;title=Implementing%20Linear%20Regression" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;title=Implementing%20Linear%20Regression" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -394,7 +394,7 @@ ggplot()+
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;description=Implementing%20Linear%20Regression" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fdatastruggle.life%2fpost%2f2018-06-28-implementing-linear-regression%2f&amp;description=Implementing%20Linear%20Regression" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -412,7 +412,7 @@ ggplot()+
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="/post/2018-06-19-tibbles-vs-data-frames/" data-toggle="tooltip" data-placement="top" title="Tibbles">&larr; Previous Post</a>
+              <a href="/datastruggle.life/post/2018-06-19-tibbles-vs-data-frames/" data-toggle="tooltip" data-placement="top" title="Tibbles">&larr; Previous Post</a>
             </li>
           
           
@@ -457,7 +457,7 @@ ggplot()+
 
           
             &nbsp;&bull;&nbsp;
-            <a href="/">DataStruggle</a>
+            <a href="/datastruggle.life">DataStruggle</a>
           
         </p>
         
@@ -474,13 +474,13 @@ ggplot()+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="/js/main.js"></script>
-<script src="/js/highlight.min.js"></script>
+<script src="/datastruggle.life/js/main.js"></script>
+<script src="/datastruggle.life/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
 <script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="/js/load-photoswipe.js"></script>
+<script src="/datastruggle.life/js/load-photoswipe.js"></script>
 
 
 

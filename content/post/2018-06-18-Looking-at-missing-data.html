@@ -6,7 +6,7 @@ output: html_document
 tags: [naniar,UpSetR,nulls]
 ---
 
-<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<script src="/datastruggle.lifermarkdown-libs/kePrint/kePrint.js"></script>
 
 
 <div id="packages-used" class="section level2">
@@ -21,7 +21,7 @@ tags: [naniar,UpSetR,nulls]
 flights %&gt;%
   as_shadow_upset() %&gt;%
   upset(sets.bar.color = &quot;#DF6E21&quot;)</code></pre>
-<p><img src="/post/2018-06-18-Looking-at-missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/datastruggle.lifepost/2018-06-18-Looking-at-missing-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>We can see that there is a lot of missing values and we can see that <strong>arr_delay</strong> and <strong>air_time</strong> are missing together 717 times, <strong>arr_delay</strong>, <strong>arr_time</strong> and <strong>air_time</strong> are missing together 456 times and alarmingly all 5 variables missing 8255 times.</p>
 <p>We can zoom into a specific carrier in the <code>flights</code> dataset (in this case <code>&quot;UA&quot;</code>) and see which variables have the most missing values, highest percentage of missing values and then a cumulative sum of the missing values over all the variables. For this I’ll use the <code>naniar</code> package.</p>
 <pre class="r"><code>flights %&gt;%

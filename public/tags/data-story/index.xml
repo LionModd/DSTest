@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Story on DataStruggle</title>
-    <link>/tags/data-story/</link>
+    <link>/datastruggle.life/tags/data-story/</link>
     <description>Recent content in Data Story on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 16 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/data-story/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/datastruggle.life/tags/data-story/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Understanding data stories/journeys</title>
-      <link>/post/2018-06-16-data-stories-journeys/</link>
+      <link>/datastruggle.life/post/2018-06-16-data-stories-journeys/</link>
       <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-06-16-data-stories-journeys/</guid>
+      <guid>/datastruggle.life/post/2018-06-16-data-stories-journeys/</guid>
       <description>Are they the same?My take on the definitions
 StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh + low levelnot too technicalcan get technicalhighly narrativenarrativeKnow your audienceLet’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room.</description>
     </item>
