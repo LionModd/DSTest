@@ -1,0 +1,133 @@
+---
+title: "Implementing Linear Regression"
+author: "Dom"
+date: 2018-06-28
+output: html_document
+tags: [linear regression, ]
+---
+
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages used</h2>
+<pre class="r"><code>library(tidyverse)
+library(caTools)</code></pre>
+<p>I’ve found a dataset online to practice the method of <strong>linear regression</strong> on involving data regarding pasture rent in areas of Minnesota. The columns are</p>
+<ul>
+<li>Index</li>
+<li>Rent per arable acre ($)</li>
+<li>Milk cows per square mile</li>
+<li>Difference between pasture and arable land</li>
+<li>Rental price per grassy acre</li>
+</ul>
+with rental price per grassy acre being the <strong>dependent variable</strong>.
+<p>
+<p>
+</div>
+<div id="aim-find-one-variable-that-can-be-used-to-predict-the-dependent-variable" class="section level2">
+<h2>Aim: find <em>one variable</em> that can be used to predict the dependent variable</h2>
+<p>
+<p>First we’ll do some preparation of the data, renaming of columns. This could have been dealt with in the source file of the data but where’s the fun in that! I’m viewing this as a reinforement of my data prep skills.</p>
+<pre class="r"><code>pastures %&gt;%
+  rename(index = Rental,
+         rent.arable = price,
+         cows = per,
+         difference = grassy,
+         rent.grassy = acre) -&gt; pastures
+pastures</code></pre>
+<pre><code>## # A tibble: 67 x 5
+##    index rent.arable  cows difference rent.grassy
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1 1            15.5 17.2      0.240         18.4
+##  2 2            22.3 18.5      0.200         20.0
+##  3 3            12.4 11.1      0.120         11.5
+##  4 4            31.8  5.54     0.120         25.0
+##  5 5            83.9  5.44     0.0400        62.5
+##  6 6            72.2 20.4      0.0500        82.5
+##  7 7            27.1 31.2      0.270         25.0
+##  8 8            40.4  4.29     0.100         30.7
+##  9 9            12.4  8.69     0.410         12.0
+## 10 10           69.4  6.63     0.0400        61.2
+## # ... with 57 more rows</code></pre>
+<p>Looking at each variable (except Index) against the dependent variable (<strong>rent.grassy</strong>) we can see a relationship with it and <strong>rent.arable</strong>. (see below)</p>
+<pre class="r"><code>plot &lt;- ggplot(pastures)
+
+a &lt;- plot + geom_point(aes(x = rent.arable, y = rent.grassy)) + ggtitle(&quot;Rent per arable acre ($)&quot;)
+b &lt;- plot + geom_point(aes(x = cows, y = rent.grassy)) + ggtitle (&quot;Cows per sq mile&quot;)
+c &lt;- plot + geom_point(aes(x = difference, y = rent.grassy)) + ggtitle(&quot;Difference between pasture and arable land&quot;)
+
+a</code></pre>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>b</code></pre>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>c</code></pre>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p>With this in mind we’ll take this data off to one side to make things neater (using the trusty <code>tidyverse</code>).</p>
+<pre class="r"><code>pastures %&gt;%
+  select(&quot;rent.arable&quot;,&quot;rent.grassy&quot;) -&gt; pastures.rent
+
+pastures.rent</code></pre>
+<pre><code>## # A tibble: 67 x 2
+##    rent.arable rent.grassy
+##          &lt;dbl&gt;       &lt;dbl&gt;
+##  1        15.5        18.4
+##  2        22.3        20.0
+##  3        12.4        11.5
+##  4        31.8        25.0
+##  5        83.9        62.5
+##  6        72.2        82.5
+##  7        27.1        25.0
+##  8        40.4        30.7
+##  9        12.4        12.0
+## 10        69.4        61.2
+## # ... with 57 more rows</code></pre>
+<p>Now we’ll split the data in a 1:3 ratio for testing and training data. This is important because we want to test our linear regression model on something, so why not use data we have!</p>
+<pre class="r"><code>set.seed(345) # Set a random seed to allow the same split to be replicated
+
+split &lt;- sample.split(pastures.rent$rent.grassy, SplitRatio = 0.75) # Assign T/F to each row (100%)
+train &lt;- subset(pastures.rent, split == T)            # Pull out those that have T (75%)
+test &lt;- subset(pastures.rent, split == F)             # Pull out those that have F (25%)</code></pre>
+Great now this is ready we can generate our regressor using the <code>lm</code> function. Here we’re telling the function that <strong>rent.grassy</strong> is our dependent variable and <strong>rent.arable</strong> our independent variable and that we want to use our training dataset that we just produced.
+<p>
+<p>Let’s generate this regressor as well as the correlation and see the information about them.</p>
+<pre class="r"><code>cor(train$rent.arable, train$rent.grassy)</code></pre>
+<pre><code>## [1] 0.8818102</code></pre>
+<pre class="r"><code>regressor &lt;- lm(formula = rent.grassy ~ rent.arable,
+                data = train)
+
+summary(regressor)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = rent.grassy ~ rent.arable, data = train)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -28.778  -6.937  -0.967   5.242  26.181 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.79880    3.67124  -0.218    0.829    
+## rent.arable  0.99829    0.07706  12.954   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 11.35 on 48 degrees of freedom
+## Multiple R-squared:  0.7776, Adjusted R-squared:  0.773 
+## F-statistic: 167.8 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The first value (the <strong>correlation</strong>) we’re looking at if there is a correlation between the variables. In this case 0.88 suggests that as x increases then y will. This makes sense from a visual point of view if you look at the first scatter plot. From this the regression line will most likely end up being a straight line from the lower left hand corner and up to the upper right. This was done to reinforce my understanding of correlation.</p>
+As we can see the <strong>rent.arable</strong> variable has a very <strong>low p value</strong> indicating that this is statistically significant i.e. <strong>rent.arable</strong> is a good predictor for <strong>rent.grassy</strong>. Ok it’s the only independent variable used in this case and we saw that the original data has a somewhat straightness about it so I was expecting to see a low p value.
+<p>
+<p>Using this regressor we can now predict the test data’s <strong>rent.grassy</strong>.</p>
+<pre class="r"><code>ypred &lt;- predict(regressor,test) # Predicting rent.grassy
+
+ggplot()+
+  geom_point(aes(x = train$rent.arable, y = train$rent.grassy)) +
+  geom_point(aes(x = test$rent.arable, y = predict(regressor, test), color = &quot;red&quot;)) +
+  geom_line(aes(x = train$rent.arable, y = predict(regressor, train))) +
+  ylab(&quot;rent.grassy&quot;) +
+  xlab(&quot;rent.arable&quot;) +
+  ggtitle(&quot;Red = predicted values&quot;) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>This looks like the test data falls nicely amongst the data but the <strong>rent.grassy</strong> price is most likely not influenced by only <strong>rent.arable</strong> thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is more or less a line of best fit currently.</p>
+</div>

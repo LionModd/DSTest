@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linear Regression on DataStruggle</title>
+    <link>/tags/linear-regression/</link>
+    <description>Recent content in Linear Regression on DataStruggle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/linear-regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Implementing Linear Regression</title>
+      <link>/post/2018-06-28-implementing-linear-regression/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-06-28-implementing-linear-regression/</guid>
+      <description>Packages usedlibrary(tidyverse)library(caTools)I’ve found a dataset online to practice the method of linear regression on involving data regarding pasture rent in areas of Minnesota. The columns are
+IndexRent per arable acre ($)Milk cows per square mileDifference between pasture and arable landRental price per grassy acrewith rental price per grassy acre being the dependent variable.Aim: find one variable that can be used to predict the dependent variableFirst we’ll do some preparation of the data, renaming of columns.</description>
+    </item>
+    
+  </channel>
+</rss>
