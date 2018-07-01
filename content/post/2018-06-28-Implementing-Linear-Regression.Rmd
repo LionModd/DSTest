@@ -110,4 +110,4 @@ ggplot()+
   theme(legend.position = "none")
 ```
 
-This looks like the test data falls nicely amongst the data but the **rent.grassy** price is most likely not influenced by only **rent.arable** thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is more or less a line of best fit currently.
+This looks like the test data falls nicely amongst the data but the **rent.grassy** price is most likely not influenced by only **rent.arable** thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is a line of best fit currently.
