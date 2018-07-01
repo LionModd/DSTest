@@ -30,7 +30,7 @@ I've found a dataset online to practice the method of **linear regression** on i
 with rental price per grassy acre being the **dependent variable**.
 <p>
 <p>
-##Aim: find *one variable* that can be used to predict the dependent variable
+##Aim: find *one feature* that can be used to predict the dependent variable
 <p>
 First we'll do some preparation of the data, renaming of columns. This could have been dealt with in the source file of the data but where's the fun in that! I'm viewing this as a reinforement of my data prep skills.
 
@@ -44,7 +44,7 @@ pastures %>%
 pastures
 ```
 
-Looking at each variable (except Index) against the dependent variable (**rent.grassy**) we can see a relationship with it and **rent.arable**. (see below)
+Looking at each feature (except Index) against the dependent variable (**rent.grassy**) we can see a relationship with it and **rent.arable**. (see below)
 
 ```{r, echo = TRUE}
 plot <- ggplot(pastures)
@@ -90,9 +90,9 @@ regressor <- lm(formula = rent.grassy ~ rent.arable,
 summary(regressor)
 ```
 
-The first value (the **correlation**) we're looking at if there is a correlation between the variables. In this case 0.88 suggests that as x increases then y will. This makes sense from a visual point of view if you look at the first scatter plot. From this the regression line will most likely end up being a straight line from the lower left hand corner and up to the upper right. This was done to reinforce my understanding of correlation.
+The first value (the **correlation**) we're looking at if there is a correlation between the features. In this case 0.88 suggests that as x increases then y will. This makes sense from a visual point of view if you look at the first scatter plot. From this the regression line will most likely end up being a straight line from the lower left hand corner and up to the upper right. This was done to reinforce my understanding of correlation.
 
-As we can see the **rent.arable** variable has a very **low p value** indicating that this is statistically significant i.e. **rent.arable** is a good predictor for **rent.grassy**. Ok it's the only independent variable used in this case and we saw that the original data has a somewhat straightness about it so I was expecting to see a low p value. <p>
+As we can see the **rent.arable** feature has a very **low p value** indicating that this is statistically significant i.e. **rent.arable** is a good predictor for **rent.grassy**. Ok it's the only independent variable used in this case and we saw that the original data has a somewhat straightness about it so I was expecting to see a low p value. <p>
 
 Using this regressor we can now predict the test data's **rent.grassy**.
 
@@ -110,4 +110,4 @@ ggplot()+
   theme(legend.position = "none")
 ```
 
-This looks like the test data falls nicely amongst the data but the **rent.grassy** price is most likely not influenced by only **rent.arable** thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is a line of best fit currently.
+This looks like the test data falls nicely amongst the data but the **rent.grassy** price is most likely not influenced by only **rent.arable** thus I may need to explore this dataset again but including a second maybe third feature to see if we can get a better prediction. This is a line of best fit currently.
