@@ -10,6 +10,7 @@ tags: [linear regression, tidyverse]
 knitr::opts_chunk$set(echo = TRUE)
 load(file = "C:/Users/dlelion/Desktop/Struggle/Testing/pasturesData.RData")
 library(rmarkdown)
+library(knitr)
 ```
 
 ## Packages used

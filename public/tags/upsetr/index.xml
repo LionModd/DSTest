@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Upsetr on DataStruggle</title>
-    <link>/datastruggle.life/tags/upsetr/</link>
+    <link>/tags/upsetr/</link>
     <description>Recent content in Upsetr on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 19 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/datastruggle.life/tags/upsetr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/upsetr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring/looking at missing data</title>
-      <link>/datastruggle.life/post/2018-06-18-looking-at-missing-data/</link>
+      <link>/post/2018-06-18-looking-at-missing-data/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/post/2018-06-18-looking-at-missing-data/</guid>
+      <guid>/post/2018-06-18-looking-at-missing-data/</guid>
       <description>Packages usedMissing data can skew results and cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of missing data e.g. if column A is missing then so is column B.
 Visualising missing dataThe UpSetR package is fantastic.</description>
     </item>

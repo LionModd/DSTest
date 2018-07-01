@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on DataStruggle</title>
-    <link>/datastruggle.life/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/datastruggle.life/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Frames</title>
-      <link>/datastruggle.life/tags/data-frames/</link>
+      <link>/tags/data-frames/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/data-frames/</guid>
+      <guid>/tags/data-frames/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Journey</title>
-      <link>/datastruggle.life/tags/data-journey/</link>
+      <link>/tags/data-journey/</link>
       <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/data-journey/</guid>
+      <guid>/tags/data-journey/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Story</title>
-      <link>/datastruggle.life/tags/data-story/</link>
+      <link>/tags/data-story/</link>
       <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/data-story/</guid>
+      <guid>/tags/data-story/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linear Regression</title>
-      <link>/datastruggle.life/tags/linear-regression/</link>
+      <link>/tags/linear-regression/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/linear-regression/</guid>
+      <guid>/tags/linear-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Naniar</title>
-      <link>/datastruggle.life/tags/naniar/</link>
+      <link>/tags/naniar/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/naniar/</guid>
+      <guid>/tags/naniar/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nulls</title>
-      <link>/datastruggle.life/tags/nulls/</link>
+      <link>/tags/nulls/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/nulls/</guid>
+      <guid>/tags/nulls/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Taskscheduler</title>
-      <link>/datastruggle.life/tags/taskscheduler/</link>
+      <link>/tags/taskscheduler/</link>
       <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/taskscheduler/</guid>
+      <guid>/tags/taskscheduler/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tibble</title>
-      <link>/datastruggle.life/tags/tibble/</link>
+      <link>/tags/tibble/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/tibble/</guid>
+      <guid>/tags/tibble/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tidyverse</title>
-      <link>/datastruggle.life/tags/tidyverse/</link>
+      <link>/tags/tidyverse/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/tidyverse/</guid>
+      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Upsetr</title>
-      <link>/datastruggle.life/tags/upsetr/</link>
+      <link>/tags/upsetr/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/datastruggle.life/tags/upsetr/</guid>
+      <guid>/tags/upsetr/</guid>
       <description></description>
     </item>
     

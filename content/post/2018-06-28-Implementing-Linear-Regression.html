@@ -57,11 +57,11 @@ b &lt;- plot + geom_point(aes(x = cows, y = rent.grassy)) + ggtitle (&quot;Cows 
 c &lt;- plot + geom_point(aes(x = difference, y = rent.grassy)) + ggtitle(&quot;Difference between pasture and arable land&quot;)
 
 a</code></pre>
-<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>b</code></pre>
-<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 <pre class="r"><code>c</code></pre>
-<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
 <p>With this in mind we’ll take this data off to one side to make things neater (using the trusty <code>tidyverse</code>).</p>
 <pre class="r"><code>pastures %&gt;%
   select(&quot;rent.arable&quot;,&quot;rent.grassy&quot;) -&gt; pastures.rent
@@ -128,6 +128,6 @@ ggplot()+
   xlab(&quot;rent.arable&quot;) +
   ggtitle(&quot;Red = predicted values&quot;) +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/datastruggle.lifepost/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>This looks like the test data falls nicely amongst the data but the <strong>rent.grassy</strong> price is most likely not influenced by only <strong>rent.arable</strong> thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is more or less a line of best fit currently.</p>
 </div>

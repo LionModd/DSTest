@@ -3,117 +3,117 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/datastruggle.life/post/2018-06-28-implementing-linear-regression/</loc>
+    <loc>/post/2018-06-28-implementing-linear-regression/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/datastruggle.life/post/2018-06-19-tibbles-vs-data-frames/</loc>
+    <loc>/post/2018-06-19-tibbles-vs-data-frames/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/datastruggle.life/post/2018-06-18-looking-at-missing-data/</loc>
+    <loc>/post/2018-06-18-looking-at-missing-data/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/datastruggle.life/post/2018-06-17-transforming-data/</loc>
+    <loc>/post/2018-06-17-transforming-data/</loc>
     <lastmod>2018-06-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/datastruggle.life/post/2018-06-16-data-stories-journeys/</loc>
+    <loc>/post/2018-06-16-data-stories-journeys/</loc>
     <lastmod>2018-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/datastruggle.life/</loc>
+    <loc>/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/datastruggle.life/page/about/</loc>
+    <loc>/page/about/</loc>
   </url>
   
   <url>
-    <loc>/datastruggle.life/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/data-frames/</loc>
+    <loc>/tags/data-frames/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/data-journey/</loc>
+    <loc>/tags/data-journey/</loc>
     <lastmod>2018-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/data-story/</loc>
+    <loc>/tags/data-story/</loc>
     <lastmod>2018-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/linear-regression/</loc>
+    <loc>/tags/linear-regression/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/naniar/</loc>
+    <loc>/tags/naniar/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/nulls/</loc>
+    <loc>/tags/nulls/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/page/</loc>
+    <loc>/page/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/post/</loc>
+    <loc>/post/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/taskscheduler/</loc>
+    <loc>/tags/taskscheduler/</loc>
     <lastmod>2018-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/tibble/</loc>
+    <loc>/tags/tibble/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/tidyverse/</loc>
+    <loc>/tags/tidyverse/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/datastruggle.life/tags/upsetr/</loc>
+    <loc>/tags/upsetr/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
