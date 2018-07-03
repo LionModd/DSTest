@@ -7,7 +7,7 @@ metaDataFormat = "yaml"
 pygmentsStyle = "tango"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax = false
+pygmentsCodefencesGuessSyntax = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 pygmentsUseClassic = true
 #pygmentOptions = "linenos=inline"
