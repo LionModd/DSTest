@@ -183,7 +183,7 @@
               <div class="post-entry">
                 
                   Packages usedlibrary(tidyverse)library(caTools)I’ve found a dataset online to practice the method of linear regression on involving data regarding pasture rent in areas of Minnesota. The columns are
-IndexRent per arable acre ($)Milk cows per square mileDifference between pasture and arable landRental price per grassy acrewith rental price per grassy acre being the dependent variable.Aim: find one variable that can be used to predict the dependent variableFirst we’ll do some preparation of the data, renaming of columns.
+IndexRent per arable acre ($)Milk cows per square mileDifference between pasture and arable landRental price per grassy acrewith rental price per grassy acre being the dependent variable.Aim: find one feature that can be used to predict the dependent variableFirst we’ll do some preparation of the data, renaming of columns.
                   <a href="/post/2018-06-28-implementing-linear-regression/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -360,6 +360,45 @@ kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%kable_styling(boots
 
             </article>
           
+            <article class="post-preview">
+              <a href="/post/2018-07-01-implementing-linear-regression-part2/">
+                <h2 class="post-title">Multiple Linear Regression</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 1, 0001
+  
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  Packages usedlibrary(tidyverse)library(caTools)The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict rent.grassy better than just using one feature (rent.arable). We’ll use linear regression again.
+Aim: find multiple features that can be used to predict the dependent variableCaveats: it’s a small dataset (67 rows), this is more of an experimentJumping straight into the data prep we’ll rename columns, pull out the features we want and split the data into test and training sets.
+                  <a href="/post/2018-07-01-implementing-linear-regression-part2/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="//tags/linear-regression/">linear regression</a>&nbsp;
+                  
+                    <a href="//tags/tidyverse/">tidyverse</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
         </div>
         
       </div>
@@ -418,6 +457,7 @@ kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%kable_styling(boots
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
 <script src="/js/load-photoswipe.js"></script>
+
 
 
 

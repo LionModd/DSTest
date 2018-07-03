@@ -2,7 +2,9 @@
 title: "Implementing Linear Regression"
 author: "Dom"
 date: 2018-06-29
-output: html_document
+output: 
+  html_document:
+    highlight: Pygments
 tags: [linear regression, tidyverse]
 ---
 
@@ -24,8 +26,8 @@ with rental price per grassy acre being the <strong>dependent variable</strong>.
 <p>
 <p>
 </div>
-<div id="aim-find-one-variable-that-can-be-used-to-predict-the-dependent-variable" class="section level2">
-<h2>Aim: find <em>one variable</em> that can be used to predict the dependent variable</h2>
+<div id="aim-find-one-feature-that-can-be-used-to-predict-the-dependent-variable" class="section level2">
+<h2>Aim: find <em>one feature</em> that can be used to predict the dependent variable</h2>
 <p>
 <p>First we’ll do some preparation of the data, renaming of columns. This could have been dealt with in the source file of the data but where’s the fun in that! I’m viewing this as a reinforement of my data prep skills.</p>
 <pre class="r"><code>pastures %&gt;%
@@ -49,7 +51,7 @@ pastures</code></pre>
 ##  9 9            12.4  8.69     0.410         12.0
 ## 10 10           69.4  6.63     0.0400        61.2
 ## # ... with 57 more rows</code></pre>
-<p>Looking at each variable (except Index) against the dependent variable (<strong>rent.grassy</strong>) we can see a relationship with it and <strong>rent.arable</strong>. (see below)</p>
+<p>Looking at each feature (except Index) against the dependent variable (<strong>rent.grassy</strong>) we can see a relationship with it and <strong>rent.arable</strong>. (see below)</p>
 <pre class="r"><code>plot &lt;- ggplot(pastures)
 
 a &lt;- plot + geom_point(aes(x = rent.arable, y = rent.grassy)) + ggtitle(&quot;Rent per arable acre ($)&quot;)
@@ -114,8 +116,8 @@ summary(regressor)</code></pre>
 ## Residual standard error: 11.35 on 48 degrees of freedom
 ## Multiple R-squared:  0.7776, Adjusted R-squared:  0.773 
 ## F-statistic: 167.8 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The first value (the <strong>correlation</strong>) we’re looking at if there is a correlation between the variables. In this case 0.88 suggests that as x increases then y will. This makes sense from a visual point of view if you look at the first scatter plot. From this the regression line will most likely end up being a straight line from the lower left hand corner and up to the upper right. This was done to reinforce my understanding of correlation.</p>
-As we can see the <strong>rent.arable</strong> variable has a very <strong>low p value</strong> indicating that this is statistically significant i.e. <strong>rent.arable</strong> is a good predictor for <strong>rent.grassy</strong>. Ok it’s the only independent variable used in this case and we saw that the original data has a somewhat straightness about it so I was expecting to see a low p value.
+<p>The first value (the <strong>correlation</strong>) we’re looking at if there is a correlation between the features. In this case 0.88 suggests that as x increases then y will. This makes sense from a visual point of view if you look at the first scatter plot. From this the regression line will most likely end up being a straight line from the lower left hand corner and up to the upper right. This was done to reinforce my understanding of correlation.</p>
+As we can see the <strong>rent.arable</strong> feature has a very <strong>low p value</strong> indicating that this is statistically significant i.e. <strong>rent.arable</strong> is a good predictor for <strong>rent.grassy</strong>. Ok it’s the only independent variable used in this case and we saw that the original data has a somewhat straightness about it so I was expecting to see a low p value.
 <p>
 <p>Using this regressor we can now predict the test data’s <strong>rent.grassy</strong>.</p>
 <pre class="r"><code>ypred &lt;- predict(regressor,test) # Predicting rent.grassy
@@ -129,5 +131,5 @@ ggplot()+
   ggtitle(&quot;Red = predicted values&quot;) +
   theme(legend.position = &quot;none&quot;)</code></pre>
 <p><img src="/post/2018-06-28-Implementing-Linear-Regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>This looks like the test data falls nicely amongst the data but the <strong>rent.grassy</strong> price is most likely not influenced by only <strong>rent.arable</strong> thus I may need to explore this dataset again but including a second maybe third variable to see if we can get a better prediction. This is a line of best fit currently.</p>
+<p>This looks like the test data falls nicely amongst the data but the <strong>rent.grassy</strong> price is most likely not influenced by only <strong>rent.arable</strong> thus I may need to explore this dataset again but including a second maybe third feature to see if we can get a better prediction. This is a line of best fit currently.</p>
 </div>

@@ -2,7 +2,9 @@
 title: "Tibbles"
 author: "Dom"
 date: 2018-06-20
-output: html_document
+output: 
+  html_document:
+    highlight: Pygments
 tags: [tibble,data frames,tidyverse]
 ---
 

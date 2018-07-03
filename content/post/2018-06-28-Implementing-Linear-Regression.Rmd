@@ -2,7 +2,9 @@
 title: "Implementing Linear Regression"
 author: "Dom"
 date: 2018-06-29
-output: html_document
+output: 
+  html_document:
+    highlight: Pygments
 tags: [linear regression, tidyverse]
 ---
 
