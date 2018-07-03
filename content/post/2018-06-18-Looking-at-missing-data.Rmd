@@ -4,7 +4,7 @@ author: "Dom"
 date: 2018-06-19
 output: 
   html_document:
-    highlight: Pygments
+    highlight: pygments
 tags: [naniar,UpSetR,nulls]
 ---
 
@@ -15,7 +15,7 @@ library(knitr)
 
 ## Packages used
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
 library(naniar)
 library(nycflights13)
 library(tidyverse)

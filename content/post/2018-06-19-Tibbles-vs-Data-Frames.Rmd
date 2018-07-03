@@ -4,7 +4,7 @@ author: "Dom"
 date: 2018-06-20
 output: 
   html_document:
-    highlight: Pygments
+    highlight: pygments
 tags: [tibble,data frames,tidyverse]
 ---
 
@@ -15,7 +15,7 @@ library(kableExtra)
 ```
 
 ## Packages used
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(nycflights13)
 ```

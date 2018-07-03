@@ -4,7 +4,7 @@ author: "Dom"
 date: 2018-06-19
 output: 
   html_document:
-    highlight: Pygments
+    highlight: pygments
 tags: [naniar,UpSetR,nulls]
 ---
 
@@ -13,6 +13,11 @@ tags: [naniar,UpSetR,nulls]
 
 <div id="packages-used" class="section level2">
 <h2>Packages used</h2>
+<pre class="r"><code>library(naniar)
+library(nycflights13)
+library(tidyverse)
+library(UpSetR)
+library(kableExtra)</code></pre>
 <p>Missing data can skew results and cause problems but if we can come up with a suitable method(s) to rectify it we can include it (depending on the problem). But maybe we want to get an overview of the missing data and possibly identify patterns of missing data e.g. if column A is missing then so is column B.</p>
 </div>
 <div id="visualising-missing-data" class="section level2">

@@ -8,11 +8,9 @@
   <title>Transforming data</title>
   <meta property="og:title" content="Transforming data" />
   <meta name="twitter:title" content="Transforming data" />
-  <meta name="description" content="Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedI’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.
-kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%kable_styling(bootstrap_options = &quot;condensed&quot;)Table 1: Diamondscaratcutcolorclaritydepthtablepricexyz0.">
-  <meta property="og:description" content="Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedI’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.
-kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%kable_styling(bootstrap_options = &quot;condensed&quot;)Table 1: Diamondscaratcutcolorclaritydepthtablepricexyz0.">
-  <meta name="twitter:description" content="Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedI’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query …">
+  <meta name="description" content="Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedlibrary(tidyverse)I’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.">
+  <meta property="og:description" content="Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedlibrary(tidyverse)I’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.">
+  <meta name="twitter:description" content="Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedlibrary(tidyverse)I’ll use the diamonds dataset in Rstudio to experiment with techniques. …">
   <meta name="author" content="DataStruggle"/>
   <link href='/img/icon.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/Design%20Idea.png" />
@@ -194,6 +192,7 @@ kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%kable_styling(boots
 <p>Time to tackle some basic data transformations. Without this no clever analysis can happen.  </p>
 <div id="packages-used" class="section level2">
 <h2>Packages used</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
 <p>I’ll use the <code>diamonds</code> dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.</p>
 <pre class="r"><code>kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%
   kable_styling(bootstrap_options = &quot;condensed&quot;)</code></pre>

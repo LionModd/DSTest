@@ -4,7 +4,7 @@ author: "Dom"
 date: 2018-06-20
 output: 
   html_document:
-    highlight: Pygments
+    highlight: pygments
 tags: [tibble,data frames,tidyverse]
 ---
 
@@ -12,6 +12,8 @@ tags: [tibble,data frames,tidyverse]
 
 <div id="packages-used" class="section level2">
 <h2>Packages used</h2>
+<pre class="r"><code>library(tidyverse)
+library(nycflights13)</code></pre>
 <p>I’ve never used tibbles that much and I don’t know why, only data frames. Data frames to me are rows of data. I’m going to see what the difference is between tibbles and data frames and hopefully add to the <strong>Rsenal</strong>. Tibbles are under the <code>tidyverse</code> package. Now onto the tibbles.</p>
 <pre class="r"><code>a &lt;- tibble(x = 1:3,
             y = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),

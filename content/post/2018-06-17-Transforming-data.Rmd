@@ -4,7 +4,7 @@ author: "Dom"
 date: 2018-06-17
 output: 
   html_document:
-    highlight: Pygments
+    highlight: pygments
 tags: [tidyverse,taskscheduleR]
 ---
 
@@ -17,7 +17,7 @@ Time to tackle some basic data transformations. Without this no clever analysis 
 \  
 
 ## Packages used
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
 library(tidyverse)
 ```
 

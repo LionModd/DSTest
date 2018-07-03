@@ -16,8 +16,7 @@
       <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-06-17-transforming-data/</guid>
-      <description>Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedI’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.
-kable(head(diamonds), caption = &amp;quot;Diamonds&amp;quot;) %&amp;gt;%kable_styling(bootstrap_options = &amp;quot;condensed&amp;quot;)Table 1: Diamondscaratcutcolorclaritydepthtablepricexyz0.</description>
+      <description>Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedlibrary(tidyverse)I’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.</description>
     </item>
     
   </channel>

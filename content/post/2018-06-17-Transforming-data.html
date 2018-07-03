@@ -4,7 +4,7 @@ author: "Dom"
 date: 2018-06-17
 output: 
   html_document:
-    highlight: Pygments
+    highlight: pygments
 tags: [tidyverse,taskscheduleR]
 ---
 
@@ -14,6 +14,7 @@ tags: [tidyverse,taskscheduleR]
 <p>Time to tackle some basic data transformations. Without this no clever analysis can happen.  </p>
 <div id="packages-used" class="section level2">
 <h2>Packages used</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
 <p>I’ll use the <code>diamonds</code> dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.</p>
 <pre class="r"><code>kable(head(diamonds), caption = &quot;Diamonds&quot;) %&gt;%
   kable_styling(bootstrap_options = &quot;condensed&quot;)</code></pre>
