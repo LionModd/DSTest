@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Multiple Linear Regression</title>
+  <meta property="og:title" content="Multiple Linear Regression" />
+  <meta name="twitter:title" content="Multiple Linear Regression" />
+  <meta name="description" content="Packages usedlibrary(tidyverse)library(caTools)The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict rent.grassy better than just using one feature (rent.arable). We’ll use linear regression again.
+Aim: find multiple features that can be used to predict the dependent variableCaveat: it’s a small dataset (67 rows), this is more of an experimentJumping straight into the data prep we’ll rename columns, pull out the features we want and split the data into test and training sets.">
+  <meta property="og:description" content="Packages usedlibrary(tidyverse)library(caTools)The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict rent.grassy better than just using one feature (rent.arable). We’ll use linear regression again.
+Aim: find multiple features that can be used to predict the dependent variableCaveat: it’s a small dataset (67 rows), this is more of an experimentJumping straight into the data prep we’ll rename columns, pull out the features we want and split the data into test and training sets.">
+  <meta name="twitter:description" content="Packages usedlibrary(tidyverse)library(caTools)The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict rent.grassy better than just …">
+  <meta name="author" content="DataStruggle"/>
+  <link href='/img/icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/img/Design%20Idea.png" />
+  <meta name="twitter:image" content="/img/Design%20Idea.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="/post/2018-07-01-implementing-linear-regression-part2/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DataStruggle" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="/post/2018-07-01-implementing-linear-regression-part2/" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="DataStruggle">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/highlight.min.css" /><link rel="stylesheet" href="/css/codeblock.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DataStruggle</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Posts" href="/">Posts</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="DataStruggle" href="/">
+            <img class="avatar-img" src="/img/Design%20Idea.png" alt="DataStruggle" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Multiple Linear Regression</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 3, 2018
+  
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <div id="packages-used" class="section level2">
+<h2>Packages used</h2>
+<pre class="r"><code>library(tidyverse)
+library(caTools)</code></pre>
+<p>The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict <strong>rent.grassy</strong> better than just using one feature (<strong>rent.arable</strong>). We’ll use linear regression again.</p>
+</div>
+<div id="aim-find-multiple-features-that-can-be-used-to-predict-the-dependent-variable" class="section level2">
+<h2>Aim: find <em>multiple features</em> that can be used to predict the dependent variable</h2>
+</div>
+<div id="caveat-its-a-small-dataset-67-rows-this-is-more-of-an-experiment" class="section level2">
+<h2>Caveat: it’s a small dataset (67 rows), this is more of an experiment</h2>
+<p>Jumping straight into the data prep we’ll rename columns, pull out the features we want and split the data into test and training sets.</p>
+<pre class="r"><code>pastures %&gt;%
+  rename(index = Rental,
+         rent.arable = price,
+         cows = per,
+         difference = grassy,
+         rent.grassy = acre) %&gt;%
+  select(c(&quot;rent.arable&quot;,
+         &quot;cows&quot;,
+         &quot;difference&quot;,
+         &quot;rent.grassy&quot;)) -&gt; pastures.processed
+
+pastures.processed</code></pre>
+<pre><code>## # A tibble: 67 x 4
+##    rent.arable  cows difference rent.grassy
+##          &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1        15.5 17.2      0.240         18.4
+##  2        22.3 18.5      0.200         20.0
+##  3        12.4 11.1      0.120         11.5
+##  4        31.8  5.54     0.120         25.0
+##  5        83.9  5.44     0.0400        62.5
+##  6        72.2 20.4      0.0500        82.5
+##  7        27.1 31.2      0.270         25.0
+##  8        40.4  4.29     0.100         30.7
+##  9        12.4  8.69     0.410         12.0
+## 10        69.4  6.63     0.0400        61.2
+## # ... with 57 more rows</code></pre>
+<pre class="r"><code>set.seed(345) # Set a random seed to allow the same split to be replicated
+
+split &lt;- sample.split(pastures.processed$rent.grassy, SplitRatio = 0.75) # Assign T/F to each row (100%)
+train &lt;- subset(pastures.processed, split == T)            # Pull out those that have T (75%)
+test &lt;- subset(pastures.processed, split == F)             # Pull out those that have F (25%)</code></pre>
+<p>Now using this data let’s generate a regressor using all the features and see which ones have low p values.</p>
+<div id="round-1" class="section level3">
+<h3>Round 1</h3>
+<div id="significant-level-0.05" class="section level4">
+<h4>Significant level =&lt; 0.05</h4>
+<pre class="r"><code>regressor &lt;- lm(formula = rent.grassy ~ .,
+                data = train)
+
+summary(regressor)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = rent.grassy ~ ., data = train)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -22.1338  -5.0120   0.3311   4.5997  27.1046 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -8.23921    5.00885  -1.645  0.10680    
+## rent.arable  0.96771    0.08983  10.772 3.63e-14 ***
+## cows         0.39794    0.12812   3.106  0.00324 ** 
+## difference   3.92431   19.18753   0.205  0.83885    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.364 on 46 degrees of freedom
+## Multiple R-squared:  0.8548, Adjusted R-squared:  0.8453 
+## F-statistic: 90.26 on 3 and 46 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Ok we can see <strong>difference</strong> has quite a high p value so we’ll discount it and run the regressor again (the <code>Signif. codes</code> is a great function to identify feature importance). This is <strong>backwards elimination</strong>.</p>
+</div>
+</div>
+<div id="round-2" class="section level3">
+<h3>Round 2</h3>
+<pre class="r"><code>regressor &lt;- lm(formula = rent.grassy ~ rent.arable + cows,
+                data = train)
+
+summary(regressor)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = rent.grassy ~ rent.arable + cows, data = train)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -22.0794  -4.9476   0.2529   4.5329  27.0301 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -7.47171    3.28357  -2.275   0.0275 *  
+## rent.arable  0.95486    0.06355  15.025  &lt; 2e-16 ***
+## cows         0.41764    0.08366   4.992 8.64e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.268 on 47 degrees of freedom
+## Multiple R-squared:  0.8547, Adjusted R-squared:  0.8485 
+## F-statistic: 138.2 on 2 and 47 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Now <strong>cows</strong> p value has decreased. But <strong>rent.arable</strong>’s p value has decreased as well, looking good and the <strong>Adjusted R-sqaured</strong> value has creeped up a tad. Let’s test this regressor on our test data keeping the same plot as the previous test (<strong>rent.arable</strong> against <strong>rent.grassy</strong>).</p>
+<pre class="r"><code>ypred &lt;- predict(regressor,test) # Predicting rent.grassy
+
+ggplot()+
+  geom_point(aes(x = train$rent.arable, y = train$rent.grassy)) +
+  geom_point(aes(x = test$rent.arable, y = predict(regressor, test), color = &quot;red&quot;)) +
+  ylab(&quot;rent.grassy&quot;) +
+  xlab(&quot;rent.arable&quot;) +
+  ggtitle(&quot;Red = predicted values&quot;) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/2018-07-01-Implementing-Linear-Regression-part2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+It’s looking like the regressor is fitting the data well but isn’t too precisely fitted.
+<p>
+<p>Next up let’s look at the diagnostic plots. This might be overkill but let’s investigate!</p>
+<pre class="r"><code>par(mfrow = c(2,2))
+plot(regressor)</code></pre>
+<p><img src="/post/2018-07-01-Implementing-Linear-Regression-part2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="residuals-vs-fitted" class="section level3">
+<h3>Residuals vs Fitted</h3>
+A relatively straight line with points spread somewhat evenly and no noticeable patterns so we can assume that there a <strong>no non-linear relationships</strong>.
+<p>
+<p>On the other hand there could have been non-linear relationships that the model couldn’t have picked up and this plot would have shown us/hinted at them. In the case of a quadratic relationship there would be a parabola like curve.</p>
+</div>
+<div id="normal-q-q" class="section level3">
+<h3>Normal Q-Q</h3>
+<p>We’re using this plot to check if our residuals are normally distributed. In the case of normally distributed residuals the points would lie on the dotted line. Here most do but not all of them. Overall it doesn’t look too bad but there are some points I’m worried about at the upper and lower end of the graph.</p>
+</div>
+<div id="scale-location" class="section level3">
+<h3>Scale-Location</h3>
+<p>Ideally we want a horizontal line to indicate <strong>uniform variance</strong> across the range i.e <strong>Homoscedasticity</strong>. Not the steepest line and the residuals aren’t too evenly spread but they start to widen. Let’s try removing #23, #50 and #40 to see if this can be improved upon.</p>
+</div>
+<div id="residuals-vs-leverage" class="section level3">
+<h3>Residuals vs Leverage</h3>
+All of the points are located inside the Cook’s distance thus we have no influential point(s). If there were points outside the Cook’s distance and we removed them from the model there would be a noticeable change e.g. R Squared value.
+<p>
+<p>
+<p>Let’s remove #23, #50 and #40 and see if we can improve the model.</p>
+</div>
+<div id="round-3" class="section level3">
+<h3>Round 3</h3>
+<pre class="r"><code>regressor &lt;- lm(formula = rent.grassy ~ rent.arable + cows,
+                data = train[c(-23,-50,-40),])
+
+summary(regressor)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = rent.grassy ~ rent.arable + cows, data = train[c(-23, 
+##     -50, -40), ])
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.4335  -4.6055   0.1436   4.3684  18.1676 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -4.71961    2.63453  -1.791   0.0801 .  
+## rent.arable  0.89767    0.05244  17.119  &lt; 2e-16 ***
+## cows         0.37301    0.06674   5.589 1.35e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 7.273 on 44 degrees of freedom
+## Multiple R-squared:  0.8893, Adjusted R-squared:  0.8843 
+## F-statistic: 176.7 on 2 and 44 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>par(mfrow = (c(2,2)))
+plot(regressor)</code></pre>
+<p><img src="/post/2018-07-01-Implementing-Linear-Regression-part2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The p value of cows has decreased again, adjusted R squared value has increased and the slope coefficient has decreased and is now less significant in the model. Looking at the diagnostic plots</p>
+<ul>
+<li>Residuals vs Fitted maintains it’s somewhat straightness</li>
+<li>Normal Q-Q has improved with less points away from the dotted line</li>
+<li>Scale-Location has changed minimally, not good</li>
+<li>Residuals vs Leverage has #45 edging close to the Cook’s distance line, not liking that (could become influential on the model)</li>
+</ul>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+Overall I think this is an improvement on the previous model involving only one variable. The data isn’t overfitting which is good.
+<p>
+<p>How could we improve it further? More data. Given that there are only 50 points to train the model on it’s not enough in my opinion. Maybe there is data that we could incorporate to improve it further that we don’t know about e.g. the weather on each day, type of cow or type of grass.</p>
+<p>I think the use of diagnostic plots can be handy to discover hidden insights in the data that weren’t necessarily considered when creating the model, whether its excluding points or tweaking the formula of the model. In this instance I may have been too critical with the diagnostic plots.</p>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/linear-regression/">linear regression</a>&nbsp;
+            
+              <a href="//tags/tidyverse/">tidyverse</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f&amp;text=Multiple%20Linear%20Regression&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f&amp;title=Multiple%20Linear%20Regression" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f&amp;title=Multiple%20Linear%20Regression" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f&amp;title=Multiple%20Linear%20Regression" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-07-01-implementing-linear-regression-part2%2f&amp;description=Multiple%20Linear%20Regression" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/post/2018-06-28-implementing-linear-regression/" data-toggle="tooltip" data-placement="top" title="Implementing Linear Regression">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://linkedin.com/in/dom-le-lion-746a2a130/" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="datastruggle.life">DataStruggle</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">DataStruggle</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

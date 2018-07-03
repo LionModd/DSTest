@@ -1,0 +1,144 @@
+---
+title: "Multiple Linear Regression"
+author: "Dom"
+date: 2018-07-03
+output:
+  html_document:
+tags: [linear regression, tidyverse]
+      
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+load(file = "C:/Users/dlelion/Desktop/Struggle/Testing/pasturesData.RData")
+library(rmarkdown)
+library(knitr)
+```
+
+## Packages used
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(caTools)
+```
+
+The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict **rent.grassy** better than just using one feature (**rent.arable**). We'll use linear regression again.
+
+##Aim: find *multiple features* that can be used to predict the dependent variable
+
+##Caveat: it's a small dataset (67 rows), this is more of an experiment
+
+Jumping straight into the data prep we'll rename columns, pull out the features we want and split the data into test and training sets.
+
+```{r, echo = TRUE}
+pastures %>%
+  rename(index = Rental,
+         rent.arable = price,
+         cows = per,
+         difference = grassy,
+         rent.grassy = acre) %>%
+  select(c("rent.arable",
+         "cows",
+         "difference",
+         "rent.grassy")) -> pastures.processed
+
+pastures.processed
+```
+
+```{r, echo = TRUE}
+set.seed(345) # Set a random seed to allow the same split to be replicated
+
+split <- sample.split(pastures.processed$rent.grassy, SplitRatio = 0.75) # Assign T/F to each row (100%)
+train <- subset(pastures.processed, split == T)            # Pull out those that have T (75%)
+test <- subset(pastures.processed, split == F)             # Pull out those that have F (25%)
+```
+
+Now using this data let's generate a regressor using all the features and see which ones have low p values.
+
+### Round 1
+
+#### Significant level =< 0.05
+
+```{r, echo = TRUE}
+regressor <- lm(formula = rent.grassy ~ .,
+                data = train)
+
+summary(regressor)
+```
+
+Ok we can see **difference** has quite a high p value so we'll discount it and run the regressor again (the ``Signif. codes`` is a great function to identify feature importance). This is **backwards elimination**.
+
+### Round 2
+
+```{r, echo = TRUE}
+regressor <- lm(formula = rent.grassy ~ rent.arable + cows,
+                data = train)
+
+summary(regressor)
+```
+
+Now **cows** p value has decreased. But **rent.arable**'s p value has decreased as well, looking good and the **Adjusted R-sqaured** value has creeped up a tad. Let's test this regressor on our test data keeping the same plot as the previous test (**rent.arable** against **rent.grassy**).
+
+```{r, echo = TRUE}
+ypred <- predict(regressor,test) # Predicting rent.grassy
+
+ggplot()+
+  geom_point(aes(x = train$rent.arable, y = train$rent.grassy)) +
+  geom_point(aes(x = test$rent.arable, y = predict(regressor, test), color = "red")) +
+  ylab("rent.grassy") +
+  xlab("rent.arable") +
+  ggtitle("Red = predicted values") +
+  theme(legend.position = "none")
+```
+
+It's looking like the regressor is fitting the data well but isn't too precisely fitted.
+<p>
+Next up let's look at the diagnostic plots. This might be overkill but let's investigate!
+
+```{r, echo = TRUE}
+par(mfrow = c(2,2))
+plot(regressor)
+```
+
+###Residuals vs Fitted
+A relatively straight line with points spread somewhat evenly and no noticeable patterns so we can assume that there a **no non-linear relationships**. 
+<p>
+On the other hand there could have been non-linear relationships that the model couldn't have picked up and this plot would have shown us/hinted at them. In the case of a quadratic relationship there would be a parabola like curve.
+
+###Normal Q-Q
+We're using this plot to check if our residuals are normally distributed. In the case of normally distributed residuals the points would lie on the dotted line. Here most do but not all of them. Overall it doesn't look too bad but there are some points I'm worried about at the upper and lower end of the graph.
+
+###Scale-Location
+Ideally we want a horizontal line to indicate **uniform variance** across the range i.e **Homoscedasticity**. Not the steepest line and the residuals aren't too evenly spread but they start to widen. Let's try removing #23, #50 and #40 to see if this can be improved upon.
+
+###Residuals vs Leverage
+All of the points are located inside the Cook's distance thus we have no influential point(s). If there were points outside the Cook's distance and we removed them from the model there would be a noticeable change e.g. R Squared value.
+<p>
+<p>
+
+Let's remove #23, #50 and #40 and see if we can improve the model.
+
+###Round 3
+
+```{r, echo = TRUE}
+regressor <- lm(formula = rent.grassy ~ rent.arable + cows,
+                data = train[c(-23,-50,-40),])
+
+summary(regressor)
+par(mfrow = (c(2,2)))
+plot(regressor)
+```
+
+The p value of cows has decreased again, adjusted R squared value has increased and the slope coefficient has decreased and is now less significant in the model. Looking at the diagnostic plots
+
+* Residuals vs Fitted maintains it's somewhat straightness
+* Normal Q-Q has improved with less points away from the dotted line
+* Scale-Location has changed minimally, not good
+* Residuals vs Leverage has #45 edging close to the Cook's distance line, not liking that (could become influential on the model)
+
+##Summary
+
+Overall I think this is an improvement on the previous model involving only one variable. The data isn't overfitting which is good.
+<p>
+How could we improve it further? More data. Given that there are only 50 points to train the model on it's not enough in my opinion. Maybe there is data that we could incorporate to improve it further that we don't know about e.g. the weather on each day, type of cow or type of grass.
+
+I think the use of diagnostic plots can be handy to discover hidden insights in the data that weren't necessarily considered when creating the model, whether its excluding points or tweaking the formula of the model. In this instance I may have been too critical with the diagnostic plots.

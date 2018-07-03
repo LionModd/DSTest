@@ -5,10 +5,20 @@
     <link>/post/</link>
     <description>Recent content in Posts on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 29 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Multiple Linear Regression</title>
+      <link>/post/2018-07-01-implementing-linear-regression-part2/</link>
+      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-07-01-implementing-linear-regression-part2/</guid>
+      <description>Packages usedlibrary(tidyverse)library(caTools)The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict rent.grassy better than just using one feature (rent.arable). We’ll use linear regression again.
+Aim: find multiple features that can be used to predict the dependent variableCaveat: it’s a small dataset (67 rows), this is more of an experimentJumping straight into the data prep we’ll rename columns, pull out the features we want and split the data into test and training sets.</description>
+    </item>
     
     <item>
       <title>Implementing Linear Regression</title>
@@ -57,16 +67,6 @@ a &amp;lt;- tibble(x = 1:3,y = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&a
       <guid>/post/2018-06-16-data-stories-journeys/</guid>
       <description>Are they the same?My take on the definitions
 StoryJourneyfor execs/higher upsfor data wranglershigh levelhigh + low levelnot too technicalcan get technicalhighly narrativenarrativeKnow your audienceLet’s say you’re touching base with someone in the team this coming Friday, prepare for that Friday in the early week by figuring out the audience in the room.</description>
-    </item>
-    
-    <item>
-      <title>Multiple Linear Regression</title>
-      <link>/post/2018-07-01-implementing-linear-regression-part2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018-07-01-implementing-linear-regression-part2/</guid>
-      <description>Packages usedlibrary(tidyverse)library(caTools)The extension of the previous post will be adding in more features into the pastures dataset to see if we can predict rent.grassy better than just using one feature (rent.arable). We’ll use linear regression again.
-Aim: find multiple features that can be used to predict the dependent variableCaveats: it’s a small dataset (67 rows), this is more of an experimentJumping straight into the data prep we’ll rename columns, pull out the features we want and split the data into test and training sets.</description>
     </item>
     
   </channel>
