@@ -33,7 +33,7 @@
         <p class="credits copyright text-muted">
           {{ if .Site.Author.name }}
             {{ if .Site.Author.website }}
-              <a href="{{ .Site.Author.website }}">{{ .Site.Author.name }}</a>
+            <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
             {{ else }}
               {{ .Site.Author.name }}
             {{ end }}
