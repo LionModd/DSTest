@@ -4,7 +4,6 @@ author: "Dom"
 date: 2018-06-29
 output: 
     html_document:
-    highlight: github
 tags: [linear regression, tidyverse]
 ---
 
