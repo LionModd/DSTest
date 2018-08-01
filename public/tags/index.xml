@@ -5,10 +5,19 @@
     <link>/tags/</link>
     <description>Recent content in Tags on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Catools</title>
+      <link>/tags/catools/</link>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/catools/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data Frames</title>
@@ -20,29 +29,20 @@
     </item>
     
     <item>
-      <title>Data Journey</title>
-      <link>/tags/data-journey/</link>
-      <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/data-journey/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Story</title>
-      <link>/tags/data-story/</link>
-      <pubDate>Sat, 16 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/data-story/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Linear Regression</title>
       <link>/tags/linear-regression/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/linear-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logistic Regression</title>
+      <link>/tags/logistic-regression/</link>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/logistic-regression/</guid>
       <description></description>
     </item>
     
@@ -85,7 +85,7 @@
     <item>
       <title>Tidyverse</title>
       <link>/tags/tidyverse/</link>
-      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/tidyverse/</guid>
       <description></description>

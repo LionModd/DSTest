@@ -5,10 +5,19 @@
     <link>/tags/tidyverse/</link>
     <description>Recent content in Tidyverse on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 03 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Logistic Regression for predicting bike purchasing</title>
+      <link>/post/2018-07-09-logistic-regression/</link>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-07-09-logistic-regression/</guid>
+      <description>Packages Usedlibrary(tidyverse)library(caTools)library(kableExtra)The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and identifying if the person purchased a particular item, lets say it’s a bike. Using this data we can predict whether someone will purchase a bike based upon age and salary. Purchasing a bike is good. I know what you’re thinking, this can be applied to the real world…</description>
+    </item>
     
     <item>
       <title>Multiple Linear Regression</title>

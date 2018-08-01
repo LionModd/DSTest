@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Logistic Regression for predicting bike purchasing</title>
+  <meta property="og:title" content="Logistic Regression for predicting bike purchasing" />
+  <meta name="twitter:title" content="Logistic Regression for predicting bike purchasing" />
+  <meta name="description" content="Packages Usedlibrary(tidyverse)library(caTools)library(kableExtra)The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and identifying if the person purchased a particular item, lets say it’s a bike. Using this data we can predict whether someone will purchase a bike based upon age and salary. Purchasing a bike is good. I know what you’re thinking, this can be applied to the real world…">
+  <meta property="og:description" content="Packages Usedlibrary(tidyverse)library(caTools)library(kableExtra)The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and identifying if the person purchased a particular item, lets say it’s a bike. Using this data we can predict whether someone will purchase a bike based upon age and salary. Purchasing a bike is good. I know what you’re thinking, this can be applied to the real world…">
+  <meta name="twitter:description" content="Packages Usedlibrary(tidyverse)library(caTools)library(kableExtra)The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and …">
+  <meta name="author" content="DataStruggle"/>
+  <link href='/img/icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/img/Design%20Idea.png" />
+  <meta name="twitter:image" content="/img/Design%20Idea.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="/post/2018-07-09-logistic-regression/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DataStruggle" />
+
+  <meta name="generator" content="Hugo 0.42.1" />
+  <link rel="canonical" href="/post/2018-07-09-logistic-regression/" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="DataStruggle">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/highlight.min.css" /><link rel="stylesheet" href="/css/codeblock.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DataStruggle</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Posts" href="/">Posts</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="DataStruggle" href="/">
+            <img class="avatar-img" src="/img/Design%20Idea.png" alt="DataStruggle" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Logistic Regression for predicting bike purchasing</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 1, 2018
+  
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages Used</h2>
+<pre class="r"><code>library(tidyverse)
+library(caTools)
+library(kableExtra)</code></pre>
+<p>The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and identifying if the person purchased a particular item, lets say it’s a bike. Using this data we can predict whether someone will purchase a bike based upon age and salary. Purchasing a bike is good. I know what you’re thinking, this can be applied to the real world…</p>
+</div>
+<div id="aim-find-a-logistic-regressor-to-predict-if-someone-will-purchase-a-bike-based-upon-age-and-salary" class="section level2">
+<h2>Aim: find a logistic regressor to predict if someone will purchase a bike based upon age and salary</h2>
+<p>
+<p>
+<p>Data prep to start…got to love a bit of data prep! Who doesn’t!</p>
+<div id="the-data" class="section level3">
+<h3>The data</h3>
+<pre class="r"><code>kable(head(dataset), caption = &quot;People who have (1)/haven&#39;t (0) bought bikes&quot;) %&gt;%
+  kable_styling(bootstrap_options = &quot;condensed&quot;)</code></pre>
+<table class="table table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>People who have (1)/haven’t (0) bought bikes
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Age
+</th>
+<th style="text-align:right;">
+EstimatedSalary
+</th>
+<th style="text-align:right;">
+Purchased
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+19000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+20000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+43000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+57000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+76000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+58000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="data-prep" class="section level2">
+<h2>Data Prep</h2>
+<p>First we’ll turn the <strong>Purchased</strong> variable into a factor and split the data into the training and test set. The training set we will use to get a logistic regressor and the test set to test it on (we’ll do a 80:20 split). A random seed will be used to reproduce the result.</p>
+<pre class="r"><code>dataset$Purchased &lt;- as.factor(dataset$Purchased)
+
+set.seed(123)
+
+split &lt;- sample.split(dataset$Purchased, SplitRatio = 0.8) # Assign T/F to each row (100%)
+train &lt;- subset(dataset, split == T) # Pull out the trues, training set (80%)
+test &lt;- subset(dataset, split == F) # Pull out the falses, test set (20%)</code></pre>
+<div id="feature-scaling" class="section level3">
+<h3>Feature Scaling</h3>
+<p>A problem with the dataset is that we need to <strong>feature scale</strong> otherwise the data won’t produce a suitable regressor. We feature scale all features except the one we want to predict (<strong>Purchased</strong>), so we’ll feature scale <strong>Age</strong> and <strong>EstimatedSalary</strong> using <code>scale</code>.</p>
+<pre class="r"><code>train[,-3] &lt;- scale(train[,-3])
+test[,-3] &lt;- scale(test[,-3])</code></pre>
+</div>
+<div id="generating-using-the-logistic-regressor" class="section level3">
+<h3>Generating + using the logistic regressor</h3>
+<p>Ok now we’re set to implement logistic regression on the training set and produce a logistic regressor.</p>
+<pre class="r"><code>classifier = glm(formula = Purchased ~ .,
+                 family = binomial,
+                 data = train)</code></pre>
+<p>Now using this we can predict the test dataset and see how we did using a <strong>confusion matrix</strong>.</p>
+<pre class="r"><code>prob.prediction &lt;- predict(classifier, type = &#39;response&#39;, newdata = test[,-3]) # Predict Purchased
+prediction &lt;- ifelse(prob.prediction &gt; 0.5, 1, 0) # If the prob_pred is greater than 0.5 then set Purchased as 1, else 0
+
+confusion &lt;- table(test[,3], prediction) # Generate a confusion matrix
+confusion</code></pre>
+<pre><code>##    prediction
+##      0  1
+##   0 44  7
+##   1  9 20</code></pre>
+<p>The way to interpret this is:</p>
+<ul>
+<li>(<strong>TRUE NEGATIVES</strong>) 44 <strong>not purchased</strong> bikes were predicted correct (someone didn’t buy a bike)</li>
+<li><p>(<strong>FALSE POSITIVES</strong>) 7 <strong>not purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone didn’t buy a bike but the regressor thought they did)</p></li>
+<li>(<strong>TRUE POSITIVES</strong>) 20 <strong>purchased</strong> bikes were predicted correct (someone did buy a bike)</li>
+<li><p>(<strong>FALSE NEGATIVES</strong>) 9 <strong>purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone did buy a bike but the regressor thought they didn’t)</p></li>
+</ul>
+<p>Granted this data isn’t a massive dataset but I think its a good way to understand good situations, in this case we have correctly predicted 80% of the test results, not a bad result. However if we were part of the <strong>bike company’s budgeting team</strong> we have wrongly predicted 9 bikes being bought. And let’s say the regressor wrongly predicts the 9 customers all of a similar age and salary then we might not focus on that demographic with marketing activities for the bikes. Yes this is overthinking this scenario but it’s thinking about how the negatives might affect the business.</p>
+<pre class="r"><code>##The below was learnt via business-science.io (Matt Dancho) from a great article on HR Analytics
+##http://www.business-science.io/business/2017/09/18/hr_employee_attrition.html
+true.negatives &lt;- confusion[1]
+true.positives &lt;- confusion[4]
+
+false.positives &lt;- confusion[3]
+false.negatives &lt;- confusion[2]
+
+################################
+
+accuracy &lt;- (true.positives +
+               true.negatives) / sum(confusion)
+
+misclassification_rate &lt;- 1 - accuracy
+
+recall &lt;- true.positives / (true.positives +
+                              false.negatives)
+
+tibble(accuracy, 
+       misclassification_rate, 
+       recall) %&gt;%
+  transpose()</code></pre>
+<pre><code>## [[1]]
+## [[1]]$accuracy
+## [1] 0.8
+## 
+## [[1]]$misclassification_rate
+## [1] 0.2
+## 
+## [[1]]$recall
+## [1] 0.6896552</code></pre>
+<p><strong>Recall (sensitivity)</strong> is 68%. This is referring to what is <strong>revelant</strong> for us. A proportion of relevant cases as a percentage of the total relevant cases. I think 68% isn’t too bad. No obvious overfitting nor too low a percentage recall-wise.</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>If predicting bike purchases from ages and salaries comes up I’m ready to go! This data has helped to understand the principle of logistic regression and some of the terms/methods used to prepare the data and produce a result that can be interpretted.</p>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/logistic-regression/">logistic regression</a>&nbsp;
+            
+              <a href="//tags/tidyverse/">tidyverse</a>&nbsp;
+            
+              <a href="//tags/catools/">caTools</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=%2fpost%2f2018-07-09-logistic-regression%2f&amp;text=Logistic%20Regression%20for%20predicting%20bike%20purchasing&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=%2fpost%2f2018-07-09-logistic-regression%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2018-07-09-logistic-regression%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=%2fpost%2f2018-07-09-logistic-regression%2f&amp;title=Logistic%20Regression%20for%20predicting%20bike%20purchasing" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2018-07-09-logistic-regression%2f&amp;title=Logistic%20Regression%20for%20predicting%20bike%20purchasing" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2018-07-09-logistic-regression%2f&amp;title=Logistic%20Regression%20for%20predicting%20bike%20purchasing" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2018-07-09-logistic-regression%2f&amp;description=Logistic%20Regression%20for%20predicting%20bike%20purchasing" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/post/2018-07-01-implementing-linear-regression-part2/" data-toggle="tooltip" data-placement="top" title="Multiple Linear Regression">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://linkedin.com/in/dom-le-lion-746a2a130/" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+            <a href="/">DataStruggle</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">DataStruggle</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.42.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,114 @@
+---
+title: "Logistic Regression for predicting bike purchasing"
+author: "Dom"
+date: 2018-08-01
+output: 
+  html_document:
+tags: [logistic regression, tidyverse, caTools]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+load("C:/Users/dlelion/Desktop/Machine Learning A-Z Template Folder/Part 3 - Classification/Section 14 - Logistic Regression/.RData")
+library(rmarkdown)
+library(knitr)
+```
+
+
+##Packages Used
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(caTools)
+library(kableExtra)
+```
+
+The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and identifying if the person purchased a particular item, lets say it's a bike. Using this data we can predict whether someone will purchase a bike based upon age and salary. Purchasing a bike is good. I know what you're thinking, this can be applied to the real world...
+
+##Aim: find a logistic regressor to predict if someone will purchase a bike based upon age and salary
+<p>
+<p>
+Data prep to start...got to love a bit of data prep! Who doesn't!
+
+###The data
+```{r, echo = TRUE}
+kable(head(dataset), caption = "People who have (1)/haven't (0) bought bikes") %>%
+  kable_styling(bootstrap_options = "condensed")
+```
+
+##Data Prep
+First we'll turn the **Purchased** variable into a factor and split the data into the training and test set. The training set we will use to get a logistic regressor and the test set to test it on (we'll do a 80:20 split). A random seed will be used to reproduce the result.
+
+```{r, echo = TRUE}
+dataset$Purchased <- as.factor(dataset$Purchased)
+
+set.seed(123)
+
+split <- sample.split(dataset$Purchased, SplitRatio = 0.8) # Assign T/F to each row (100%)
+train <- subset(dataset, split == T) # Pull out the trues, training set (80%)
+test <- subset(dataset, split == F) # Pull out the falses, test set (20%)
+```
+
+###Feature Scaling
+A problem with the dataset is that we need to **feature scale** otherwise the data won't produce a suitable regressor. We feature scale all features except the one we want to predict (**Purchased**), so we'll feature scale **Age** and **EstimatedSalary** using `scale`.
+
+```{r, echo = TRUE}
+train[,-3] <- scale(train[,-3])
+test[,-3] <- scale(test[,-3])
+```
+
+###Generating + using the logistic regressor
+Ok now we're set to implement logistic regression on the training set and produce a logistic regressor.
+
+```{r, echo = TRUE}
+classifier = glm(formula = Purchased ~ .,
+                 family = binomial,
+                 data = train)
+```
+
+Now using this we can predict the test dataset and see how we did using a **confusion matrix**.
+```{r, echo = TRUE}
+prob.prediction <- predict(classifier, type = 'response', newdata = test[,-3]) # Predict Purchased
+prediction <- ifelse(prob.prediction > 0.5, 1, 0) # If the prob_pred is greater than 0.5 then set Purchased as 1, else 0
+
+confusion <- table(test[,3], prediction) # Generate a confusion matrix
+confusion
+```
+
+The way to interpret this is:
+
+* (**TRUE NEGATIVES**) 44 **not purchased** bikes were predicted correct (someone didn't buy a bike)
+* (**FALSE POSITIVES**) 7 **not purchased** bikes were predicted <span style="color:red">wrong</span> (someone didn't buy a bike but the regressor thought they did)
+
+* (**TRUE POSITIVES**) 20 **purchased** bikes were predicted correct (someone did buy a bike) 
+* (**FALSE NEGATIVES**) 9 **purchased** bikes were predicted <span style="color:red">wrong</span> (someone did buy a bike but the regressor thought they didn't)
+
+Granted this data isn't a massive dataset but I think its a good way to understand good situations, in this case we have correctly predicted 80% of the test results, not a bad result. However if we were part of the **bike company's budgeting team** we have wrongly predicted 9 bikes being bought. And let's say the regressor wrongly predicts the 9 customers all of a similar age and salary then we might not focus on that demographic with marketing activities for the bikes. Yes this is overthinking this scenario but it's thinking about how the negatives might affect the business.
+
+```{r, echo = TRUE}
+##The below was learnt via business-science.io (Matt Dancho) from a great article on HR Analytics
+##http://www.business-science.io/business/2017/09/18/hr_employee_attrition.html
+true.negatives <- confusion[1]
+true.positives <- confusion[4]
+
+false.positives <- confusion[3]
+false.negatives <- confusion[2]
+
+################################
+
+accuracy <- (true.positives +
+               true.negatives) / sum(confusion)
+
+misclassification_rate <- 1 - accuracy
+
+recall <- true.positives / (true.positives +
+                              false.negatives)
+
+tibble(accuracy, 
+       misclassification_rate, 
+       recall) %>%
+  transpose()
+```
+**Recall (sensitivity)** is 68%. This is referring to what is **revelant** for us. A proportion of relevant cases as a percentage of the total relevant cases. I think 68% isn't too bad. No obvious overfitting nor too low a percentage recall-wise.
+
+##Summary
+If predicting bike purchases from ages and salaries comes up I'm ready to go! This data has helped to understand the principle of logistic regression and some of the terms/methods used to prepare the data and produce a result that can be interpretted.

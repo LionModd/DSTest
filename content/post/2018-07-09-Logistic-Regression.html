@@ -1,0 +1,194 @@
+---
+title: "Logistic Regression for predicting bike purchasing"
+author: "Dom"
+date: 2018-08-01
+output: 
+  html_document:
+tags: [logistic regression, tidyverse, caTools]
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages Used</h2>
+<pre class="r"><code>library(tidyverse)
+library(caTools)
+library(kableExtra)</code></pre>
+<p>The purpose of this exercise is to implement logistic regression on some data. The data used is looking at ages and salaries and identifying if the person purchased a particular item, lets say it’s a bike. Using this data we can predict whether someone will purchase a bike based upon age and salary. Purchasing a bike is good. I know what you’re thinking, this can be applied to the real world…</p>
+</div>
+<div id="aim-find-a-logistic-regressor-to-predict-if-someone-will-purchase-a-bike-based-upon-age-and-salary" class="section level2">
+<h2>Aim: find a logistic regressor to predict if someone will purchase a bike based upon age and salary</h2>
+<p>
+<p>
+<p>Data prep to start…got to love a bit of data prep! Who doesn’t!</p>
+<div id="the-data" class="section level3">
+<h3>The data</h3>
+<pre class="r"><code>kable(head(dataset), caption = &quot;People who have (1)/haven&#39;t (0) bought bikes&quot;) %&gt;%
+  kable_styling(bootstrap_options = &quot;condensed&quot;)</code></pre>
+<table class="table table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>People who have (1)/haven’t (0) bought bikes
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Age
+</th>
+<th style="text-align:right;">
+EstimatedSalary
+</th>
+<th style="text-align:right;">
+Purchased
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+19000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+20000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+43000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+57000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+76000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+58000
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="data-prep" class="section level2">
+<h2>Data Prep</h2>
+<p>First we’ll turn the <strong>Purchased</strong> variable into a factor and split the data into the training and test set. The training set we will use to get a logistic regressor and the test set to test it on (we’ll do a 80:20 split). A random seed will be used to reproduce the result.</p>
+<pre class="r"><code>dataset$Purchased &lt;- as.factor(dataset$Purchased)
+
+set.seed(123)
+
+split &lt;- sample.split(dataset$Purchased, SplitRatio = 0.8) # Assign T/F to each row (100%)
+train &lt;- subset(dataset, split == T) # Pull out the trues, training set (80%)
+test &lt;- subset(dataset, split == F) # Pull out the falses, test set (20%)</code></pre>
+<div id="feature-scaling" class="section level3">
+<h3>Feature Scaling</h3>
+<p>A problem with the dataset is that we need to <strong>feature scale</strong> otherwise the data won’t produce a suitable regressor. We feature scale all features except the one we want to predict (<strong>Purchased</strong>), so we’ll feature scale <strong>Age</strong> and <strong>EstimatedSalary</strong> using <code>scale</code>.</p>
+<pre class="r"><code>train[,-3] &lt;- scale(train[,-3])
+test[,-3] &lt;- scale(test[,-3])</code></pre>
+</div>
+<div id="generating-using-the-logistic-regressor" class="section level3">
+<h3>Generating + using the logistic regressor</h3>
+<p>Ok now we’re set to implement logistic regression on the training set and produce a logistic regressor.</p>
+<pre class="r"><code>classifier = glm(formula = Purchased ~ .,
+                 family = binomial,
+                 data = train)</code></pre>
+<p>Now using this we can predict the test dataset and see how we did using a <strong>confusion matrix</strong>.</p>
+<pre class="r"><code>prob.prediction &lt;- predict(classifier, type = &#39;response&#39;, newdata = test[,-3]) # Predict Purchased
+prediction &lt;- ifelse(prob.prediction &gt; 0.5, 1, 0) # If the prob_pred is greater than 0.5 then set Purchased as 1, else 0
+
+confusion &lt;- table(test[,3], prediction) # Generate a confusion matrix
+confusion</code></pre>
+<pre><code>##    prediction
+##      0  1
+##   0 44  7
+##   1  9 20</code></pre>
+<p>The way to interpret this is:</p>
+<ul>
+<li>(<strong>TRUE NEGATIVES</strong>) 44 <strong>not purchased</strong> bikes were predicted correct (someone didn’t buy a bike)</li>
+<li><p>(<strong>FALSE POSITIVES</strong>) 7 <strong>not purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone didn’t buy a bike but the regressor thought they did)</p></li>
+<li>(<strong>TRUE POSITIVES</strong>) 20 <strong>purchased</strong> bikes were predicted correct (someone did buy a bike)</li>
+<li><p>(<strong>FALSE NEGATIVES</strong>) 9 <strong>purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone did buy a bike but the regressor thought they didn’t)</p></li>
+</ul>
+<p>Granted this data isn’t a massive dataset but I think its a good way to understand good situations, in this case we have correctly predicted 80% of the test results, not a bad result. However if we were part of the <strong>bike company’s budgeting team</strong> we have wrongly predicted 9 bikes being bought. And let’s say the regressor wrongly predicts the 9 customers all of a similar age and salary then we might not focus on that demographic with marketing activities for the bikes. Yes this is overthinking this scenario but it’s thinking about how the negatives might affect the business.</p>
+<pre class="r"><code>##The below was learnt via business-science.io (Matt Dancho) from a great article on HR Analytics
+##http://www.business-science.io/business/2017/09/18/hr_employee_attrition.html
+true.negatives &lt;- confusion[1]
+true.positives &lt;- confusion[4]
+
+false.positives &lt;- confusion[3]
+false.negatives &lt;- confusion[2]
+
+################################
+
+accuracy &lt;- (true.positives +
+               true.negatives) / sum(confusion)
+
+misclassification_rate &lt;- 1 - accuracy
+
+recall &lt;- true.positives / (true.positives +
+                              false.negatives)
+
+tibble(accuracy, 
+       misclassification_rate, 
+       recall) %&gt;%
+  transpose()</code></pre>
+<pre><code>## [[1]]
+## [[1]]$accuracy
+## [1] 0.8
+## 
+## [[1]]$misclassification_rate
+## [1] 0.2
+## 
+## [[1]]$recall
+## [1] 0.6896552</code></pre>
+<p><strong>Recall (sensitivity)</strong> is 68%. This is referring to what is <strong>revelant</strong> for us. A proportion of relevant cases as a percentage of the total relevant cases. I think 68% isn’t too bad. No obvious overfitting nor too low a percentage recall-wise.</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>If predicting bike purchases from ages and salaries comes up I’m ready to go! This data has helped to understand the principle of logistic regression and some of the terms/methods used to prepare the data and produce a result that can be interpretted.</p>
+</div>

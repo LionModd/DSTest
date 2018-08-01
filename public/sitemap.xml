@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018-07-09-logistic-regression/</loc>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018-07-01-implementing-linear-regression-part2/</loc>
     <lastmod>2018-07-03T00:00:00+00:00</lastmod>
   </url>
@@ -28,13 +33,8 @@
   </url>
   
   <url>
-    <loc>/post/2018-06-16-data-stories-journeys/</loc>
-    <lastmod>2018-06-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
-    <lastmod>2018-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -47,26 +47,26 @@
   </url>
   
   <url>
+    <loc>/tags/catools/</loc>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/data-frames/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/data-journey/</loc>
-    <lastmod>2018-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/data-story/</loc>
-    <lastmod>2018-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/linear-regression/</loc>
     <lastmod>2018-07-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/logistic-regression/</loc>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -89,13 +89,13 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-06-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -113,7 +113,7 @@
   
   <url>
     <loc>/tags/tidyverse/</loc>
-    <lastmod>2018-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
