@@ -328,18 +328,18 @@ confusion</code></pre>
 <p>The way to interpret this is:</p>
 <ul>
 <li>(<strong>TRUE NEGATIVES</strong>) 44 <strong>not purchased</strong> bikes were predicted correct (someone didn’t buy a bike)</li>
-<li><p>(<strong>FALSE POSITIVES</strong>) 7 <strong>not purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone didn’t buy a bike but the regressor thought they did)</p></li>
+<li><p>(<strong>FALSE NEGATIVES</strong>) 7 <strong>not purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone didn’t buy a bike but the regressor thought they did)</p></li>
 <li>(<strong>TRUE POSITIVES</strong>) 20 <strong>purchased</strong> bikes were predicted correct (someone did buy a bike)</li>
-<li><p>(<strong>FALSE NEGATIVES</strong>) 9 <strong>purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone did buy a bike but the regressor thought they didn’t)</p></li>
+<li><p>(<strong>FALSE POSITIVES</strong>) 9 <strong>purchased</strong> bikes were predicted <span style="color:red">wrong</span> (someone did buy a bike but the regressor thought they didn’t)</p></li>
 </ul>
-<p>Granted this data isn’t a massive dataset but I think its a good way to understand good situations, in this case we have correctly predicted 80% of the test results, not a bad result. However if we were part of the <strong>bike company’s budgeting team</strong> we have wrongly predicted 9 bikes being bought. And let’s say the regressor wrongly predicts the 9 customers all of a similar age and salary then we might not focus on that demographic with marketing activities for the bikes. Yes this is overthinking this scenario but it’s thinking about how the negatives might affect the business.</p>
+<p>Granted this data isn’t a massive dataset but I think its a good way to understand good situations, in this case we have correctly predicted 80% of the test results, not a bad result. However if we were part of the <strong>bike company’s budgeting team</strong> we have wrongly predicted 9 bikes being bought. And let’s say the regressor wrongly predicts the 7 customers all of a similar age and salary then we might not focus on that demographic with marketing activities for the bikes. Yes this is overthinking this scenario but it’s thinking about how the negatives might affect the business.</p>
 <pre class="r"><code>##The below was learnt via business-science.io (Matt Dancho) from a great article on HR Analytics
 ##http://www.business-science.io/business/2017/09/18/hr_employee_attrition.html
 true.negatives &lt;- confusion[1]
 true.positives &lt;- confusion[4]
 
-false.positives &lt;- confusion[3]
-false.negatives &lt;- confusion[2]
+false.positives &lt;- confusion[2]
+false.negatives &lt;- confusion[3]
 
 ################################
 
@@ -363,7 +363,7 @@ tibble(accuracy,
 ## [1] 0.2
 ## 
 ## [[1]]$recall
-## [1] 0.6896552</code></pre>
+## [1] 0.7407407</code></pre>
 <p><strong>Recall (sensitivity)</strong> is 68%. This is referring to what is <strong>revelant</strong> for us. A proportion of relevant cases as a percentage of the total relevant cases. I think 68% isn’t too bad. No obvious overfitting nor too low a percentage recall-wise.</p>
 </div>
 </div>
