@@ -108,7 +108,7 @@ tibble(accuracy,
        recall) %>%
   transpose()
 ```
-**Recall (sensitivity)** is 68%. This is referring to what is **revelant** for us. A proportion of relevant cases as a percentage of the total relevant cases. I think 68% isn't too bad. No obvious overfitting nor too low a percentage recall-wise.
+**Recall (sensitivity)** is 74%. This is referring to what is **revelant** for us. A proportion of relevant cases as a percentage of the total relevant cases. I think 74% isn't too bad. No obvious overfitting nor too low a percentage recall-wise.
 
 ##Summary
 If predicting bike purchases from ages and salaries comes up I'm ready to go! This data has helped to understand the principle of logistic regression and some of the terms/methods used to prepare the data and produce a result that can be interpretted.
