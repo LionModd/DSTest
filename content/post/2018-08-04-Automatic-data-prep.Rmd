@@ -54,7 +54,9 @@ You may want to select **Overwrite files with the same name when uploading by em
 \
 Now head back to the folder and select the three ... then **more actions** and finally **SYNC**
 
-![](C:/Users/dlelion/Desktop/Struggle/Testing/content/images/boxsync.png)
+```{r,echo = FALSE}
+knitr::include_graphics("boxsync.png")
+```
 <p>
 ###Reporting system
 Your reporting system will vary but most will probably have some form of scheduling capabilities. I've found most follow the process of...
