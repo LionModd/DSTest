@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rpa on DataStruggle</title>
+    <link>/tags/rpa/</link>
+    <description>Recent content in Rpa on DataStruggle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="/tags/rpa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Automatic data prep</title>
+      <link>/post/2018-08-04-automatic-data-prep/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-08-04-automatic-data-prep/</guid>
+      <description>Packages Usedlibrary(tidyverse)library(taskscheduleR)library(kableExtra)library(boxr)Data prep seems to be a common task required for anything involving data, something even as simple as renaming columns. I’ve been thinking recently how we could automate the reports being pulled and then using R to prep this data and then following on from this, have data vizualisation auto refresh the data.
+The example I’ll use is taking e.g. sales data from a reporting system (IBM’s Cognos).</description>
+    </item>
+    
+  </channel>
+</rss>

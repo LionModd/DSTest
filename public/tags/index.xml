@@ -5,10 +5,28 @@
     <link>/tags/</link>
     <description>Recent content in Tags on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automation</title>
+      <link>/tags/automation/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Boxr</title>
+      <link>/tags/boxr/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/boxr/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Catools</title>
@@ -65,18 +83,9 @@
     </item>
     
     <item>
-      <title>Rpa</title>
-      <link>/tags/rpa/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rpa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Taskscheduler</title>
       <link>/tags/taskscheduler/</link>
-      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/taskscheduler/</guid>
       <description></description>

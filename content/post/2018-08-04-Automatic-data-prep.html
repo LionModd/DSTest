@@ -1,0 +1,128 @@
+---
+title: "Automatic data prep"
+author: "Dom"
+date: 2018-08-07
+output: 
+  html_document:
+tags: [automation, taskscheduleR, boxr]
+---
+
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages Used</h2>
+<pre class="r"><code>library(taskscheduleR)
+library(boxr)</code></pre>
+<p>Data prep seems to be a common task required for anything involving data, something even as simple as renaming columns. Let’s say every Monday morning you have to pull a report and manipulate it, why not automate this so you don’t have to lose 20 minutes every Monday? I’ve been thinking recently how to automate the reports being pulled and then using R to prep this data and then following on from this, have data vizualisation auto refresh the data.</p>
+</div>
+<div id="overview-of-the-process" class="section level2">
+<h2>Overview of the process</h2>
+<ol style="list-style-type: decimal">
+<li><strong>BOX folder online</strong></li>
+</ol>
+<ul>
+<li>Create a folder and enable <strong>emails send files to folder</strong></li>
+<li>Note down the email</li>
+<li>Enable <strong>SYNC</strong> (syncing the file to the BOX sync folder on the desktop)<br />
+<br />
+</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Reporting system</strong></li>
+</ol>
+<ul>
+<li>Schedule a report to be sent every hour (can change the time between report sends) to be sent to the email of the <strong>BOX folder</strong><br />
+<br />
+</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>BOX sync</strong></li>
+</ol>
+<ul>
+<li>Make sure the file/folder is syncing to the box sync folder<br />
+<br />
+</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>R script</strong></li>
+</ol>
+<ul>
+<li>Pull the file from the BOX Sync folder</li>
+<li>Prep the data to your heart’s content</li>
+<li>Setup automatic running of the script using <code>taskscheduleR</code></li>
+</ul>
+That’s a brief overview, let’s get into it.
+<p>
+<div id="box-folder-online" class="section level3">
+<h3>BOX folder online</h3>
+<p>Starting online at the BOX folder. Create a folder and jump into its <strong>settings</strong>. From here tick <strong>Allow uploads to this folder via email</strong>. Note down this address and save it for the next step.</p>
+<p>You may want to select <strong>Overwrite files with the same name when uploading by email or widget</strong> to get the most recent report (assuming the reports have the same name). This may not be necessary if you want to e.g. union new files per quarter.</p>
+<p><img src="C:/Users/dlelion/Desktop/Struggle/Testing/content/images/box.png" /><br />
+Now head back to the folder and select the three … then <strong>more actions</strong> and finally <strong>SYNC</strong></p>
+<img src="C:/Users/dlelion/Desktop/Struggle/Testing/content/images/boxsync.png" />
+<p>
+</div>
+<div id="reporting-system" class="section level3">
+<h3>Reporting system</h3>
+<p>Your reporting system will vary but most will probably have some form of scheduling capabilities. I’ve found most follow the process of…</p>
+<ol style="list-style-type: decimal">
+<li>Create the report</li>
+<li>Select “schedule”</li>
+<li>Choose file type of csv/xlsx</li>
+<li>Input the <strong>BOX email address</strong> as the email address to sent it to</li>
+<li>Input how often you want it to refresh</li>
+</ol>
+</div>
+<div id="box-sync" class="section level3">
+<h3>BOX Sync</h3>
+<p>If you wish to access your online BOX folder skip to option 3 below.</p>
+Otherwise look in your desktop BOX sync folder and your file should be there! This will now be updating when your scheduled report hits the online BOX folder.
+<p>
+</div>
+<div id="r-script" class="section level3">
+<h3>R script</h3>
+<p>I’ve found that the deal breaker with this is the package <code>boxr</code>. This allows for you to access your BOX sync folder(either online/desktop) BUT there are some required steps to access it. I’ve found 3 options, there could be more…</p>
+<ol style="list-style-type: decimal">
+<li>Straight away access the desktop folder, no extra steps</li>
+<li>If you’re using a <strong>SSO (Single Sign On)</strong> the first time you try to read a file from this directory you may be prompted to log onto your account. Do it once, you shouldn’t be prompted again.</li>
+<li>You may need to do some extra steps but you can access your <strong>online BOX folder</strong> no need to sync it to the desktop. I won’t go into this but here is a <a href="https://cran.r-project.org/web/packages/boxr/vignettes/boxr.html">guide</a><br />
+</li>
+</ol>
+<p>Pick which ever one suits your situation. If you’re working at a company that doesn’t grant access to the bottom solution because they don’t allow for BOX app creation then hopefully option 1 or 2 can help you.</p>
+</div>
+<div id="example-of-a-script" class="section level3">
+<h3>Example of a script</h3>
+<p>The script follows a similar structure and then the prep/output is all that needs to be altered.</p>
+<pre class="r"><code>library(boxr)           # Access BOX
+library(taskscheduleR)  # Automate the script
+library(tidyverse)      # Data prep
+
+data &lt;- read.csv(&quot;location of BOX sync folder + file name&quot;)
+
+###DO DATA PREP
+
+###MAYBE THROW A DATA VIZ IN HERE AND EMAIL IT TO SOMEONE?
+
+output &lt;- write.csv(&quot;location of output&quot;)</code></pre>
+<p>Hopefully this describes the idea/concept and can be tweaked to you’re needs. Once this is done go into <strong>Addins</strong> in RStudio and fill out the details and make your tweaks and setup your refresh schedule.</p>
+<div class="figure">
+<img src="C:/Users/dlelion/Desktop/Struggle/Testing/content/images/taskscheduler.png" />
+
+</div>
+<p>Now that this is done you’re good to go! Create as many auto refreshes as you like. As long as your desktop is online at the time of the refresh the script will auto run itself.</p>
+</div>
+<div id="benefits" class="section level3">
+<h3>Benefits</h3>
+<p>
+<ul>
+<li>Set and forget</li>
+<li>Manipulate exactly what you want</li>
+<li>Process large datasets quicker (especially quicker than Excel)</li>
+<li>Dump the file exactly where you want it</li>
+</ul>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>This isn’t the most ideal solution to pulling reports but it is a good work around. I like that R has way more capabilities in the data prep world compared to Excel and that R has a greater processing power. You don’t necessarily have to use this for data prep only you could create vizs and then email them to people along with the figures.</p>
+</div>

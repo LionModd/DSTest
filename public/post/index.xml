@@ -5,10 +5,19 @@
     <link>/post/</link>
     <description>Recent content in Posts on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automatic data prep</title>
+      <link>/post/2018-08-04-automatic-data-prep/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-08-04-automatic-data-prep/</guid>
+      <description>Packages Usedlibrary(taskscheduleR)library(boxr)Data prep seems to be a common task required for anything involving data, something even as simple as renaming columns. Let’s say every Monday morning you have to pull a report and manipulate it, why not automate this so you don’t have to lose 20 minutes every Monday? I’ve been thinking recently how to automate the reports being pulled and then using R to prep this data and then following on from this, have data vizualisation auto refresh the data.</description>
+    </item>
     
     <item>
       <title>Logistic Regression for predicting bike purchasing</title>
@@ -66,15 +75,6 @@ a &amp;lt;- tibble(x = 1:3,y = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&a
       
       <guid>/post/2018-06-17-transforming-data/</guid>
       <description>Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedlibrary(tidyverse)I’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.</description>
-    </item>
-    
-    <item>
-      <title>Automatic data prep</title>
-      <link>/post/2018-08-04-automatic-data-prep/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018-08-04-automatic-data-prep/</guid>
-      <description></description>
     </item>
     
   </channel>

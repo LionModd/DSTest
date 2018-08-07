@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Taskscheduler on DataStruggle</title>
-    <link>/tags/taskscheduler/</link>
-    <description>Recent content in Taskscheduler on DataStruggle</description>
+    <title>Automation on DataStruggle</title>
+    <link>/tags/automation/</link>
+    <description>Recent content in Automation on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 07 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/taskscheduler/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,15 +17,6 @@
       
       <guid>/post/2018-08-04-automatic-data-prep/</guid>
       <description>Packages Usedlibrary(taskscheduleR)library(boxr)Data prep seems to be a common task required for anything involving data, something even as simple as renaming columns. Let’s say every Monday morning you have to pull a report and manipulate it, why not automate this so you don’t have to lose 20 minutes every Monday? I’ve been thinking recently how to automate the reports being pulled and then using R to prep this data and then following on from this, have data vizualisation auto refresh the data.</description>
-    </item>
-    
-    <item>
-      <title>Transforming data</title>
-      <link>/post/2018-06-17-transforming-data/</link>
-      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018-06-17-transforming-data/</guid>
-      <description>Time to tackle some basic data transformations. Without this no clever analysis can happen. Packages usedlibrary(tidyverse)I’ll use the diamonds dataset in Rstudio to experiment with techniques. Excel’s Power Query uses steps for each transformation which seems very similar to the idea of “piping” the data in the tidyverse package. I think of adding a step in Power Query as adding another piece of the pipe in R.</description>
     </item>
     
   </channel>
