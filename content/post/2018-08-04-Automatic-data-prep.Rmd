@@ -49,14 +49,9 @@ That's a brief overview, let's get into it.
 Starting online at the BOX folder. Create a folder and jump into its **settings**. From here tick **Allow uploads to this folder via email**. Note down this address and save it for the next step.
 
 You may want to select **Overwrite files with the same name when uploading by email or widget** to get the most recent report (assuming the reports have the same name). This may not be necessary if you want to e.g. union new files per quarter.
-
-![](C:/Users/dlelion/Desktop/Struggle/Testing/content/images/box.png)
 \
 Now head back to the folder and select the three ... then **more actions** and finally **SYNC**
 
-```{r,echo = FALSE}
-knitr::include_graphics("boxsync.png")
-```
 <p>
 ###Reporting system
 Your reporting system will vary but most will probably have some form of scheduling capabilities. I've found most follow the process of...
@@ -100,8 +95,7 @@ output <- write.csv("location of output")
 ```
 
 Hopefully this describes the idea/concept and can be tweaked to you're needs. Once this is done go into **Addins** in RStudio and fill out the details and make your tweaks and setup your refresh schedule.
-
-![](C:/Users/dlelion/Desktop/Struggle/Testing/content/images/taskscheduler.png)
+\
 
 Now that this is done you're good to go! Create as many auto refreshes as you like. As long as your desktop is online at the time of the refresh the script will auto run itself.
 
