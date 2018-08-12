@@ -212,7 +212,7 @@ I came across a dataset that peaked my interest in something I enjoy watching, b
 <p>As with most processes involving data we’ll need to understand, prep, clean and explore it.</p>
 <div id="understanding-the-data" class="section level3">
 <h3>Understanding the data</h3>
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:910px; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:720px; ">
 <table class="table table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-2">Table 1: </span>Bouts
@@ -849,7 +849,6 @@ Still a lot of columns missing data that we could use for predicting. Even if we
 <p>
 Ok values won’t be imputed but there may be some errorneous data that will skew a model. These are most likely
 <p>
-<p>
 <ul>
 <li>Height</li>
 <li>Reach</li>
@@ -885,7 +884,7 @@ count(complete.boxers)                 # Total number of boxers</code></pre>
   colSums()</code></pre>
 <pre><code>##    age_NA height_NA  reach_NA weight_NA 
 ##         0         0         0         0</code></pre>
-<p>Ok now we have about 67k rows of data regarding a boxer’s age, weight, height and reach with no missing data. Let’s see if there are any outliers using <code>plot_num()</code> in the <code>funModeling</code> package and <code>describe()</code> in the <code>Hmisc</code> package.</p>
+<p>Ok now we have about 67k rows of data regarding a boxer’s age, weight, height and reach with no missing data. Lets see if there are any outliers using <code>plot_num()</code> in the <code>funModeling</code> package and <code>describe()</code> in the <code>Hmisc</code> package.</p>
 <pre class="r"><code>plot_num(complete.boxers, bins = 10)  # Distribution visualisations</code></pre>
 <p><img src="/post/2018-08-11-Automated-Machine-Learning-to-predict-boxing-match-winners_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>describe(complete.boxers)             # Statistical summary</code></pre>
@@ -1026,17 +1025,25 @@ So we’ve cleaned the data and found some relationships but once again, due to 
 That’s all the R prep done now we can jump into <code>h2o</code> and predict wins using this subset of data.</p>
 <pre class="r"><code>h2o.no_progress()
 h2o.init(nthreads = -1) # Start up h2o</code></pre>
-<pre><code>##  Connection successful!
+<pre><code>## 
+## H2O is not running yet, starting it now...
+## 
+## Note:  In case of errors look at the following log files:
+##     C:\Users\dlelion\AppData\Local\Temp\RtmpQhB0Bx/h2o_dlelion_started_from_r.out
+##     C:\Users\dlelion\AppData\Local\Temp\RtmpQhB0Bx/h2o_dlelion_started_from_r.err
+## 
+## 
+## Starting H2O JVM and connecting:  Connection successful!
 ## 
 ## R is connected to the H2O cluster: 
-##     H2O cluster uptime:         1 hours 45 minutes 
+##     H2O cluster uptime:         2 seconds 161 milliseconds 
 ##     H2O cluster timezone:       Europe/London 
 ##     H2O data parsing timezone:  UTC 
 ##     H2O cluster version:        3.21.0.4382 
 ##     H2O cluster version age:    3 days  
-##     H2O cluster name:           H2O_started_from_R_dlelion_ced913 
+##     H2O cluster name:           H2O_started_from_R_dlelion_esc679 
 ##     H2O cluster total nodes:    1 
-##     H2O cluster total memory:   0.79 GB 
+##     H2O cluster total memory:   1.75 GB 
 ##     H2O cluster total cores:    4 
 ##     H2O cluster allowed cores:  4 
 ##     H2O cluster healthy:        TRUE 
@@ -1068,18 +1075,18 @@ prediction &lt;- h2o.predict(object = top.scoring.model, # Predicting the winner
 
 as.tibble(prediction)</code></pre>
 <pre><code>## # A tibble: 916 x 3
-##    predict win_A  win_B
-##    &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 win_A   0.889 0.111 
-##  2 win_A   0.889 0.111 
-##  3 win_A   0.963 0.0370
-##  4 win_A   0.925 0.0755
-##  5 win_B   0.778 0.222 
-##  6 win_A   0.815 0.185 
-##  7 win_A   0.961 0.0390
-##  8 win_A   0.924 0.0760
-##  9 win_A   0.852 0.148 
-## 10 win_A   0.926 0.0741
+##    predict win_A   win_B
+##    &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 win_A   0.92  0.0800 
+##  2 win_A   0.998 0.00154
+##  3 win_A   1     0      
+##  4 win_A   0.942 0.0578 
+##  5 win_A   0.889 0.111  
+##  6 win_B   0.79  0.210  
+##  7 win_A   0.94  0.06   
+##  8 win_A   0.92  0.0800 
+##  9 win_A   0.88  0.12   
+## 10 win_A   0.969 0.0313 
 ## # ... with 906 more rows</code></pre>
 The above is
 <p>
@@ -1105,27 +1112,27 @@ confusionMatrix(predicted.vs.actual)</code></pre>
 ## 
 ##           test.value
 ## prediction win_A win_B
-##      win_A   597    48
-##      win_B   194    77
-##                                          
-##                Accuracy : 0.7358         
-##                  95% CI : (0.706, 0.7641)
-##     No Information Rate : 0.8635         
-##     P-Value [Acc &gt; NIR] : 1              
-##                                          
-##                   Kappa : 0.2485         
-##  Mcnemar&#39;s Test P-Value : &lt;2e-16         
-##                                          
-##             Sensitivity : 0.7547         
-##             Specificity : 0.6160         
-##          Pos Pred Value : 0.9256         
-##          Neg Pred Value : 0.2841         
-##              Prevalence : 0.8635         
-##          Detection Rate : 0.6517         
-##    Detection Prevalence : 0.7041         
-##       Balanced Accuracy : 0.6854         
-##                                          
-##        &#39;Positive&#39; Class : win_A          
+##      win_A   530    43
+##      win_B   261    82
+##                                           
+##                Accuracy : 0.6681          
+##                  95% CI : (0.6366, 0.6986)
+##     No Information Rate : 0.8635          
+##     P-Value [Acc &gt; NIR] : 1               
+##                                           
+##                   Kappa : 0.188           
+##  Mcnemar&#39;s Test P-Value : &lt;2e-16          
+##                                           
+##             Sensitivity : 0.6700          
+##             Specificity : 0.6560          
+##          Pos Pred Value : 0.9250          
+##          Neg Pred Value : 0.2391          
+##              Prevalence : 0.8635          
+##          Detection Rate : 0.5786          
+##    Detection Prevalence : 0.6255          
+##       Balanced Accuracy : 0.6630          
+##                                           
+##        &#39;Positive&#39; Class : win_A           
 ## </code></pre>
 Looking mainly at the confusion matrix and the accuracy, <strong>75% accuracy</strong> isn’t too bad. Granted there wasn’t indication of a positive case/negative case so identifying true positives/true negatives doesn’t apply here. Overall a pretty impressive outcome with little data prep.
 <p>

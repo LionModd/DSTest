@@ -40,7 +40,7 @@ As with most processes involving data we'll need to understand, prep, clean and 
 ```{r, echo = FALSE}
 kable(head(bouts), caption = "Bouts") %>%
   kable_styling(bootstrap_options = "condensed") %>%
-  scroll_box(width = "910px")
+  scroll_box(width = "720px")
 ```
 Each row of data is a boxing bout. Each bout consists of boxer A's and boxer B's
 <p>
@@ -88,7 +88,6 @@ Still a lot of columns missing data that we could use for predicting. Even if we
 <p>
 Ok values won't be imputed but there may be some errorneous data that will skew a model. These are most likely
 <p>
-<p>
 * Height
 * Reach
 * Weight
@@ -120,7 +119,7 @@ complete.boxers %>%
   as_shadow_upset() %>%
   colSums()
 ```
-Ok now we have about 67k rows of data regarding a boxer's age, weight, height and reach with no missing data. Let's see if there are any outliers using `plot_num()` in the `funModeling` package and `describe()` in the `Hmisc` package.
+Ok now we have about 67k rows of data regarding a boxer's age, weight, height and reach with no missing data. Lets see if there are any outliers using `plot_num()` in the `funModeling` package and `describe()` in the `Hmisc` package.
 ```{r, echo = TRUE}
 plot_num(complete.boxers, bins = 10)  # Distribution visualisations
 describe(complete.boxers)             # Statistical summary
