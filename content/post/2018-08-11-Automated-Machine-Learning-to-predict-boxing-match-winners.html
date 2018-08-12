@@ -1,0 +1,958 @@
+---
+title: "Automated Machine Learning to predict boxing match winners"
+author: "Dom"
+date: 2018-08-12
+output: 
+  html_document:
+tags: [h2o, automated machine learning, tidyverse, Hmisc, caret, funModeling, naniar]
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages Used</h2>
+<pre class="r"><code>library(tidyverse)    # Data prep
+library(h2o)          # Automated machine learning
+library(naniar)       # Identifying missing data
+library(funModeling)  # Quick histograms for features
+library(Hmisc)        # Statistical summaries
+library(caret)        # Confusion matrices</code></pre>
+I came across a dataset that peaked my interest in something I enjoy watching, boxing. The data has been scrapped from a boxing bout website with a large quantity of data available. Using this data we can try to predict winners of each bout with automated machine learning.
+<p>
+<p>The website scrapped has data you’d expect from a boxing bout such as the age, reach, weight of each boxer but it even has who the promoter was?! I’m sure you could find a way to utilise the promoter in some analysis, maybe looking to see if there is a correlation between pay-per-view figures and the promoter? Some cool stuff on there, anyway lets dig into the data and explain the process we’ll use to try to predict winners…</p>
+</div>
+<div id="aim-use-automated-machine-learning-to-produce-a-model-that-can-accurately-predict-wins-of-boxing-bouts" class="section level2">
+<h2>Aim: use automated machine learning to produce a model that can accurately predict <strong>wins</strong> of boxing bouts</h2>
+<p>
+</div>
+<div id="caveat-the-below-isnt-an-ideal-outcome-and-is-a-data-prep-exploration-and-automated-machine-learning-exercise" class="section level2">
+<h2>Caveat: the below isn’t an ideal outcome and is a data prep, exploration and automated machine learning exercise</h2>
+<p>
+<p>
+<p>As with most processes involving data we’ll need to understand, prep, clean and explore it.</p>
+<div id="understanding-the-data" class="section level3">
+<h3>Understanding the data</h3>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:910px; ">
+<table class="table table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>Bouts
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+age_A
+</th>
+<th style="text-align:right;">
+age_B
+</th>
+<th style="text-align:right;">
+height_A
+</th>
+<th style="text-align:right;">
+height_B
+</th>
+<th style="text-align:right;">
+reach_A
+</th>
+<th style="text-align:right;">
+reach_B
+</th>
+<th style="text-align:left;">
+stance_A
+</th>
+<th style="text-align:left;">
+stance_B
+</th>
+<th style="text-align:right;">
+weight_A
+</th>
+<th style="text-align:right;">
+weight_B
+</th>
+<th style="text-align:right;">
+won_A
+</th>
+<th style="text-align:right;">
+won_B
+</th>
+<th style="text-align:right;">
+lost_A
+</th>
+<th style="text-align:right;">
+lost_B
+</th>
+<th style="text-align:right;">
+drawn_A
+</th>
+<th style="text-align:right;">
+drawn_B
+</th>
+<th style="text-align:right;">
+kos_A
+</th>
+<th style="text-align:right;">
+kos_B
+</th>
+<th style="text-align:left;">
+result
+</th>
+<th style="text-align:left;">
+decision
+</th>
+<th style="text-align:right;">
+judge1_A
+</th>
+<th style="text-align:right;">
+judge1_B
+</th>
+<th style="text-align:right;">
+judge2_A
+</th>
+<th style="text-align:right;">
+judge2_B
+</th>
+<th style="text-align:right;">
+judge3_A
+</th>
+<th style="text-align:right;">
+judge3_B
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+draw
+</td>
+<td style="text-align:left;">
+SD
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+118
+</td>
+<td style="text-align:right;">
+115
+</td>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:right;">
+114
+</td>
+<td style="text-align:right;">
+114
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+win_A
+</td>
+<td style="text-align:left;">
+UD
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+108
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+176
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+win_B
+</td>
+<td style="text-align:left;">
+KO
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:right;">
+155
+</td>
+<td style="text-align:right;">
+155
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+win_A
+</td>
+<td style="text-align:left;">
+KO
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:right;">
+155
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+win_A
+</td>
+<td style="text-align:left;">
+UD
+</td>
+<td style="text-align:right;">
+118
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:right;">
+111
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:left;">
+orthodox
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+win_A
+</td>
+<td style="text-align:left;">
+KO
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+Each row of data is a boxing bout. Each bout consists of boxer A’s and boxer B’s
+<p>
+<ul>
+<li>Age (years)</li>
+<li>Height (cm)</li>
+<li>Reach (measurement from one hand to the other with arms out in a T, cm)</li>
+<li>Stance (orthodox or southpaw i.e. right/left foot forward with right/left hand leading)</li>
+<li>Weight (lbs)</li>
+<li>Won (number of previous bouts won)</li>
+<li>Lost (number of previous bouts lost)</li>
+<li>Draw (number of previous bouts drawn)</li>
+<li>Kos (number of kos)</li>
+<li>Result (either a draw, boxer A wins, boxer B wins)</li>
+<li>Decision</li>
+<li>Three judges scores</li>
+</ul>
+Decisions are…
+<p>
+<ul>
+<li>SD - split decision - 2 judges have scored one boxer’s performance higher than the other and the other judge has scored the opposite</li>
+<li>MD - majority decision - 2 judges have scored one boxer’s performance higher than the other judge has scored it a draw (equal scores for each boxer)</li>
+<li>UD - unanimous decision - all 3 judges have scored one boxer’s performance higher than the other</li>
+<li>KO - knock out - a boxer is knocked down, the referee counts to 10 and the boxer stays down</li>
+<li>TKO - technical knock out - the referee has stopped the fight due to a boxer being in no fit condition to continue</li>
+<li>DQ - a boxer is disqualified from the bout (other boxer wins)</li>
+<li>RTD - a boxer has retired mid bout</li>
+</ul>
+</div>
+<div id="exploring-cleaning-the-data" class="section level3">
+<h3>Exploring + Cleaning the data</h3>
+<p>Lets see if there are any missing values. I like the <code>as.shadow.upset()</code> function from the <code>naniar</code> package (changes all NAs into 1s in the data and anything else to 0s) paired with <code>colSums()</code>.</p>
+<pre class="r"><code>bouts %&gt;%
+  as_shadow_upset() %&gt;% # Set all NAs to 1s
+  colSums()             # Count all the 1s per column</code></pre>
+<pre><code>##    age_A_NA    age_B_NA height_A_NA height_B_NA  reach_A_NA  reach_B_NA 
+##       34539      129492      138181      252787      275085      349554 
+## stance_A_NA stance_B_NA weight_A_NA weight_B_NA    won_A_NA    won_B_NA 
+##           0           0      251854      257069           0           0 
+##   lost_A_NA   lost_B_NA  drawn_A_NA  drawn_B_NA    kos_A_NA    kos_B_NA 
+##           0           0           0           0           0          79 
+##   result_NA decision_NA judge1_A_NA judge1_B_NA judge2_A_NA judge2_B_NA 
+##           0           0      335179      335367      317056      317395 
+## judge3_A_NA judge3_B_NA 
+##      326196      326404</code></pre>
+<p>Ok quite a bit missing. I’m guessing that the judges missing data comes down to bouts being anything thats a non-decision i.e. judges don’t have to score. So lets see what we get if we filter down to non-decision bouts.</p>
+<pre class="r"><code>goes.to.the.judges &lt;- c(&quot;SD&quot;, &quot;UD&quot;, &quot;MD&quot;) # Decisions we want to filter out
+
+bouts %&gt;%
+  filter(!(decision %in% goes.to.the.judges)) %&gt;%
+  as_shadow_upset() %&gt;%
+  colSums()</code></pre>
+<pre><code>##    age_A_NA    age_B_NA height_A_NA height_B_NA  reach_A_NA  reach_B_NA 
+##       27129      114468      107386      208609      218144      280122 
+## stance_A_NA stance_B_NA weight_A_NA weight_B_NA    won_A_NA    won_B_NA 
+##           0           0      206482      211209           0           0 
+##   lost_A_NA   lost_B_NA  drawn_A_NA  drawn_B_NA    kos_A_NA    kos_B_NA 
+##           0           0           0           0           0          76 
+##   result_NA decision_NA judge1_A_NA judge1_B_NA judge2_A_NA judge2_B_NA 
+##           0           0      294594      294592      283595      283698 
+## judge3_A_NA judge3_B_NA 
+##      292396      292414</code></pre>
+Still a lot of columns missing data that we could use for predicting. Even if we imputed values there are far too many to impute resulting in inaccurate predicting e.g. 380k rows of data total with nearly <strong>30%</strong> of age_B missing, not good.
+<p>
+<p>
+Ok values won’t be imputed but there may be some errorneous data that will skew a model. These are most likely
+<p>
+<p>
+<ul>
+<li>Height</li>
+<li>Reach</li>
+<li>Weight</li>
+<li>Age</li>
+</ul>
+<p>So lets pull out all of these for each boxer, stack them into one dataset and find out what the distributions are currently and see if we can filter out outliers if they exist.</p>
+<pre class="r"><code>bouts %&gt;%
+  select(&quot;age_A&quot;, &quot;height_A&quot;, &quot;reach_A&quot;, &quot;weight_A&quot;) %&gt;%
+  rename(age = age_A, 
+         height = height_A, 
+         reach = reach_A, 
+         weight = weight_A) -&gt; boxer.A # Boxer A&#39;s age, height, reach and weight
+
+bouts %&gt;%
+  select(&quot;age_B&quot;, &quot;height_B&quot;, &quot;reach_B&quot;, &quot;weight_B&quot;) %&gt;%
+  rename(age = age_B,
+         height = height_B, 
+         reach = reach_B, 
+         weight = weight_B) -&gt; boxer.B # Boxer B&#39;s age, height, reach and weight
+
+boxers &lt;- rbind(boxer.A, boxer.B)      # Stack them
+boxers %&gt;%
+  filter(complete.cases(.) == T) -&gt; complete.boxers # Filter to only complete rows of data
+
+count(complete.boxers)                 # Total number of boxers</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1 66738</code></pre>
+<pre class="r"><code>complete.boxers %&gt;%
+  as_shadow_upset() %&gt;%
+  colSums()</code></pre>
+<pre><code>##    age_NA height_NA  reach_NA weight_NA 
+##         0         0         0         0</code></pre>
+<p>Ok now we have about 67k rows of data regarding a boxer’s age, weight, height and reach with no missing data. Let’s see if there are any outliers using <code>plot_num()</code> in the <code>funModeling</code> package and <code>describe()</code> in the <code>Hmisc</code> package.</p>
+<pre class="r"><code>plot_num(complete.boxers, bins = 10)  # Distribution visualisations</code></pre>
+<p><img src="/post/2018-08-11-Automated-Machine-Learning-to-predict-boxing-match-winners_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>describe(complete.boxers)             # Statistical summary</code></pre>
+<pre><code>## complete.boxers 
+## 
+##  4  Variables      66738  Observations
+## ---------------------------------------------------------------------------
+## age 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    66738        0       47    0.996    25.78    5.922       19       20 
+##      .25      .50      .75      .90      .95 
+##       22       25       29       33       36 
+##                                                                       
+## Value          0    10    15    20    25    30    35    40    45    50
+## Frequency      4     2  1313 18841 24552 14579  5572  1511   310    49
+## Proportion 0.000 0.000 0.020 0.282 0.368 0.218 0.083 0.023 0.005 0.001
+##                       
+## Value         55  2015
+## Frequency      4     1
+## Proportion 0.000 0.000
+## ---------------------------------------------------------------------------
+## height 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    66738        0       61    0.997    174.5    10.25      160      163 
+##      .25      .50      .75      .90      .95 
+##      168      173      180      188      191 
+## 
+## lowest : 148 150 152 153 154, highest: 208 211 213 216 218
+## ---------------------------------------------------------------------------
+## reach 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    66738        0       91    0.997    179.5    13.04      163      165 
+##      .25      .50      .75      .90      .95 
+##      172      178      185      195      201 
+## 
+## lowest :   1   8  25  27  28, highest: 224 229 239 427 456
+## ---------------------------------------------------------------------------
+## weight 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    66738        0      231        1    152.1    36.06      112      118 
+##      .25      .50      .75      .90      .95 
+##      128      144      167      202      226 
+## 
+## lowest :  11  19  27  68  94, highest: 327 328 329 333 334
+## ---------------------------------------------------------------------------</code></pre>
+Outliers for all. I’m guessing this is due to the data scrapping.<br />
+<br />
+After researching minimum and maximum ages, heights, reaches and weights I’m making the decision to filter out
+<p>
+<ul>
+<li>15 &lt;= ages &lt;= 60</li>
+<li>150 &lt;= heights &lt;= 210</li>
+<li>150 &lt;= reaches &lt;= 220</li>
+<li>100 &lt;= weights &lt;= 200</li>
+</ul>
+<p>Once filtered out this will remedy the skewed data. We’ll also recheck the distributions.</p>
+<pre class="r"><code>complete.boxers %&gt;%
+  filter(between(age, 15, 60) &amp;
+         between(height, 150, 210) &amp; 
+         between(reach, 150, 220) &amp; 
+         between(weight, 100, 200)) -&gt; measurements
+
+plot_num(measurements)</code></pre>
+<p><img src="/post/2018-08-11-Automated-Machine-Learning-to-predict-boxing-match-winners_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>describe(measurements)</code></pre>
+<pre><code>## measurements 
+## 
+##  4  Variables      59681  Observations
+## ---------------------------------------------------------------------------
+## age 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    59681        0       38    0.996    25.39    5.624       18       19 
+##      .25      .50      .75      .90      .95 
+##       22       25       28       32       35 
+## 
+## lowest : 15 16 17 18 19, highest: 48 49 50 51 52
+## ---------------------------------------------------------------------------
+## height 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    59681        0       50    0.996    172.8    8.808      160      163 
+##      .25      .50      .75      .90      .95 
+##      168      173      178      183      185 
+## 
+## lowest : 150 152 153 154 155, highest: 196 197 198 199 207
+## ---------------------------------------------------------------------------
+## reach 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    59681        0       63    0.997    177.6    10.79      163      165 
+##      .25      .50      .75      .90      .95 
+##      170      178      184      191      193 
+## 
+## lowest : 150 152 153 154 155, highest: 211 213 215 216 218
+## ---------------------------------------------------------------------------
+## weight 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##    59681        0      101        1    143.4    24.99      112      117 
+##      .25      .50      .75      .90      .95 
+##      126      140      159      175      186 
+## 
+## lowest : 100 101 102 103 104, highest: 196 197 198 199 200
+## ---------------------------------------------------------------------------</code></pre>
+<p>Distributions looks good now. Lets see if there are any relationships.<br />
+<br />
+Weight and reach are dependent on height.</p>
+<pre class="r"><code>a &lt;- ggplot(measurements, aes(x = height, y = weight)) + geom_point(alpha = 0.01) + geom_smooth(method = &quot;lm&quot;) + xlim(100,250) + ylim(100,250)
+b &lt;- ggplot(measurements, aes(x = height, y = reach)) + geom_point(alpha = 0.01) + geom_smooth(method = &quot;lm&quot;) + xlim(100,250) + ylim(100,250)
+c &lt;- ggplot(measurements, aes(x = weight, y = reach)) + geom_point(alpha = 0.01) + geom_smooth(method = &quot;lm&quot;) + xlim(100,250) + ylim(100,250)
+
+a</code></pre>
+<p><img src="/post/2018-08-11-Automated-Machine-Learning-to-predict-boxing-match-winners_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>b</code></pre>
+<p><img src="/post/2018-08-11-Automated-Machine-Learning-to-predict-boxing-match-winners_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<pre class="r"><code>c</code></pre>
+<img src="/post/2018-08-11-Automated-Machine-Learning-to-predict-boxing-match-winners_files/figure-html/unnamed-chunk-8-3.png" width="672" /><br />
+<br />
+So we’ve cleaned the data and found some relationships but once again, due to the high amount of missing data imputation <strong>isn’t sensible</strong>. We’ve done the to understand the data.<br />
+
+<p>
+</div>
+<div id="automated-machine-learning" class="section level3">
+<h3>Automated Machine Learning</h3>
+<strong>The below is being done as an exercise/practice. This is not ideal given the amount of data available. </strong><br />
+
+<p>
+<p>Given the situation lets take all the complete rows of data (excluding decisions and judges scores) that have a winner, <strong>no draws</strong>. From these complete rows of data lets filter down to the limits we’ve decided on age, height, reach and weight and then run <code>automl()</code> from the <code>h2o</code> package to determine the winner.</p>
+<pre class="r"><code>bouts %&gt;%
+  select(-starts_with(&quot;judge&quot;), -&quot;decision&quot;) %&gt;%
+  filter(complete.cases(.) == T) %&gt;%
+  mutate(result = as.character(result)) %&gt;%
+  filter(result == &quot;win_A&quot; | result == &quot;win_B&quot;) %&gt;%
+  mutate_if(is_character, as.factor) %&gt;%
+  filter(between(age_A, 15, 60) &amp; between(age_B, 15, 60)) %&gt;%
+  filter(between(height_A, 150, 210) &amp; between(height_B, 150, 210)) %&gt;%
+  filter(between(reach_A, 150, 220) &amp; between(reach_B, 150, 220)) %&gt;%
+  filter(between(weight_A, 100, 200) &amp; between(weight_B, 100, 200)) -&gt; boxing</code></pre>
+<p>There are 6055 rows of data we can use for training + testing.<br />
+<br />
+That’s all the R prep done now we can jump into <code>h2o</code> and predict wins using this subset of data.</p>
+<pre class="r"><code>h2o.no_progress()
+h2o.init(nthreads = -1) # Start up h2o</code></pre>
+<pre><code>##  Connection successful!
+## 
+## R is connected to the H2O cluster: 
+##     H2O cluster uptime:         1 hours 45 minutes 
+##     H2O cluster timezone:       Europe/London 
+##     H2O data parsing timezone:  UTC 
+##     H2O cluster version:        3.21.0.4382 
+##     H2O cluster version age:    3 days  
+##     H2O cluster name:           H2O_started_from_R_dlelion_ced913 
+##     H2O cluster total nodes:    1 
+##     H2O cluster total memory:   0.79 GB 
+##     H2O cluster total cores:    4 
+##     H2O cluster allowed cores:  4 
+##     H2O cluster healthy:        TRUE 
+##     H2O Connection ip:          localhost 
+##     H2O Connection port:        54321 
+##     H2O Connection proxy:       NA 
+##     H2O Internal Security:      FALSE 
+##     H2O API Extensions:         Algos, AutoML, Core V3, Core V4 
+##     R Version:                  R version 3.5.1 (2018-07-02)</code></pre>
+<pre class="r"><code>boxing.h2o &lt;- as.h2o(boxing)
+split &lt;- h2o.splitFrame(boxing.h2o, c(0.7, 0.15), seed = 567)
+train &lt;- h2o.assign(split[[1]], &quot;train&quot;)              # Training data (70 %), 
+valid &lt;- h2o.assign(split[[2]], &quot;valid&quot;)              # Validation data (15 %),used to prevent overfitting
+test  &lt;- h2o.assign(split[[3]], &quot;test&quot;)               # Testing data (15 %)
+
+target &lt;- &quot;result&quot;                                    # What we want to predict
+predictors &lt;- names(train[,-which(names(train) == &quot;result&quot;)]) # What we are predicting with
+
+automl.models &lt;- h2o.automl(x = predictors,
+                            y = target,
+                            training_frame = train,
+                            leaderboard_frame = valid,
+                            max_runtime_secs  = 30)
+
+top.scoring.model &lt;- automl.models@leader             # Take the highest scoring model
+
+prediction &lt;- h2o.predict(object = top.scoring.model, # Predicting the winner (A/B)
+                        newdata = test)
+
+as.tibble(prediction)</code></pre>
+<pre><code>## # A tibble: 916 x 3
+##    predict win_A  win_B
+##    &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1 win_A   0.889 0.111 
+##  2 win_A   0.889 0.111 
+##  3 win_A   0.963 0.0370
+##  4 win_A   0.925 0.0755
+##  5 win_B   0.778 0.222 
+##  6 win_A   0.815 0.185 
+##  7 win_A   0.961 0.0390
+##  8 win_A   0.924 0.0760
+##  9 win_A   0.852 0.148 
+## 10 win_A   0.926 0.0741
+## # ... with 906 more rows</code></pre>
+The above is
+<p>
+<ul>
+<li>Starting h2o up</li>
+<li>Moving the data from R to h2o</li>
+<li>Splitting the data into training, test and validation sets</li>
+<li>Indicating what we want to predict and what we want to predict with</li>
+<li>Running automated machine learning to produce a list of models</li>
+<li>Predicting the winner of the bout with the top scoring model</li>
+<li>Viewing the probability the model is assigning to each winner</li>
+</ul>
+<p>Now lets compare the actual test value against the predicted value and we can see how accurate the model was. I like using the <code>caret</code> package to get a quick summary.</p>
+<pre class="r"><code>prediction %&gt;%
+  as.data.frame() %&gt;%
+  select(&quot;predict&quot;) %&gt;%
+  rename(prediction = predict) %&gt;%
+  add_column(test.value = as.vector(test$result)) %&gt;%
+  table() -&gt; predicted.vs.actual
+
+confusionMatrix(predicted.vs.actual)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           test.value
+## prediction win_A win_B
+##      win_A   597    48
+##      win_B   194    77
+##                                          
+##                Accuracy : 0.7358         
+##                  95% CI : (0.706, 0.7641)
+##     No Information Rate : 0.8635         
+##     P-Value [Acc &gt; NIR] : 1              
+##                                          
+##                   Kappa : 0.2485         
+##  Mcnemar&#39;s Test P-Value : &lt;2e-16         
+##                                          
+##             Sensitivity : 0.7547         
+##             Specificity : 0.6160         
+##          Pos Pred Value : 0.9256         
+##          Neg Pred Value : 0.2841         
+##              Prevalence : 0.8635         
+##          Detection Rate : 0.6517         
+##    Detection Prevalence : 0.7041         
+##       Balanced Accuracy : 0.6854         
+##                                          
+##        &#39;Positive&#39; Class : win_A          
+## </code></pre>
+Looking mainly at the confusion matrix and the accuracy, <strong>75% accuracy</strong> isn’t too bad. Granted there wasn’t indication of a positive case/negative case so identifying true positives/true negatives doesn’t apply here. Overall a pretty impressive outcome with little data prep.
+<p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>During this exercise I’ve seen how important understanding the data is and prepping it for whatever you want to do to it. Without this nothing can happen. Exploration of data is important to identify erroneous data, to further understand the data and identify any relationships that you assume exist (granted we didn’t use them to impute values) or discover some undiscovered relationships. Automated machine learning is very good for producing a quick model, I don’t think it will replace traditional machine learning but it can produce a rough and ready output in a short amount of time. This frees up time to look at insight value and possible consequences of incorrect predictions (this wasn’t done here).</p>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Funmodeling on DataStruggle</title>
+    <link>/tags/funmodeling/</link>
+    <description>Recent content in Funmodeling on DataStruggle</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/funmodeling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Automated Machine Learning to predict boxing match winners</title>
+      <link>/post/2018-08-11-automated-machine-learning-to-predict-boxing-match-winners/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-08-11-automated-machine-learning-to-predict-boxing-match-winners/</guid>
+      <description>Packages Usedlibrary(tidyverse) # Data preplibrary(h2o) # Automated machine learninglibrary(naniar) # Identifying missing datalibrary(funModeling) # Quick histograms for featureslibrary(Hmisc) # Statistical summarieslibrary(caret) # Confusion matricesI came across a dataset that peaked my interest in something I enjoy watching, boxing. The data has been scrapped from a boxing bout website with a large quantity of data available. Using this data we can try to predict winners of each bout with automated machine learning.</description>
+    </item>
+    
+  </channel>
+</rss>

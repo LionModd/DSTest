@@ -39,16 +39,16 @@ pastures</code></pre>
 <pre><code>## # A tibble: 67 x 5
 ##    index rent.arable  cows difference rent.grassy
 ##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
-##  1 1            15.5 17.2      0.240         18.4
-##  2 2            22.3 18.5      0.200         20.0
-##  3 3            12.4 11.1      0.120         11.5
-##  4 4            31.8  5.54     0.120         25.0
-##  5 5            83.9  5.44     0.0400        62.5
-##  6 6            72.2 20.4      0.0500        82.5
-##  7 7            27.1 31.2      0.270         25.0
-##  8 8            40.4  4.29     0.100         30.7
-##  9 9            12.4  8.69     0.410         12.0
-## 10 10           69.4  6.63     0.0400        61.2
+##  1 1            15.5 17.2        0.24        18.4
+##  2 2            22.3 18.5        0.2         20  
+##  3 3            12.4 11.1        0.12        11.5
+##  4 4            31.8  5.54       0.12        25  
+##  5 5            83.9  5.44       0.04        62.5
+##  6 6            72.2 20.4        0.05        82.5
+##  7 7            27.1 31.2        0.27        25  
+##  8 8            40.4  4.29       0.1         30.7
+##  9 9            12.4  8.69       0.41        12  
+## 10 10           69.4  6.63       0.04        61.2
 ## # ... with 57 more rows</code></pre>
 <p>Looking at each feature (except Index) against the dependent variable (<strong>rent.grassy</strong>) we can see a relationship with it and <strong>rent.arable</strong>. (see below)</p>
 <pre class="r"><code>plot &lt;- ggplot(pastures)
@@ -72,14 +72,14 @@ pastures.rent</code></pre>
 ##    rent.arable rent.grassy
 ##          &lt;dbl&gt;       &lt;dbl&gt;
 ##  1        15.5        18.4
-##  2        22.3        20.0
+##  2        22.3        20  
 ##  3        12.4        11.5
-##  4        31.8        25.0
+##  4        31.8        25  
 ##  5        83.9        62.5
 ##  6        72.2        82.5
-##  7        27.1        25.0
+##  7        27.1        25  
 ##  8        40.4        30.7
-##  9        12.4        12.0
+##  9        12.4        12  
 ## 10        69.4        61.2
 ## # ... with 57 more rows</code></pre>
 <p>Now we’ll split the data in a 1:3 ratio for testing and training data. This is important because we want to test our linear regression model on something, so why not use data we have!</p>

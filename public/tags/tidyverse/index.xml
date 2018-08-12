@@ -5,10 +5,19 @@
     <link>/tags/tidyverse/</link>
     <description>Recent content in Tidyverse on DataStruggle</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automated Machine Learning to predict boxing match winners</title>
+      <link>/post/2018-08-11-automated-machine-learning-to-predict-boxing-match-winners/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-08-11-automated-machine-learning-to-predict-boxing-match-winners/</guid>
+      <description>Packages Usedlibrary(tidyverse) # Data preplibrary(h2o) # Automated machine learninglibrary(naniar) # Identifying missing datalibrary(funModeling) # Quick histograms for featureslibrary(Hmisc) # Statistical summarieslibrary(caret) # Confusion matricesI came across a dataset that peaked my interest in something I enjoy watching, boxing. The data has been scrapped from a boxing bout website with a large quantity of data available. Using this data we can try to predict winners of each bout with automated machine learning.</description>
+    </item>
     
     <item>
       <title>Logistic Regression for predicting bike purchasing</title>
@@ -46,7 +55,7 @@
       
       <guid>/post/2018-06-19-tibbles-vs-data-frames/</guid>
       <description>Packages usedlibrary(tidyverse)library(nycflights13)I’ve never used tibbles that much and I don’t know why, only data frames. Data frames to me are rows of data. I’m going to see what the difference is between tibbles and data frames and hopefully add to the Rsenal. Tibbles are under the tidyverse package. Now onto the tibbles.
-a &amp;lt;- tibble(x = 1:3,y = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;C&amp;quot;),z = x ^ 2)a## # A tibble: 3 x 3## x y z## &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;## 1 1 A 1.</description>
+a &amp;lt;- tibble(x = 1:3,y = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;C&amp;quot;),z = x ^ 2)a## # A tibble: 3 x 3## x y z## &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;## 1 1 A 1## 2 2 B 4## 3 3 C 9Compared to a data frame I can see that the types are being displayed.</description>
     </item>
     
     <item>

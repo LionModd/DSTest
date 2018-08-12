@@ -17,7 +17,7 @@
       
       <guid>/post/2018-06-19-tibbles-vs-data-frames/</guid>
       <description>Packages usedlibrary(tidyverse)library(nycflights13)I’ve never used tibbles that much and I don’t know why, only data frames. Data frames to me are rows of data. I’m going to see what the difference is between tibbles and data frames and hopefully add to the Rsenal. Tibbles are under the tidyverse package. Now onto the tibbles.
-a &amp;lt;- tibble(x = 1:3,y = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;C&amp;quot;),z = x ^ 2)a## # A tibble: 3 x 3## x y z## &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;## 1 1 A 1.</description>
+a &amp;lt;- tibble(x = 1:3,y = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;C&amp;quot;),z = x ^ 2)a## # A tibble: 3 x 3## x y z## &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;## 1 1 A 1## 2 2 B 4## 3 3 C 9Compared to a data frame I can see that the types are being displayed.</description>
     </item>
     
   </channel>

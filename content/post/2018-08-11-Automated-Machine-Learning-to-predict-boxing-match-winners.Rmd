@@ -1,0 +1,239 @@
+---
+title: "Automated Machine Learning to predict boxing match winners"
+author: "Dom"
+date: 2018-08-12
+output: 
+  html_document:
+tags: [h2o, automated machine learning, tidyverse, Hmisc, caret, funModeling, naniar]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+bouts <- read.csv("C:/Users/dlelion/Desktop/Struggle/Testing/boxing.csv")
+library(rmarkdown)
+library(knitr)
+library(kableExtra)
+```
+
+##Packages Used
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
+library(tidyverse)    # Data prep
+library(h2o)          # Automated machine learning
+library(naniar)       # Identifying missing data
+library(funModeling)  # Quick histograms for features
+library(Hmisc)        # Statistical summaries
+library(caret)        # Confusion matrices
+```
+
+I came across a dataset that peaked my interest in something I enjoy watching, boxing. The data has been scrapped from a boxing bout website with a large quantity of data available. Using this data we can try to predict winners of each bout with automated machine learning. 
+<p>
+The website scrapped has data you'd expect from a boxing bout such as the age, reach, weight of each boxer but it even has who the promoter was?! I'm sure you could find a way to utilise the promoter in some analysis, maybe looking to see if there is a correlation between pay-per-view figures and the promoter? Some cool stuff on there, anyway lets dig into the data and explain the process we'll use to try to predict winners...
+
+##Aim: use automated machine learning to produce a model that can accurately predict **wins** of boxing bouts
+<p>
+##Caveat: the below isn't an ideal outcome and is a data prep, exploration and automated machine learning exercise
+<p>
+<p>
+As with most processes involving data we'll need to understand, prep, clean and explore it.
+
+###Understanding the data
+```{r, echo = FALSE}
+kable(head(bouts), caption = "Bouts") %>%
+  kable_styling(bootstrap_options = "condensed") %>%
+  scroll_box(width = "910px")
+```
+Each row of data is a boxing bout. Each bout consists of boxer A's and boxer B's
+<p>
+* Age (years)
+* Height (cm)
+* Reach (measurement from one hand to the other with arms out in a T, cm)
+* Stance (orthodox or southpaw i.e. right/left foot forward with right/left hand leading)
+* Weight (lbs)
+* Won (number of previous bouts won)
+* Lost (number of previous bouts lost)
+* Draw (number of previous bouts drawn)
+* Kos (number of kos)
+* Result (either a draw, boxer A wins, boxer B wins)
+* Decision
+* Three judges scores
+
+Decisions are...
+<p>
++ SD - split decision - 2 judges have scored one boxer's performance higher than the other and the other judge has scored the opposite
++ MD - majority decision - 2 judges have scored one boxer's performance higher than the other judge has scored it a draw (equal scores for each boxer)
++ UD - unanimous decision - all 3 judges have scored one boxer's performance higher than the other
++ KO - knock out - a boxer is knocked down, the referee counts to 10 and the boxer stays down
++ TKO - technical knock out - the referee has stopped the fight due to a boxer being in no fit condition to continue
++ DQ - a boxer is disqualified from the bout (other boxer wins)
++ RTD - a boxer has retired mid bout
+
+###Exploring + Cleaning the data
+Lets see if there are any missing values. I like the `as.shadow.upset()` function from the `naniar` package (changes all NAs into 1s in the data and anything else to 0s) paired with `colSums()`.
+```{r, echo = TRUE}
+bouts %>%
+  as_shadow_upset() %>% # Set all NAs to 1s
+  colSums()             # Count all the 1s per column
+```
+Ok quite a bit missing. I'm guessing that the judges missing data comes down to bouts being anything thats a non-decision i.e. judges don't have to score. So lets see what we get if we filter down to non-decision bouts.
+```{r, echo = TRUE}
+goes.to.the.judges <- c("SD", "UD", "MD") # Decisions we want to filter out
+
+bouts %>%
+  filter(!(decision %in% goes.to.the.judges)) %>%
+  as_shadow_upset() %>%
+  colSums()
+```
+Still a lot of columns missing data that we could use for predicting. Even if we imputed values there are far too many to impute resulting in inaccurate predicting e.g. 380k rows of data total with nearly **30%** of age_B missing, not good.
+<p>
+<p>
+Ok values won't be imputed but there may be some errorneous data that will skew a model. These are most likely
+<p>
+<p>
+* Height
+* Reach
+* Weight
+* Age
+
+So lets pull out all of these for each boxer, stack them into one dataset and find out what the distributions are currently and see if we can filter out outliers if they exist.
+```{r, echo = TRUE}
+bouts %>%
+  select("age_A", "height_A", "reach_A", "weight_A") %>%
+  rename(age = age_A, 
+         height = height_A, 
+         reach = reach_A, 
+         weight = weight_A) -> boxer.A # Boxer A's age, height, reach and weight
+
+bouts %>%
+  select("age_B", "height_B", "reach_B", "weight_B") %>%
+  rename(age = age_B,
+         height = height_B, 
+         reach = reach_B, 
+         weight = weight_B) -> boxer.B # Boxer B's age, height, reach and weight
+
+boxers <- rbind(boxer.A, boxer.B)      # Stack them
+boxers %>%
+  filter(complete.cases(.) == T) -> complete.boxers # Filter to only complete rows of data
+
+count(complete.boxers)                 # Total number of boxers
+
+complete.boxers %>%
+  as_shadow_upset() %>%
+  colSums()
+```
+Ok now we have about 67k rows of data regarding a boxer's age, weight, height and reach with no missing data. Let's see if there are any outliers using `plot_num()` in the `funModeling` package and `describe()` in the `Hmisc` package.
+```{r, echo = TRUE}
+plot_num(complete.boxers, bins = 10)  # Distribution visualisations
+describe(complete.boxers)             # Statistical summary
+```
+Outliers for all. I'm guessing this is due to the data scrapping.
+\
+\
+After researching minimum and maximum ages, heights, reaches and weights I'm making the decision to filter out
+<p>
+* 15 <= ages <= 60
+* 150 <= heights <= 210
+* 150 <= reaches <= 220
+* 100 <= weights <= 200
+
+Once filtered out this will remedy the skewed data. We'll also recheck the distributions.
+```{r, echo = TRUE}
+complete.boxers %>%
+  filter(between(age, 15, 60) &
+         between(height, 150, 210) & 
+         between(reach, 150, 220) & 
+         between(weight, 100, 200)) -> measurements
+
+plot_num(measurements)
+describe(measurements)
+```
+Distributions looks good now. Lets see if there are any relationships.
+\
+\
+Weight and reach are dependent on height. 
+```{r, echo = TRUE, warning = FALSE}
+a <- ggplot(measurements, aes(x = height, y = weight)) + geom_point(alpha = 0.01) + geom_smooth(method = "lm") + xlim(100,250) + ylim(100,250)
+b <- ggplot(measurements, aes(x = height, y = reach)) + geom_point(alpha = 0.01) + geom_smooth(method = "lm") + xlim(100,250) + ylim(100,250)
+c <- ggplot(measurements, aes(x = weight, y = reach)) + geom_point(alpha = 0.01) + geom_smooth(method = "lm") + xlim(100,250) + ylim(100,250)
+
+a
+b
+c
+```
+\
+\
+So we've cleaned the data and found some relationships but once again, due to the high amount of missing data imputation **isn't sensible**. We've done the to understand the data.
+\
+<p>
+###Automated Machine Learning
+**The below is being done as an exercise/practice. This is not ideal given the amount of data available. **
+\
+<p>
+Given the situation lets take all the complete rows of data (excluding decisions and judges scores) that have a winner, **no draws**. From these complete rows of data lets filter down to the limits we've decided on age, height, reach and weight and then run `automl()` from the `h2o` package to determine the winner.
+```{r, echo = TRUE}
+bouts %>%
+  select(-starts_with("judge"), -"decision") %>%
+  filter(complete.cases(.) == T) %>%
+  mutate(result = as.character(result)) %>%
+  filter(result == "win_A" | result == "win_B") %>%
+  mutate_if(is_character, as.factor) %>%
+  filter(between(age_A, 15, 60) & between(age_B, 15, 60)) %>%
+  filter(between(height_A, 150, 210) & between(height_B, 150, 210)) %>%
+  filter(between(reach_A, 150, 220) & between(reach_B, 150, 220)) %>%
+  filter(between(weight_A, 100, 200) & between(weight_B, 100, 200)) -> boxing
+```
+There are 6055 rows of data we can use for training + testing.
+\
+\
+That's all the R prep done now we can jump into `h2o` and predict wins using this subset of data.
+```{r, echo = TRUE, message = FALSE}
+h2o.no_progress()
+h2o.init(nthreads = -1) # Start up h2o
+```
+```{r, echo = TRUE}
+boxing.h2o <- as.h2o(boxing)
+split <- h2o.splitFrame(boxing.h2o, c(0.7, 0.15), seed = 567)
+train <- h2o.assign(split[[1]], "train")              # Training data (70 %), 
+valid <- h2o.assign(split[[2]], "valid")              # Validation data (15 %),used to prevent overfitting
+test  <- h2o.assign(split[[3]], "test")               # Testing data (15 %)
+
+target <- "result"                                    # What we want to predict
+predictors <- names(train[,-which(names(train) == "result")]) # What we are predicting with
+
+automl.models <- h2o.automl(x = predictors,
+                            y = target,
+                            training_frame = train,
+                            leaderboard_frame = valid,
+                            max_runtime_secs  = 30)
+
+top.scoring.model <- automl.models@leader             # Take the highest scoring model
+
+prediction <- h2o.predict(object = top.scoring.model, # Predicting the winner (A/B)
+                        newdata = test)
+
+as.tibble(prediction)
+```
+The above is
+<p>
+* Starting h2o up
+* Moving the data from R to h2o
+* Splitting the data into training, test and validation sets
+* Indicating what we want to predict and what we want to predict with
+* Running automated machine learning to produce a list of models
+* Predicting the winner of the bout with the top scoring model
+* Viewing the probability the model is assigning to each winner
+
+Now lets compare the actual test value against the predicted value and we can see how accurate the model was. I like using the `caret` package to get a quick summary.
+```{r, echo = TRUE}
+prediction %>%
+  as.data.frame() %>%
+  select("predict") %>%
+  rename(prediction = predict) %>%
+  add_column(test.value = as.vector(test$result)) %>%
+  table() -> predicted.vs.actual
+
+confusionMatrix(predicted.vs.actual)
+```
+Looking mainly at the confusion matrix and the accuracy, **75% accuracy** isn't too bad. Granted there wasn't indication of a positive case/negative case so identifying true positives/true negatives doesn't apply here. Overall a pretty impressive outcome with little data prep.
+<p>
+##Summary
+During this exercise I've seen how important understanding the data is and prepping it for whatever you want to do to it. Without this nothing can happen. Exploration of data is important to identify erroneous data, to further understand the data and identify any relationships that you assume exist (granted we didn't use them to impute values) or discover some undiscovered relationships. Automated machine learning is very good for producing a quick model, I don't think it will replace traditional machine learning but it can produce a rough and ready output in a short amount of time. This frees up time to look at insight value and possible consequences of incorrect predictions (this wasn't done here).
