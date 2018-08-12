@@ -761,7 +761,7 @@ After researching minimum and maximum ages, heights, reaches and weights I’m m
 <li>150 &lt;= reaches &lt;= 220</li>
 <li>100 &lt;= weights &lt;= 200</li>
 </ul>
-<p>Once filtered out this will remedy the skewed data. We’ll also recheck the distributions.</p>
+<p>Once filtered out this will remedy the outliers in the data. We’ll also recheck the distributions.</p>
 <pre class="r"><code>complete.boxers %&gt;%
   filter(between(age, 15, 60) &amp;
          between(height, 150, 210) &amp; 
@@ -850,19 +850,19 @@ h2o.init(nthreads = -1) # Start up h2o</code></pre>
 ## H2O is not running yet, starting it now...
 ## 
 ## Note:  In case of errors look at the following log files:
-##     C:\Users\dlelion\AppData\Local\Temp\RtmpQhB0Bx/h2o_dlelion_started_from_r.out
-##     C:\Users\dlelion\AppData\Local\Temp\RtmpQhB0Bx/h2o_dlelion_started_from_r.err
+##     C:\Users\dlelion\AppData\Local\Temp\Rtmp63eDqy/h2o_dlelion_started_from_r.out
+##     C:\Users\dlelion\AppData\Local\Temp\Rtmp63eDqy/h2o_dlelion_started_from_r.err
 ## 
 ## 
 ## Starting H2O JVM and connecting:  Connection successful!
 ## 
 ## R is connected to the H2O cluster: 
-##     H2O cluster uptime:         2 seconds 161 milliseconds 
+##     H2O cluster uptime:         1 seconds 928 milliseconds 
 ##     H2O cluster timezone:       Europe/London 
 ##     H2O data parsing timezone:  UTC 
 ##     H2O cluster version:        3.21.0.4382 
 ##     H2O cluster version age:    3 days  
-##     H2O cluster name:           H2O_started_from_R_dlelion_esc679 
+##     H2O cluster name:           H2O_started_from_R_dlelion_nok826 
 ##     H2O cluster total nodes:    1 
 ##     H2O cluster total memory:   1.75 GB 
 ##     H2O cluster total cores:    4 
@@ -898,16 +898,16 @@ as.tibble(prediction)</code></pre>
 <pre><code>## # A tibble: 916 x 3
 ##    predict win_A   win_B
 ##    &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1 win_A   0.92  0.0800 
-##  2 win_A   0.998 0.00154
-##  3 win_A   1     0      
-##  4 win_A   0.942 0.0578 
-##  5 win_A   0.889 0.111  
-##  6 win_B   0.79  0.210  
-##  7 win_A   0.94  0.06   
-##  8 win_A   0.92  0.0800 
-##  9 win_A   0.88  0.12   
-## 10 win_A   0.969 0.0313 
+##  1 win_A   0.889 0.111  
+##  2 win_A   0.852 0.148  
+##  3 win_A   0.963 0.0370 
+##  4 win_A   0.963 0.0370 
+##  5 win_A   0.843 0.157  
+##  6 win_A   0.788 0.212  
+##  7 win_A   0.997 0.00285
+##  8 win_A   0.912 0.0880 
+##  9 win_A   0.926 0.0741 
+## 10 win_A   0.889 0.111  
 ## # ... with 906 more rows</code></pre>
 The above is
 <p>
@@ -933,25 +933,25 @@ confusionMatrix(predicted.vs.actual)</code></pre>
 ## 
 ##           test.value
 ## prediction win_A win_B
-##      win_A   530    43
-##      win_B   261    82
+##      win_A   635    59
+##      win_B   156    66
 ##                                           
-##                Accuracy : 0.6681          
-##                  95% CI : (0.6366, 0.6986)
+##                Accuracy : 0.7653          
+##                  95% CI : (0.7365, 0.7924)
 ##     No Information Rate : 0.8635          
 ##     P-Value [Acc &gt; NIR] : 1               
 ##                                           
-##                   Kappa : 0.188           
-##  Mcnemar&#39;s Test P-Value : &lt;2e-16          
+##                   Kappa : 0.2493          
+##  Mcnemar&#39;s Test P-Value : 5.865e-11       
 ##                                           
-##             Sensitivity : 0.6700          
-##             Specificity : 0.6560          
-##          Pos Pred Value : 0.9250          
-##          Neg Pred Value : 0.2391          
+##             Sensitivity : 0.8028          
+##             Specificity : 0.5280          
+##          Pos Pred Value : 0.9150          
+##          Neg Pred Value : 0.2973          
 ##              Prevalence : 0.8635          
-##          Detection Rate : 0.5786          
-##    Detection Prevalence : 0.6255          
-##       Balanced Accuracy : 0.6630          
+##          Detection Rate : 0.6932          
+##    Detection Prevalence : 0.7576          
+##       Balanced Accuracy : 0.6654          
 ##                                           
 ##        &#39;Positive&#39; Class : win_A           
 ## </code></pre>

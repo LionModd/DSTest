@@ -134,7 +134,7 @@ After researching minimum and maximum ages, heights, reaches and weights I'm mak
 * 150 <= reaches <= 220
 * 100 <= weights <= 200
 
-Once filtered out this will remedy the skewed data. We'll also recheck the distributions.
+Once filtered out this will remedy the outliers in the data. We'll also recheck the distributions.
 ```{r, echo = TRUE}
 complete.boxers %>%
   filter(between(age, 15, 60) &
