@@ -9,12 +9,12 @@ tags: [linear regression, tidyverse]
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-load(file = "C:/Users/dlelion/Desktop/Struggle/Testing/pasturesData.RData")
+load(file = "C:/Users/DomLaptop/Desktop/dstest/pasturesData.RData")
 library(rmarkdown)
 library(knitr)
 ```
 
-## Packages used
+##Packages used
 ```{r, echo = TRUE, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(caTools)

@@ -9,7 +9,7 @@ tags: [logistic regression, tidyverse, caTools]
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-load("C:/Users/dlelion/Desktop/Machine Learning A-Z Template Folder/Part 3 - Classification/Section 14 - Logistic Regression/.RData")
+load("C:/Users/DomLaptop/Desktop/dstest/logisticregression.RData")
 library(rmarkdown)
 library(knitr)
 ```
