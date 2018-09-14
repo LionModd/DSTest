@@ -1,0 +1,12 @@
+name: BasicShinyApp
+title: BasicShinyApp
+username:
+account: lionmod
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 436574
+bundleId: 1580774
+url: https://lionmod.shinyapps.io/BasicShinyApp/
+when: 1536690059.39174
+asMultiple: FALSE
+asStatic: FALSE

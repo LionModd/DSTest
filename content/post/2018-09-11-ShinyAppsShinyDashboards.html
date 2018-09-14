@@ -1,0 +1,109 @@
+---
+title: "Shiny Apps & Shiny Dashboards"
+date: 2018-09-14
+output: 
+  html_document:
+tags: [shiny, shinydashboard]
+---
+
+
+
+<div id="packages-used" class="section level2">
+<h2>Packages Used</h2>
+<pre class="r"><code>library(shiny)          # Shiny apps
+library(shinydashboard) # Shiny dashboards</code></pre>
+<p>I’ve been messing about with Shiny apps in R recently which led me onto discovering Shiny dashboards which can be created once you know how a Shiny app is created and then go from there. This could be useful if you want a piece of analysis to be used and interacted with by multiple users at the same time who aren’t that technical but know how to navigate and use a dashboard.</p>
+</div>
+<div id="aim-create-a-basic-shiny-app-and-a-basic-shiny-dashboard" class="section level2">
+<h2>Aim: create a basic Shiny app and a basic Shiny dashboard</h2>
+</div>
+<div id="shiny-app" class="section level2">
+<h2>Shiny App</h2>
+<p>Every Shiny app has <strong>three</strong> components…</p>
+<div id="ui" class="section level3">
+<h3>UI</h3>
+<pre class="r"><code>ui &lt;- fluidPage(
+  # Build the ui components here
+  
+  # titlePanel() to add a title
+  # sidebarPanel() to add a sidebar
+  # plotOutput(&quot;plot&quot;) to assign an area to a plot
+)</code></pre>
+</div>
+<div id="server-function" class="section level3">
+<h3>Server function</h3>
+<pre class="r"><code>server &lt;- function(input, output) {
+  # Do a lot of the behind the scenes calculations / plots here
+  
+  # e.g.
+  # output%plot &lt;- renderPlot({plot(mpg)})
+  # This will place a plot where plotOutput() is in the UI
+}</code></pre>
+</div>
+<div id="shinyapp-function" class="section level3">
+<h3>ShinyApp function</h3>
+<pre class="r"><code>shinyApp(ui, server) # Generate the ShinyApp
+}</code></pre>
+<p>Using these three components you can craft some simple and even complex apps. Below is a basic example.</p>
+<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
+</div>
+</div>
+<div id="shiny-dashboards" class="section level2">
+<h2>Shiny Dashboards</h2>
+<p>Shiny apps look great but I don’t feel they look that sleek and professional, that’s where Shiny dashboards come in. Learning how Shiny apps are built can help with learning Shiny dashboard. I like to think of Shiny dashboards being multiple Shiny apps consolidated.</p>
+<p>Dashboards tend to have the same <strong>three</strong> components as apps but the <strong>UI</strong> is slightly different…</p>
+<div id="ui-1" class="section level3">
+<h3>UI</h3>
+<pre class="r"><code>ui &lt;- fluidPage(
+  # Build the ui components here
+  
+  # LAYER 1 = dashboard layout
+  
+  ## dashboardPage(
+  ## dashboardHeader()
+  ## dashboardSidebar()
+  ## dashboardBody()
+  ## )
+  
+  # LAYER 2 = &quot;app&quot;/&quot;tab&quot; layout, this is your content layout
+  
+  ## titlePanel() to add a title
+  ## sidebarPanel() to add a sidebar
+  ## plotOutput(&quot;plot&quot;) to assign an area to a plot
+)</code></pre>
+</div>
+<div id="server-function-same-as-apps" class="section level3">
+<h3>Server function (same as apps)</h3>
+</div>
+<div id="shinyapp-same-as-apps" class="section level3">
+<h3>ShinyApp (same as apps)</h3>
+<p>There’s tons of features that dashboards can have and can be implemented fairly quickly while looking professional. I really like using <strong>brushing</strong> and <strong>hovering</strong> to great tooltips which are somewhat similar to Tableau tooltips but I think that there is a greater functionality in R.</p>
+<p>Below is a dashboard that has two tabs with basic plots and functions.</p>
+</div>
+<div id="tab-1-volcanos" class="section level3">
+<h3>Tab 1 (Volcanos)</h3>
+<ul>
+<li>Plotting eruptions and waiting</li>
+<li>Summary of all the points</li>
+<li>Three tooltips</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>Click</strong> anywhere on the plot and get the x/y cord</li>
+<li><strong>Hover</strong> anywhere on the plot and get the x/y cord</li>
+<li><strong>Brush</strong> (highlight with a box) anywhere on the plot and get a summary + list of the points brushed</li>
+</ol>
+</div>
+<div id="tab-2-mpgs" class="section level3">
+<h3>Tab 2 (mpgs)</h3>
+<ul>
+<li>Plotting mpg and hp</li>
+<li>“Linked brush” plot looking at wt and mpg</li>
+</ul>
+<p>Brushing the left plot will highlight in red the points on the right that they correspond to. This could be useful when wanting to see if certain points on one plot might correlate in some way on another plot, no need to tweak and run plots again and again in R.</p>
+<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>This is a light toe dipping into Shiny apps and dashboards basics which I feel need to be further developed to learn shortcuts and increase app/dashboard development speed. Tableau dashboards are great because they can be developed with little Tableau experience but the harder part to master is dashboard design. I feel this can be applied to Shiny dashboards.</p>
+</div>
