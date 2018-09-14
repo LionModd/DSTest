@@ -1,0 +1,12 @@
+name: BasicDashboard
+title: BasicDashboard
+username:
+account: lionmod
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 446037
+bundleId: 1585959
+url: https://lionmod.shinyapps.io/BasicDashboard/
+when: 1536942312.4552
+asMultiple: FALSE
+asStatic: FALSE

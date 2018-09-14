@@ -55,11 +55,7 @@ shinyApp(ui, server) # Generate the ShinyApp
 }
 ```
 
-Using these three components you can craft some simple and even complex apps. Below is a basic example.
-
-```{r, echo = FALSE}
-shinyAppDir("C:/Users/DomLaptop/Desktop/dstest/BasicShinyApp")
-```
+Using these three components you can craft some simple and even complex apps. Here is a basic example [link](http://lionmod.shinyapps.io/BasicShinyApp)
 
 ##Shiny Dashboards
 Shiny apps look great but I don't feel they look that sleek and professional, that's where Shiny dashboards come in. Learning how Shiny apps are built can help with learning Shiny dashboard. I like to think of Shiny dashboards being multiple Shiny apps consolidated.
@@ -92,7 +88,7 @@ ui <- fluidPage(
 ###ShinyApp (same as apps)
 There's tons of features that dashboards can have and can be implemented fairly quickly while looking professional. I really like using **brushing** and **hovering** to great tooltips which are somewhat similar to Tableau tooltips but I think that there is a greater functionality in R.
 
-Below is a dashboard that has two tabs with basic plots and functions.
+Here [link](https://lionmod.shinyapps.io/BasicDashboard/) is a dashboard that has two tabs with basic plots and functions.
 
 ###Tab 1 (Volcanos)
 * Plotting eruptions and waiting
@@ -109,9 +105,6 @@ Below is a dashboard that has two tabs with basic plots and functions.
 
 Brushing the left plot will highlight in red the points on the right that they correspond to. This could be useful when wanting to see if certain points on one plot might correlate in some way on another plot, no need to tweak and run plots again and again in R.
 
-```{r, echo = FALSE}
-shinyAppDir("C:/Users/DomLaptop/Desktop/dstest/BasicShinyApp/dashboard")
-```
 
 ##Summary
 This is a light toe dipping into Shiny apps and dashboards basics which I feel need to be further developed to learn shortcuts and increase app/dashboard development speed. Tableau dashboards are great because they can be developed with little Tableau experience but the harder part to master is dashboard design. I feel this can be applied to Shiny dashboards.
